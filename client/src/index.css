@@ -17,6 +17,7 @@ body {
   width: 90vw;
   height: 90vh;
   margin: 0 auto;
+  transition: all 0.3s ease;
 }
 
 nav {
@@ -27,9 +28,45 @@ nav {
   background-color: #242424;
 }
 
+.menu-icon {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+  transition: all 0.3s ease;
+}
+
+.bar1-x {
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.bar2-x {
+  opacity: 0;
+}
+
+.bar3-x {
+  transform: rotate(45deg) translate(-9px, -6px);
+}
+
+.show {
+  opacity: 100;
+  position: relative;
+  transition-delay: 0.3s;
+}
+
+.hide {
+  opacity: 0;
+  position: absolute;
+}
+
 ul {
   list-style: none;
-  display: flex;
+  transition: opacity 0.3s, position 0.3s;
 }
 
 li {
@@ -77,6 +114,7 @@ textarea {
 }
 
 button {
+  margin: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   border: none;
@@ -84,6 +122,15 @@ button {
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.post {
+  display: block;
+  width: 90%;
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+  background-color: #333;
 }
 
 

@@ -1,31 +1,34 @@
+import PostForm from "../components/PostForm";
+import Post from "../components/Post";
+import PostProps from "../interfaces/PostProps";
+import { useEffect, useState } from "react";
+
 export default function Callboard() {
+  const [posts, setPosts] = useState<PostProps[]>([]);
+
+  useEffect(() => {
+    setPosts([
+      { id: 1, username: "John Doe", content: "Rehearsal at 5 PM", date: "2023-10-01" },
+      { id: 2, username: "Jane Smith", content: "Costume fitting tomorrow", date: "2023-10-02" },
+      { id: 3, username: "Alice Johnson", content: "Don't forget to bring your scripts!", date: "2023-10-03" }
+    ])
+  }, [])
+
+
   return (
-    <>
-      <nav>
-        <h1>RSM Shrek The Musical</h1>
-        <ul>
-          <li><a href="/">Callboard</a></li>
-          <li><a href="/about">Contacts</a></li>
-          <li><a href="/contact">Reports</a></li>
-          <li><a href="/downloads">Downloads</a></li>
-        </ul>
-      </nav>
-      <main>
-        <form>
-          <h2>Callboard</h2>
-          <textarea name="post" id="post-textarea" defaultValue="Post something to the callboard..."></textarea>
-          <button type="submit">Post</button>
-        </form>
-        <section id="posts">
-          <div className="post">
-            <h3>Name</h3>
-            <p>Post content goes here...</p>
-            <p className="timestamp">Posted on: YYYY-MM-DD</p>
-            <button type="button">Edit</button>
-            <button type="button">Delete</button>
-          </div>
-        </section>
-      </main>
-    </>
+    <main>
+      <PostForm />
+      <section id="posts">
+        {posts.map((post: PostProps) => (
+          <Post
+            key={post.id}
+            id={post.id}
+            username={post.username}
+            content={post.content}
+            date={post.date}
+          />
+        ))}
+      </section>
+    </main>
   )
 }

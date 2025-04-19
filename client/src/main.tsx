@@ -1,8 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { createRoot } from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
 
-import './index.css'
-import App from './App.tsx'
+import './index.css';
+import App from './App.tsx';
 import Callboard from './pages/Callboard.tsx';
 
 const router = createBrowserRouter([
