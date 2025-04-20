@@ -56,17 +56,17 @@ nav {
 .show {
   opacity: 100;
   position: relative;
-  transition-delay: 0.3s;
+  transition-delay: 0.1s;
 }
 
 .hide {
   opacity: 0;
   position: absolute;
+  transition: all 0;
 }
 
 ul {
   list-style: none;
-  transition: opacity 0.3s, position 0.3s;
 }
 
 li {
