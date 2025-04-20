@@ -11,9 +11,9 @@
     "seed": "node dist/seeds/seed.js"
   },
   "nodemonConfig": {
-    "ext": "ts",
-    "watch": [ "src/**/*" ],
-    "exec": "npm run build && npm start"
+    "ext": "ts, tsx, css, html",
+    "watch": [ "src/**/*", "../client/src/**/*" ],
+    "exec": "cd ../ && npm run build && cd server && npm start"
   },
   "keywords": [],
   "author": "",

@@ -19,11 +19,20 @@ type Post {
     comments: [Comment]
 }
 
+input PostInput {
+    postText: String!
+    postAuthor: String!
+}
+
 type Comment {
     commentText: String
     commentAuthor: String
     createdAt: String
 }
+
+type Auth {
+    token: ID!
+  }
 
 type Query {
     users: [User]
@@ -34,9 +43,9 @@ type Query {
 }
 
 type Mutation {
-    addUser(username: String!, email: String!, password: String!): User
-    login(username: String!, password: String!): User
-    addPost(postText: String!, postAuthor: String!): Post
+    addUser(username: String!, email: String!, password: String!): Auth
+    login(username: String!, password: String!): Auth
+    addPost(input: PostInput!): Post
     removePost(postId: ID!): Post
     addComment(postId: ID!, commentText: String!, commentAuthor: String!): Post
     removeComment(postId: ID!, commentId: ID!): Post

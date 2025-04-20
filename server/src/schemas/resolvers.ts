@@ -84,7 +84,7 @@ const resolvers = {
             if (context.user) {
                 const post = await Post.create({ ...input });
                 await User.findOneAndUpdate(
-                    { _id: context.user._id },
+                    { username: context.user.username },
                     {
                         $addToSet: { posts: post._id }
                     });

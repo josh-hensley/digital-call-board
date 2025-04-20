@@ -2,10 +2,20 @@
   "name": "digital-call-board",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run server:dev",
+    "server:dev": "cd server && npm run dev",
+    "client:dev": "cd client && npm run dev",
+    "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
+    "build:server": "cd server && npm run build",
+    "build:client": "cd client && npm run build",
+    "start": "cd server && npm start"
   },
   "keywords": [],
   "author": "Josh Hensley",
   "license": "ISC",
-  "description": "A template to be used in theatrical productions as a call board and stage management tool."
+  "description": "A template to be used in theatrical productions as a call board and stage management tool.",
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
 }

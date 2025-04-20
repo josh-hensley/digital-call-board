@@ -3,7 +3,7 @@ export default function Footer() {
         <footer>
             <p>RSM Shrek The Musical</p>
             <p>Copyright &copy; 2025</p>
-            <p>Website by <a href="josh-hensleys-portfolio.onrender.com">Josh Hensley</a></p>
+            <p>Website by <a href="http://josh-hensleys-portfolio.onrender.com" target="_blank">Josh Hensley</a></p>
         </footer>
     );
 }

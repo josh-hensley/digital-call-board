@@ -4,6 +4,11 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 import Callboard from './pages/Callboard.tsx';
+import Contacts from './pages/Contacts.tsx';
+import Reports from './pages/Reports.tsx';
+import Downloads from './pages/Downloads.tsx';
+import Calendar from './pages/Calendar.tsx';
+import Login from './pages/Login.tsx';
 
 const router = createBrowserRouter([
   {
@@ -16,13 +21,19 @@ const router = createBrowserRouter([
         element: <Callboard />
       }, {
         path: '/contacts', 
-        element: <div>Contacts</div>
+        element: <Contacts />
       }, {
         path: '/reports',
-        element: <div>Reports</div>
+        element: <Reports />
       }, {
         path: '/downloads',
-        element: <div>Downloads</div>
+        element: <Downloads />
+      }, {
+        path: '/calendar',
+        element: <Calendar />
+      }, {
+        path: '/login',
+        element: <Login />
       }
     ]
   }

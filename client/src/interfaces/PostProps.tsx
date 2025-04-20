@@ -1,6 +1,9 @@
+import CommentProps from './CommentProps';
+
 export default interface PostProps {
-    id: number;
-    username: string;
-    content: string;
-    date: string;
+    _id: string;
+    postAuthor: string;
+    postText: string;
+    createdAt: string;
+    comments: CommentProps[];
 }
