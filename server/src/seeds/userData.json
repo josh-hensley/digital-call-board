@@ -5,7 +5,7 @@
         "email": "stephen@outhousestudios.biz",
         "password": "shrek",
         "phone": 1234567890,
-        "characters": ["Shrek"],
+        "roles": ["Shrek"],
         "age": 52
     },
     {
@@ -14,7 +14,7 @@
         "email": "bje.personal@gmail.com",
         "password": "donkey",
         "phone": 1234567890,
-        "characters": ["Donkey"],
+        "roles": ["Donkey"],
         "age": 36
     },
     {
@@ -23,7 +23,7 @@
         "email": "ashleyellenreeves@icloud.com",
         "password": "mamabear",
         "phone": 1234567890,
-        "characters": ["Mama Bear"],
+        "roles": ["Mama Bear"],
         "age": 36
     },
     {
@@ -32,7 +32,7 @@
         "email": "ajglaredo@gmail.com",
         "password": "pinocchio",
         "phone": 1234567890,
-        "characters": ["Pinnochio"],
+        "roles": ["Pinnochio"],
         "age": 21
     },
     {
@@ -41,7 +41,7 @@
         "email": "claysackett@gmail.com",
         "password": "farquaad",
         "phone": 1234567890,
-        "characters": ["Farquaad"],
+        "roles": ["Farquaad"],
         "age": 31
     },
     {
@@ -50,7 +50,7 @@
         "email": "brianwhhappen@gmail.com",
         "password": "thelonius",
         "phone": 1234567890,
-        "characters": ["King Harold, Thelonius, Bishop"],
+        "roles": ["King Harold, Thelonius, Bishop"],
         "age": 63
     },
     {
@@ -59,7 +59,7 @@
         "email": "astandifer21@icloud.com",
         "password": "humptydumpty",
         "phone": 1234567890,
-        "characters": ["Humpty Dumpty"],
+        "roles": ["Humpty Dumpty"],
         "age": 19
     },
     {
@@ -68,7 +68,7 @@
         "email": "javarsitytutors@gmail.com",
         "password": "fiona",
         "phone": 1234567890,
-        "characters": ["Fiona"],
+        "roles": ["Fiona"],
         "age": 31
     },
     {
@@ -77,7 +77,7 @@
         "email": "rcsully92@gmail.com",
         "password": "papabear",
         "phone": 1234567890,
-        "characters": ["Papa Ogre, Papa Bear"],
+        "roles": ["Papa Ogre, Papa Bear"],
         "age": 33
     },
     {
@@ -86,7 +86,7 @@
         "email": "kimberlyalldredge1@gmail.com",
         "password": "shoemakerself",
         "phone": 1234567890,
-        "characters": ["Shoemaker's Elf"],
+        "roles": ["Shoemaker's Elf"],
         "age": 39
     },
     {
@@ -95,7 +95,7 @@
         "email": "laurenpaigepatterson@gmail.com",
         "password": "gingy",
         "phone": 1234567890,
-        "characters": ["Sugar Plum Fairy, Gingy"],
+        "roles": ["Sugar Plum Fairy, Gingy"],
         "age": 18
     },
     {
@@ -103,7 +103,7 @@
         "username": "GenevieveP",
         "password": "babyfiona",
         "phone": 1234567890,
-        "characters": ["Baby Fiona"],
+        "roles": ["Baby Fiona"],
         "age": 10
     },
     {
@@ -112,7 +112,7 @@
         "email": "keelijames7@gmail.com",
         "password": "fairygodmother",
         "phone": 1234567890,
-        "characters": ["Queen Lillian, Blue Bird, Fairy Godmother"],
+        "roles": ["Queen Lillian, Blue Bird, Fairy Godmother"],
         "age": 46
     },
     {
@@ -120,7 +120,7 @@
         "username": "LilyJ",
         "password": "ensemble",
         "phone": 1234567890,
-        "characters": ["Angry Villager"],
+        "roles": ["Angry Villager"],
         "age": 7
     },
     {
@@ -129,7 +129,7 @@
         "email": "starblazestruck@gmail.com",
         "password": "dance",
         "phone": 1234567890,
-        "characters": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
+        "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 22
     },
     {
@@ -138,7 +138,7 @@
         "email": "steph.hardin87@gmail.com",
         "password": "blindmouse",
         "phone": 1234567890,
-        "characters": ["Blind Mouse, Dragon Singer, Little Pig"],
+        "roles": ["Blind Mouse, Dragon Singer, Little Pig"],
         "age": 37
     },
     {
@@ -147,7 +147,7 @@
         "email": "eford07@icloud.com",
         "password": "blindmouse",
         "phone": 1234567890,
-        "characters": ["Blind Mouse, Dragon Singer, Little Pig"],
+        "roles": ["Blind Mouse, Dragon Singer, Little Pig"],
         "age": 17
     },
     {
@@ -156,7 +156,7 @@
         "email": "amadamiamorey@gmail.com",
         "password": "blindmouse",
         "phone": 1234567890,
-        "characters": ["Blind Mouse, Dragon Singer, Little Pig"],
+        "roles": ["Blind Mouse, Dragon Singer, Little Pig"],
         "age": 25
     },
     {
@@ -165,7 +165,7 @@
         "email": "thomasha009@stu.rockwallisd.org",
         "password": "dance",
         "phone": 1234567890,
-        "characters": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
+        "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 14
     },
     {
@@ -174,7 +174,7 @@
         "email": "vglick@smu.edu",
         "password": "witch",
         "phone": 1234567890,
-        "characters": ["Wicked Witch"],
+        "roles": ["Wicked Witch"],
         "age": 25
     },
     {
@@ -183,7 +183,7 @@
         "email": "haley.johnson8280@gmail.com",
         "password": "dance",
         "phone": 1234567890,
-        "characters": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
+        "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 19
     },
     {
@@ -192,7 +192,7 @@
         "email": "marissa.nelson99@gmail.com",
         "password": "dance",
         "phone": 1234567890,
-        "characters": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
+        "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 25
     },
     {
@@ -201,7 +201,7 @@
         "email": "annabelle.frigoli@gmail.com",
         "password": "dance",
         "phone": 1234567890,
-        "characters": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
+        "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 18
     },
     {
@@ -210,7 +210,7 @@
         "email": "baylorford7@gmail.com",
         "password": "ogressfiona",
         "phone": 1234567890,
-        "characters": ["Ogre Mama, Ogress Fiona"],
+        "roles": ["Ogre Mama, Ogress Fiona"],
         "age": 20
     },
     {
@@ -219,7 +219,7 @@
         "email": "mizaniwashburn@gmail.com",
         "password": "tweedledum",
         "phone": 1234567890,
-        "characters": ["Tweedle Dum"],
+        "roles": ["Tweedle Dum"],
         "age": 28
     },
     {
@@ -228,7 +228,7 @@
         "email": "luke.anderson031109@gmail.com",
         "password": "whiterabbit",
         "phone": 1234567890,
-        "characters": ["White Rabbit"],
+        "roles": ["White Rabbit"],
         "age": 16
     },
     {
@@ -237,7 +237,7 @@
         "email": "jennifergardiner22@yahoo.com",
         "password": "uglyduckling",
         "phone": 1234567890,
-        "characters": ["Ugly Duckling"],
+        "roles": ["Ugly Duckling"],
         "age": 14
     },
     {
@@ -246,7 +246,7 @@
         "email": "lukevs0118@gmail.com",
         "password": "captain",
         "phone": 1234567890,
-        "characters": ["Captain of the Guard"],
+        "roles": ["Captain of the Guard"],
         "age": 17
     },
     {
@@ -255,7 +255,7 @@
         "email": "kayleyrose2009@gmail.com",
         "password": "dance",
         "phone": 1234567890,
-        "characters": [],
+        "roles": [],
         "age": 15
     },
     {
@@ -264,7 +264,7 @@
         "email": "kfisher009@yahoo.com",
         "password": "dance",
         "phone": 1234567890,
-        "characters": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
+        "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 12
     },
     {
@@ -273,7 +273,7 @@
         "email": "liv.wilson3579@gmail.com",
         "password": "teenfiona",
         "phone": 1234567890,
-        "characters": ["Teen Fiona"],
+        "roles": ["Teen Fiona"],
         "age": 14
     },
     {
@@ -282,7 +282,7 @@
         "email": "jzphelps@gmail.com",
         "password": "babyshrek",
         "phone": 2142743451,
-        "characters": ["Baby Shrek, Grumpy"],
+        "roles": ["Baby Shrek, Grumpy"],
         "age": 12
     },
     {
@@ -291,7 +291,7 @@
         "email": "angela@angelaandrews.com",
         "password": "babybear",
         "phone": 5082749617,
-        "characters": ["Baby Bear"],
+        "roles": ["Baby Bear"],
         "age": 11
     },
     {
@@ -300,7 +300,7 @@
         "email": "justin.playz23000@gmail.com",
         "password": "peterpan",
         "phone": 4699293079,
-        "characters": ["Peter Pan"],
+        "roles": ["Peter Pan"],
         "age": 14
     },
     {
@@ -309,7 +309,7 @@
         "email": "27bwallace@gmail.com",
         "password": "madhatter",
         "phone": 4697859430,
-        "characters": ["Mad Hatter"],
+        "roles": ["Mad Hatter"],
         "age": 16
     },
     {
@@ -318,7 +318,7 @@
         "email": "srodriguez8283@yahoo.com",
         "password": "tweedledee",
         "phone": 2245328955,
-        "characters": ["Tweedle Dee"],
+        "roles": ["Tweedle Dee"],
         "age": 14
     },
     {
@@ -327,7 +327,7 @@
         "email": "kaidenkirk16@gmail.com",
         "password": "piedpiper",
         "phone": 4693815276,
-        "characters": ["Guard, Greeter, Pied Piper"],
+        "roles": ["Guard, Greeter, Pied Piper"],
         "age": 17
     },
     {
@@ -336,7 +336,7 @@
         "email": "gildonmicayla@gmail.com",
         "password": "dragon",
         "phone": 9728961013,
-        "characters": ["Dragon"],
+        "roles": ["Dragon"],
         "age": 16
     },
     {
@@ -345,7 +345,7 @@
         "email": "graysondbybee@gmail.com",
         "password": "bigbadwolf",
         "phone": 8172399038,
-        "characters": ["Big Bad Wolf"],
+        "roles": ["Big Bad Wolf"],
         "age": 17
     },
     {
@@ -353,7 +353,7 @@
         "username": "EllisonB",
         "password": "dance",
         "phone": 4696537130,
-        "characters": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
+        "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 12
     }
 ]

@@ -1,0 +1,16 @@
+[
+    {
+        "postText": "This is a sample post text.",
+        "postAuthor": "StephenB",
+        "comments": [
+            {
+                "commentText": "This is a sample comment.",
+                "commentAuthor": "BrandonE"
+            },
+            {
+                "commentText": "Another sample comment.",
+                "commentAuthor": "AdrianG"
+            }
+        ]
+    }
+]

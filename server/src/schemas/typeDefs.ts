@@ -1,9 +1,13 @@
 const typeDefs = `
 type User {
     _id: ID
+    name: String
     username: String
     email: String
     password: String
+    phone: String
+    age: Int
+    roles: [String]
     posts: [Post]
 }
 
@@ -16,7 +20,6 @@ type Post {
 }
 
 type Comment {
-    _id: ID
     commentText: String
     commentAuthor: String
     createdAt: String

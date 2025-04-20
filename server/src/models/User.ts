@@ -2,14 +2,23 @@ import { Schema, model, Document } from 'mongoose';
 import bcrypt from 'bcrypt';
 
 interface IUser extends Document {
+    name: string;
     username: string;
     email: string;
     password: string;
+    phone: string;
+    age: number;
+    roles: string[];
     posts: string[];
     isCorrectPassword: (password: string) => Promise<boolean>;
 }
 
 const userSchema = new Schema<IUser>({
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
     username: {
         type: String,
         required: true,
@@ -25,6 +34,19 @@ const userSchema = new Schema<IUser>({
         required: true,
         minLength: 5
     },
+    phone: {
+        type: String,
+        length: 10
+    },
+    age: {
+        type: Number,
+        min: 1
+    },
+    roles: [
+        {
+            type: String,
+        }
+    ],
     posts: [
         {
             type: Schema.Types.ObjectId,
