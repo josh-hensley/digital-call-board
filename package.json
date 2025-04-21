@@ -9,7 +9,8 @@
     "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
     "build:server": "cd server && npm run build",
     "build:client": "cd client && npm run build",
-    "start": "cd server && npm start"
+    "start": "cd server && npm start",
+    "seed": "cd server && npm run build && npm run seed"
   },
   "keywords": [],
   "author": "Josh Hensley",

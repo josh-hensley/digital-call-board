@@ -31,11 +31,11 @@ export default function Header() {
                     <li><a href="/reports">Reports</a></li>
                     <li><a href="/downloads">Downloads</a></li>
                     <li><a href="/calendar">Calendar</a></li>
-                    <li><a onClick={()=>Auth.logout}>Logout</a></li>
+                    <li><button onClick={()=>Auth.logout()}>Logout</button></li>
                 </ul>
             ) : (
                 <ul className={menuOpen ? "show" : "hide"}>
-                    <li><a href="/login">Login</a></li>
+                    <li><a href="/login"><button>Login</button></a></li>
                 </ul>
             )}
 

@@ -44,7 +44,7 @@ interface removeCommentArgs {
 const resolvers = {
     Query: {
         users: async () => {
-            return await User.find().populate('posts');
+            return await User.find().populate('posts').sort({name: 1});
         },
         user: async (_parent: any, { username }: UserArgs) => {
             return await User.findOne({ username }).populate('posts');
