@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "concurrently \"cd server && npm i\" \"cd client && npm i\"",
     "dev": "npm run server:dev",
     "server:dev": "cd server && npm run dev",
     "client:dev": "cd client && npm run dev",
