@@ -1,5 +1,6 @@
 import { User, Post } from '../models/index.js';
 import { signToken, AuthenticationError } from '../utils/auth.js';
+import bcrypt from 'bcrypt'
 
 interface UserArgs {
     username: string;
@@ -40,11 +41,14 @@ interface removeCommentArgs {
     commentId: string
 };
 
+interface updatePasswordArgs {
+    newPassword: string;
+}
 
 const resolvers = {
     Query: {
         users: async () => {
-            return await User.find().populate('posts').sort({name: 1});
+            return await User.find().populate('posts').sort({ name: 1 });
         },
         user: async (_parent: any, { username }: UserArgs) => {
             return await User.findOne({ username }).populate('posts');
@@ -136,6 +140,16 @@ const resolvers = {
                 return post;
             }
             throw new AuthenticationError('You need to be logged in!');
+        },
+        updatePassword: async (_parent: any, { newPassword }: updatePasswordArgs, context: any) => {
+            let user = await User.findById(context.user._id);
+            if (user) {
+                const password = await bcrypt.hash(newPassword, 10)
+                await user.updateOne({ $set: { password } })
+                const token = signToken(user.username, user.email, user._id)
+                return { token };
+            }
+            throw new AuthenticationError('You need to be signed in!')
         }
     }
 };

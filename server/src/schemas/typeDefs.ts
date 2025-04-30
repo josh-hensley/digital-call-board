@@ -49,6 +49,7 @@ type Mutation {
     removePost(postId: ID!): Post
     addComment(postId: ID!, commentText: String!, commentAuthor: String!): Post
     removeComment(postId: ID!, commentId: ID!): Post
+    updatePassword(newPassword: String!): Auth
 }
 `;
 

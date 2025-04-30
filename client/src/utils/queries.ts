@@ -12,7 +12,9 @@ query Users {
     roles
   }
 }`;
-// export const QUERY_USER = gql``;
+export const QUERY_USER = gql`
+
+`;
 export const QUERY_POSTS = gql`
 query Posts {
   posts {
