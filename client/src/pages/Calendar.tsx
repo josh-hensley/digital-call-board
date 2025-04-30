@@ -1,14 +1,139 @@
+import { MouseEvent, useState } from "react"
+import "../css/calendar.css"
+
 export default function Calendar() {
+    const [calendarInfo, setCalendarInfo] = useState({
+        months: ["May", "June"],
+        currentMonth: 0,
+        daysInMonth: [31, 30],
+        startingDay: [4, 0],
+        events: [
+            [
+                [''],
+                [''], 
+                [''], 
+                [''], 
+                [''],
+                ['7pm @ Divine Peace', 'First Rehearsal!', 'all called'],
+                [''],
+                ['7pm @ Divine Peace', 'Music', 'all called'],
+                ['7pm @ Divine Peace', 'Music', 'all called'],
+                [''],
+                ['1pm @ First United Methodist'],
+                ['7pm @ Divine Peace'],
+                ['7pm @ Divine Peace'],
+                [''],
+                ['7pm @ Divine Peace'],
+                ['7pm @ Divine Peace'],
+                [''],
+                ['1pm @ First United Methodist'],
+                ['7pm @ Divine Peace'],
+                ['7pm @ Divine Peace'],
+                [''],
+                ['7pm @ Divine Peace'],
+                ['7pm @ Divine Peace'],
+                [''],
+                ['1pm @ First United Methodist'],
+                ['7pm @ Divine Peace'],
+                ['7pm @ Divine Peace'],
+                [''],
+                ['7pm @ Divine Peace'],
+                ['7pm @ Divine Peace'],
+                [''],
+            ],
+            [
+                ['1pm @ First United Methodist'],
+                ['7pm @ Divine Peace'],
+                ['7pm @ Divine Peace'],
+                [''],
+                ['7pm @ Divine Peace'],
+                ['7pm @ Divine Peace'],
+                [''],
+                ['1pm @ First United Methodist'],
+                ['7pm @ Divine Peace'],
+                ['7pm @ Divine Peace'],
+                [''],
+                ['7pm @ Divine Peace'],
+                ['7pm @ Divine Peace'],
+                [''],
+                ['1pm @ First United Methodist'],
+                ['7pm @ Rockwall HS'],
+                ['7pm @ Rockwall HS'],
+                ['7pm @ Rockwall HS'],
+                ['7pm @ Rockwall HS'],
+                ['Show', 'Cast Called @ 6pm'],
+                ['Show', 'Cast Called @ 6pm'],
+                ['Show', 'Cast Called @ 1pm'],
+                [''],
+                [''],
+                [''],
+                ['7pm @ Rockwall HS', 'Brush up'],
+                ['Show', 'Cast Called @ 6pm'],
+                ['Show', 'Cast Called @ 6pm'],
+                ['Show', 'Cast Called @ 1pm'],
+                [''],
+                ]
+            ]
+    });
+
+    const date = new Date();
+    const month = date.getMonth();
+    const today = date.getDate();
+
+    const handleClick = (e: MouseEvent<HTMLLIElement>) => {
+        console.log((e.target as HTMLLIElement).className);
+        const className = (e.target as HTMLLIElement).className;
+        if (className === "prev") {
+            setCalendarInfo({ ...calendarInfo, currentMonth: calendarInfo.currentMonth == 0 ? calendarInfo.currentMonth + 2 : calendarInfo.currentMonth - 1 })
+        }
+        else {
+            setCalendarInfo({ ...calendarInfo, currentMonth: calendarInfo.currentMonth == 2 ? calendarInfo.currentMonth - 2 : calendarInfo.currentMonth + 1 })
+        }
+    }
+
     return (
         <main>
-            <h1>Calendar</h1>
-            <section id="calendar">
-                <div className="calendar-card">
-                    <h2>Event Title</h2>
-                    <p>Date: 2023-10-01</p>
-                    <p>Description of the event.</p>
-                </div>
-            </section>
+            <div className="month">
+                <ul>
+                    <li className="prev" onClick={handleClick}>&#10094;</li>
+                    <li className="next" onClick={handleClick}>&#10095;</li>
+                    <li>{calendarInfo.months[calendarInfo.currentMonth]}<br /><span>2025</span></li>
+                </ul>
+            </div>
+
+            <ul className="weekdays">
+                <li>Su</li>
+                <li>Mo</li>
+                <li>Tu</li>
+                <li>We</li>
+                <li>Th</li>
+                <li>Fr</li>
+                <li>Sa</li>
+            </ul>
+
+            <ul className="days">
+                {Array.from<number>({ length: calendarInfo.startingDay[calendarInfo.currentMonth] }).map((_day, index) => {
+                    return (
+                        <li className="null-day" key={`nullday${index}`}></li>
+                    )
+                })}
+                {Array.from<number>({ length: calendarInfo.daysInMonth[calendarInfo.currentMonth] }).map((_day, index) => {
+                    return (
+                        <li key={`day${index + 1}`}>
+                            <div className={`day-number ${today - 1 == index && month == calendarInfo.currentMonth + 4 && "active"}`}>
+                                {`${index + 1}`}
+                            </div>
+                            <ul className="events">
+                                {calendarInfo.events[calendarInfo.currentMonth][index].map(item => {
+                                    return (
+                                        <li>{item}</li>
+                                    )
+                                })}
+                            </ul>
+                        </li>
+                    )
+                })}
+            </ul>
         </main>
     )
 }

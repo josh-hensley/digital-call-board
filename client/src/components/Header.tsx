@@ -31,6 +31,7 @@ export default function Header() {
                     <li><a href="/reports">Reports</a></li>
                     <li><a href="/downloads">Downloads</a></li>
                     <li><a href="/calendar">Calendar</a></li>
+                    <li><a href="/create-report">Create Report</a></li>
                     <li><button onClick={()=>Auth.logout()}>Logout</button></li>
                 </ul>
             ) : (

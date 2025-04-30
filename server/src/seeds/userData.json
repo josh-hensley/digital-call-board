@@ -3,7 +3,7 @@
         "name": "Stephen Bates",
         "username": "StephenB",
         "email": "stephen@outhousestudios.biz",
-        "password": "shrek",
+        "password": "password",
         "phone": "2147558527",
         "roles": ["Shrek"],
         "age": 52
@@ -12,7 +12,7 @@
         "name": "Brandon Edwards",
         "username": "BrandonE",
         "email": "bje.personal@gmail.com",
-        "password": "donkey",
+        "password": "password",
         "phone": "9033484265",
         "roles": ["Donkey"],
         "age": 36
@@ -21,7 +21,7 @@
         "name": "Ashley Reeves",
         "username": "AshleyR",
         "email": "ashleyellenreeves@icloud.com",
-        "password": "mamabear",
+        "password": "password",
         "phone": "8178847964",
         "roles": ["Mama Bear"],
         "age": 36
@@ -30,7 +30,7 @@
         "name": "Adrian Gomez",
         "username": "AdrianG",
         "email": "ajglaredo@gmail.com",
-        "password": "pinocchio",
+        "password": "password",
         "phone": "9553198995",
         "roles": ["Pinnochio"],
         "age": 21
@@ -39,7 +39,7 @@
         "name": "Clayton Sackett",
         "username": "ClaytonS",
         "email": "claysackett@gmail.com",
-        "password": "farquaad",
+        "password": "password",
         "phone": "9186066849",
         "roles": ["Farquaad"],
         "age": 31
@@ -48,7 +48,7 @@
         "name": "Brian Hokanson",
         "username": "BrianH",
         "email": "brianwhhappen@gmail.com",
-        "password": "thelonius",
+        "password": "password",
         "phone": "9727683484",
         "roles": ["King Harold, Thelonius, Bishop"],
         "age": 63
@@ -57,7 +57,7 @@
         "name": "Aislyn Standifer",
         "username": "AislynS",
         "email": "astandifer21@icloud.com",
-        "password": "humptydumpty",
+        "password": "password",
         "phone": "4699257276",
         "roles": ["Humpty Dumpty"],
         "age": 19
@@ -66,7 +66,7 @@
         "name": "Jillian Abney",
         "username": "JillianA",
         "email": "javarsitytutors@gmail.com",
-        "password": "fiona",
+        "password": "password",
         "phone": "2099237667",
         "roles": ["Fiona"],
         "age": 31
@@ -75,7 +75,7 @@
         "name": "Ryan Sullivan",
         "username": "RyanS",
         "email": "rcsully92@gmail.com",
-        "password": "papabear",
+        "password": "password",
         "phone": "4693140127",
         "roles": ["Papa Ogre, Papa Bear"],
         "age": 33
@@ -84,7 +84,7 @@
         "name": "Kimberly Aldredge",
         "username": "KimberlyA",
         "email": "kimberlyalldredge1@gmail.com",
-        "password": "shoemakerself",
+        "password": "password",
         "phone": "2146755853",
         "roles": ["Shoemaker's Elf"],
         "age": 39
@@ -93,7 +93,7 @@
         "name": "Lauren Paige Patterson",
         "username": "LaurenP",
         "email": "laurenpaigepatterson@gmail.com",
-        "password": "gingy",
+        "password": "password",
         "phone": "8187487893",
         "roles": ["Sugar Plum Fairy, Gingy"],
         "age": 18
@@ -101,7 +101,7 @@
     {
         "name": "Genevieve Patterson",
         "username": "GenevieveP",
-        "password": "babyfiona",
+        "password": "password",
         "phone": "8187487893",
         "roles": ["Baby Fiona"],
         "age": 10
@@ -110,7 +110,7 @@
         "name": "Keeli James",
         "username": "KeeliJ",
         "email": "keelijames7@gmail.com",
-        "password": "fairygodmother",
+        "password": "password",
         "phone": "2142873733",
         "roles": ["Queen Lillian, Blue Bird, Fairy Godmother"],
         "age": 46
@@ -118,7 +118,7 @@
     {
         "name": "Lily James",
         "username": "LilyJ",
-        "password": "ensemble",
+        "password": "password",
         "phone": "2142873733",
         "roles": ["Angry Villager"],
         "age": 7
@@ -127,7 +127,7 @@
         "name": "Tiffany Sebastian",
         "username": "TiffanyS",
         "email": "starblazestruck@gmail.com",
-        "password": "dance",
+        "password": "password",
         "phone": "9729770847",
         "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 22
@@ -136,7 +136,7 @@
         "name": "Stephanie Hardin",
         "username": "StephanieH",
         "email": "steph.hardin87@gmail.com",
-        "password": "blindmouse",
+        "password": "password",
         "phone": "4123398839",
         "roles": ["Blind Mouse, Dragon Singer, Little Pig"],
         "age": 37
@@ -145,7 +145,7 @@
         "name": "Emily Ford",
         "username": "EmilyF",
         "email": "eford07@icloud.com",
-        "password": "blindmouse",
+        "password": "password",
         "phone": "4692641912",
         "roles": ["Blind Mouse, Dragon Singer, Little Pig"],
         "age": 17
@@ -154,7 +154,7 @@
         "name": "Mia Morey",
         "username": "MiaM",
         "email": "amadamiamorey@gmail.com",
-        "password": "blindmouse",
+        "password": "password",
         "phone": "9452369204",
         "roles": ["Blind Mouse, Dragon Singer, Little Pig"],
         "age": 25
@@ -163,7 +163,7 @@
         "name": "Shayleigh Thomas",
         "username": "ShayleighT",
         "email": "thomasha009@stu.rockwallisd.org",
-        "password": "dance",
+        "password": "password",
         "phone": "9723458813",
         "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 14
@@ -172,7 +172,7 @@
         "name": "Vivian Glick",
         "username": "VivianG",
         "email": "vglick@smu.edu",
-        "password": "witch",
+        "password": "password",
         "phone": "9729713483",
         "roles": ["Wicked Witch"],
         "age": 25
@@ -181,7 +181,7 @@
         "name": "Haley Johnson",
         "username": "HaleyJ",
         "email": "haley.johnson8280@gmail.com",
-        "password": "dance",
+        "password": "password",
         "phone": "9034568280",
         "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 19
@@ -190,7 +190,7 @@
         "name": "Marissa Nelson",
         "username": "MarissaN",
         "email": "marissa.nelson99@gmail.com",
-        "password": "dance",
+        "password": "password",
         "phone": "2142078476",
         "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 25
@@ -199,7 +199,7 @@
         "name": "Annabelle Redmon Frigoli",
         "username": "AnnabelleF",
         "email": "annabelle.frigoli@gmail.com",
-        "password": "dance",
+        "password": "password",
         "phone": "9728028180",
         "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 18
@@ -208,7 +208,7 @@
         "name": "Baylor Ford",
         "username": "BaylorF",
         "email": "baylorford7@gmail.com",
-        "password": "ogressfiona",
+        "password": "password",
         "phone": "8176279898",
         "roles": ["Ogre Mama, Ogress Fiona"],
         "age": 20
@@ -217,7 +217,7 @@
         "name": "Mizani Washburn",
         "username": "MizaniW",
         "email": "mizaniwashburn@gmail.com",
-        "password": "tweedledum",
+        "password": "password",
         "phone": "8283955380",
         "roles": ["Tweedle Dum"],
         "age": 28
@@ -226,7 +226,7 @@
         "name": "Luke Anderson",
         "username": "LukeA",
         "email": "luke.anderson031109@gmail.com",
-        "password": "whiterabbit",
+        "password": "password",
         "phone": "4696625762",
         "roles": ["White Rabbit"],
         "age": 16
@@ -235,7 +235,7 @@
         "name": "Brooklyn Gardiner",
         "username": "BrooklynG",
         "email": "jennifergardiner22@yahoo.com",
-        "password": "uglyduckling",
+        "password": "password",
         "phone": "9098159690",
         "roles": ["Ugly Duckling"],
         "age": 14
@@ -244,7 +244,7 @@
         "name": "Luke Evans",
         "username": "LukeE",
         "email": "lukevs0118@gmail.com",
-        "password": "captain",
+        "password": "password",
         "phone": "4698492530",
         "roles": ["Captain of the Guard"],
         "age": 17
@@ -253,7 +253,7 @@
         "name": "Kaley Kuykendoll",
         "username": "KayleyK",
         "email": "kayleyrose2009@gmail.com",
-        "password": "dance",
+        "password": "password",
         "phone": "4692471217",
         "roles": [],
         "age": 15
@@ -262,7 +262,7 @@
         "name": "Kamryn Billops",
         "username": "KamrynB",
         "email": "kfisher009@yahoo.com",
-        "password": "dance",
+        "password": "password",
         "phone": "2144154939",
         "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 12
@@ -271,7 +271,7 @@
         "name": "Olivia Wilson",
         "username": "OliviaW",
         "email": "liv.wilson3579@gmail.com",
-        "password": "teenfiona",
+        "password": "password",
         "phone": "2149804416",
         "roles": ["Teen Fiona"],
         "age": 14
@@ -280,7 +280,7 @@
         "name": "Luke Phelps",
         "username": "LukeP",
         "email": "jzphelps@gmail.com",
-        "password": "babyshrek",
+        "password": "password",
         "phone": "2142743451",
         "roles": ["Baby Shrek, Grumpy"],
         "age": 12
@@ -289,7 +289,7 @@
         "name": "Arik Andrews",
         "username": "ArikA",
         "email": "angela@angelaandrews.com",
-        "password": "babybear",
+        "password": "password",
         "phone": "5082749617",
         "roles": ["Baby Bear"],
         "age": 11
@@ -298,7 +298,7 @@
         "name": "Justin Prince",
         "username": "JustinP",
         "email": "justin.playz23000@gmail.com",
-        "password": "peterpan",
+        "password": "password",
         "phone": "4699293079",
         "roles": ["Peter Pan"],
         "age": 14
@@ -307,7 +307,7 @@
         "name": "Blake Wallace",
         "username": "BlakeW",
         "email": "27bwallace@gmail.com",
-        "password": "madhatter",
+        "password": "password",
         "phone": "4697859430",
         "roles": ["Mad Hatter"],
         "age": 16
@@ -316,7 +316,7 @@
         "name": "Lea Rodriguez",
         "username": "LeaR",
         "email": "srodriguez8283@yahoo.com",
-        "password": "tweedledee",
+        "password": "password",
         "phone": "2245328955",
         "roles": ["Tweedle Dee"],
         "age": 14
@@ -325,7 +325,7 @@
         "name": "Kaiden Kirk",
         "username": "KaidenK",
         "email": "kaidenkirk16@gmail.com",
-        "password": "piedpiper",
+        "password": "password",
         "phone": "4693815276",
         "roles": ["Guard, Greeter, Pied Piper"],
         "age": 17
@@ -334,7 +334,7 @@
         "name": "Micayla Gildon",
         "username": "MicaylaG",
         "email": "gildonmicayla@gmail.com",
-        "password": "dragon",
+        "password": "password",
         "phone": "9728961013",
         "roles": ["Dragon"],
         "age": 16
@@ -343,7 +343,7 @@
         "name": "Grayson Bybee",
         "username": "GraysonB",
         "email": "graysondbybee@gmail.com",
-        "password": "bigbadwolf",
+        "password": "password",
         "phone": "8172399038",
         "roles": ["Big Bad Wolf"],
         "age": 17
@@ -351,7 +351,7 @@
     {
         "name": "Ellison Bybee",
         "username": "EllisonB",
-        "password": "dance",
+        "password": "password",
         "phone": "4696537130",
         "roles": ["Duloc Dancer, Pied Piper Rat, Skeleton"],
         "age": 12
@@ -360,7 +360,7 @@
         "name": "Michael Serrechia",
         "username": "MichaelS",
         "email": "serrechia@sbcglobal.net",
-        "password": "director",
+        "password": "password",
         "phone": "2146627681",
         "roles": ["Director"],
         "age": 18
@@ -368,7 +368,7 @@
     {
         "name": "Michael Robinson",
         "username": "MichaelR",
-        "password": "castingdirector",
+        "password": "password",
         "phone": "2145666947",
         "roles": ["Casting Director"],
         "age": 18
@@ -377,7 +377,7 @@
         "name": "Megan Miles Bates",
         "username": "MeganB",
         "email": "megk1018@gmail.com",
-        "password": "choreographer",
+        "password": "password",
         "phone": "2144936954",
         "roles": ["Choreographer"],
         "age": 18
@@ -386,7 +386,7 @@
         "name": "Erin McGrew Herndon",
         "username": "ErinH",
         "email": "minstrelle@aol.com",
-        "password": "password",
+        "password": "password", 
         "phone": "9724157334",
         "roles": ["N/A"],
         "age": 18
@@ -395,16 +395,16 @@
         "name": "Josh Hensley",
         "username": "JoshH",
         "email": "me@joshhensley.com",
-        "password": "password",
+        "password": "password", 
         "phone": "9727573396",
         "roles": ["Assistant Director"],
-        "age": 18
+        "age": 33
     },
     {
         "name": "Hank Baldree",
         "username": "HankB",
         "email": "hankb_101@yahoo.com",
-        "password": "password",
+        "password": "password", 
         "phone": "8172191707",
         "roles": ["Lighting Designer"],
         "age": 18
@@ -422,7 +422,7 @@
         "name": "Kimberlyn Helin",
         "username": "KimberlynH",
         "email": "kimberlyn.helin@rockwallisd.org",
-        "password": "password",
+        "password": "password", 
         "phone": "4259844298",
         "roles": ["N/A"],
         "age": 18
@@ -431,7 +431,7 @@
         "name": "Barbara Matthews",
         "username": "BarbaraM",
         "email": "sydavid@sbcglobal.net",
-        "password": "password",
+        "password": "password", 
         "phone": "5127990113",
         "roles": ["N/A"],
         "age": 18
@@ -440,7 +440,7 @@
         "name": "Deb Weigant",
         "username": "DebW",
         "email": "mymimi53@att.net",
-        "password": "password",
+        "password": "password", 
         "phone": "9032172038",
         "roles": ["N/A"],
         "age": 18

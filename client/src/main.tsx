@@ -1,13 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 
-import './index.css';
+import './css/index.css';
 import App from './App.tsx';
 import Callboard from './pages/Callboard.tsx';
 import Contacts from './pages/Contacts.tsx';
 import Reports from './pages/Reports.tsx';
 import Downloads from './pages/Downloads.tsx';
 import Calendar from './pages/Calendar.tsx';
+import CreateReport from './pages/CreateReport.tsx';
 import Login from './pages/Login.tsx';
 
 const router = createBrowserRouter([
@@ -19,19 +20,28 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Callboard />
-      }, {
+      }, 
+      {
         path: '/contacts', 
         element: <Contacts />
-      }, {
+      }, 
+      {
         path: '/reports',
         element: <Reports />
-      }, {
+      }, 
+      {
         path: '/downloads',
         element: <Downloads />
-      }, {
+      }, 
+      {
         path: '/calendar',
         element: <Calendar />
-      }, {
+      },
+      {
+        path: '/create-report',
+        element: <CreateReport />
+      },
+      {
         path: '/login',
         element: <Login />
       }
