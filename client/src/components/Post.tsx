@@ -1,6 +1,8 @@
+import '../css/post.css'
 import PostProps from "../interfaces/PostProps";
 
 export default function Post({ postAuthor, postText, createdAt, comments }: PostProps) {
+
     return (
         <div className="post">
             <h3>{postAuthor}</h3>
@@ -10,16 +12,12 @@ export default function Post({ postAuthor, postText, createdAt, comments }: Post
             <ul className="comments-list">
                 {comments.map((comment, index) => (
                     <li key={index}>
-                        <strong>{comment.commentAuthor}</strong>: {comment.commentText} <span className="timestamp">{comment.createdAt}</span>
+                        <strong>{comment.commentAuthor}</strong>: {comment.commentText}
                     </li>
                 ))}
             </ul>
-            {postAuthor === "me" ? (
-                <div>
-                    <button type="button">Edit</button>
-                    <button type="button">Delete</button>
-                </div>):(<></>)}
-            
+            <textarea name="comment">add a comment...</textarea>
+            <button type="button">Comment</button>
         </div>
     )
 }

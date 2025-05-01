@@ -10,7 +10,7 @@ import Downloads from './pages/Downloads.tsx';
 import Calendar from './pages/Calendar.tsx';
 import CreateReport from './pages/CreateReport.tsx';
 import Login from './pages/Login.tsx';
-import Profile from './pages/Profile.tsx';
+import ChangePassword from './pages/ChangePassword.tsx';
 
 const router = createBrowserRouter([
   {
@@ -45,10 +45,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />
-      },
-      {
-        path: '/profile',
-        element: <Profile />
+      }
+      ,{
+        path: '/change-password',
+        element: <ChangePassword />
       }
     ]
   }

@@ -12,9 +12,7 @@ query Users {
     roles
   }
 }`;
-export const QUERY_USER = gql`
 
-`;
 export const QUERY_POSTS = gql`
 query Posts {
   posts {
@@ -29,5 +27,4 @@ query Posts {
     createdAt
   }
 }`;
-// export const QUERY_POST = gql``;
 // export const QUERY_ME = gql``;

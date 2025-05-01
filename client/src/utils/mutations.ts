@@ -6,6 +6,13 @@ mutation Login($username: String!, $password: String!) {
     token
   }
 }`;
+export const CHANGE_PASSWORD = gql`
+mutation UpdatePassword($newPassword: String!) {
+  updatePassword(newPassword: $newPassword) {
+    token
+  }
+}
+`
 // export const ADD_USER = gql``;
 export const ADD_POST = gql`
 mutation AddPost($input: PostInput!) {
