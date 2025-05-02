@@ -4,6 +4,7 @@ import PostProps from "../interfaces/PostProps";
 import { useQuery } from "@apollo/client";
 import { QUERY_POSTS } from "../utils/queries.js";
 import Auth from "../utils/auth.js";
+import LoginMessage from "../components/LoginMessage.js";
 
 export default function Callboard() {
   const { loading, data } = useQuery(QUERY_POSTS);
@@ -28,9 +29,7 @@ export default function Callboard() {
           </section>
         </div>
       ) : (
-        <div className="no-auth">
-          <h2>Please log in to view the callboard.</h2>
-        </div>
+        <LoginMessage />
       )}
 
     </main>

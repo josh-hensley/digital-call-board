@@ -1,0 +1,14 @@
+.comments-list li {
+    background-color: #555;
+    margin: 1em;
+    padding: 0 1em;
+    border-radius: 1em;
+}
+
+p {
+    padding: 1em;
+}
+
+.comment {
+    background-color: #555;
+}

@@ -1,7 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-
-import './css/index.css';
 import App from './App.tsx';
 import Callboard from './pages/Callboard.tsx';
 import Contacts from './pages/Contacts.tsx';
@@ -11,6 +9,8 @@ import Calendar from './pages/Calendar.tsx';
 import CreateReport from './pages/CreateReport.tsx';
 import Login from './pages/Login.tsx';
 import ChangePassword from './pages/ChangePassword.tsx';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.js'
 
 const router = createBrowserRouter([
   {

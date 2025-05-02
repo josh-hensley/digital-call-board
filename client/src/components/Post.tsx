@@ -6,16 +6,18 @@ export default function Post({ postAuthor, postText, createdAt, comments }: Post
     return (
         <div className="post">
             <h3>{postAuthor}</h3>
-            <p>{postText}</p>
             <p className="timestamp">Posted on: {createdAt}</p>
-            <h4>Comments:</h4>
+            <p>{postText}</p>
+            <hr />
             <ul className="comments-list">
                 {comments.map((comment, index) => (
                     <li key={index}>
-                        <strong>{comment.commentAuthor}</strong>: {comment.commentText}
+                        <h4>{comment.commentAuthor}</h4>
+                        <p>{comment.commentText}</p>
                     </li>
                 ))}
             </ul>
+            <hr />
             <textarea name="comment">add a comment...</textarea>
             <button type="button">Comment</button>
         </div>
