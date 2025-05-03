@@ -27,4 +27,26 @@ query Posts {
     createdAt
   }
 }`;
-// export const QUERY_ME = gql``;
+
+export const QUERY_REPORTS = gql`
+query Reports {
+  reports {
+    attendance
+    break1
+    break2
+    breakLength1
+    breakLength2
+    costumes
+    date
+    lights
+    properties
+    rehearsalEnd
+    rehearsalNotes
+    rehearsalStart
+    rehearsalTime
+    scenery
+    sound
+    _id
+  }
+}
+`

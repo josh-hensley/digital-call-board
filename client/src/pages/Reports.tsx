@@ -1,23 +1,27 @@
+import Report from '../components/Report'
+import { QUERY_REPORTS } from '../utils/queries'
 import Auth from '../utils/auth'
 import LoginMessage from '../components/LoginMessage'
+import { useQuery } from '@apollo/client'
+import ReportProps from '../interfaces/ReportProps'
 
 export default function Reports() {
+    const {loading, data}= useQuery(QUERY_REPORTS)
     return (
         <main>
-            {Auth.loggedIn() ? (
-                <>
-                    <h1>Reports</h1>
-                    <section id="reports">
-                        <div className="report-card">
-                            <h2>Report Title</h2>
-                            <p>Description of the report.</p>
-                            <p>Generated on: 2023-10-01</p>
-                        </div>
-                    </section>
-                </>
+            {Auth.loggedIn() ?
+            loading ? 
+            (
+                <div className="info">
+                    <p>Loading...</p>
+                </div>
             ) : (
-                <LoginMessage />
-            )}
+                <div className="container text-light">
+                    {data.reports?.map((report: ReportProps)=>{
+                        return <Report {...report} />
+                    })}
+                </div>
+            ) : (<LoginMessage />)}
 
         </main>
     )

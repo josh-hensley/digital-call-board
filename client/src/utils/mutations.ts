@@ -24,3 +24,24 @@ mutation AddPost($input: PostInput!) {
   }
 }`;
 // export const ADD_COMMENT = gql``;
+export const ADD_REPORT = gql`
+mutation AddReport($input: ReportInput!) {
+  addReport(input: $input) {
+    attendance
+    break1
+    break2
+    breakLength1
+    breakLength2
+    costumes
+    date
+    lights
+    properties
+    rehearsalEnd
+    rehearsalNotes
+    rehearsalStart
+    rehearsalTime
+    scenery
+    sound
+  }
+}
+`

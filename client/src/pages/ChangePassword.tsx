@@ -5,7 +5,7 @@ import Auth from "../utils/auth";
 import LoginMessage from "../components/LoginMessage";
 
 export default function ChangePassword() {
-    const [changePassword, { error, data }] = useMutation(CHANGE_PASSWORD);
+    const [changePassword, { data, error }] = useMutation(CHANGE_PASSWORD);
 
     const [input, setInput] = useState({
         newPassword: '',

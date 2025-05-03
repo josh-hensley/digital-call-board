@@ -1,4 +1,4 @@
-import { User, Post } from '../models/index.js';
+import { User, Post, Report } from '../models/index.js';
 import { signToken, AuthenticationError } from '../utils/auth.js';
 import bcrypt from 'bcrypt'
 
@@ -9,6 +9,10 @@ interface UserArgs {
 interface PostArgs {
     postId: string;
 };
+
+interface ReportArgs {
+    date: string;
+}
 
 interface addUserArgs {
     input: {
@@ -29,6 +33,26 @@ interface addPostArgs {
         postAuthor: string;
     }
 };
+
+interface addReportArgs {
+    input: {
+        date: string;
+        rehearsalStart: string;
+        break1: string;
+        breakLength1: string;
+        break2: string;
+        breakLength2: string;
+        rehearsalEnd: string;
+        rehearsalTime: string;
+        attendance: string[];
+        rehearsalNotes: string;
+        costumes: string;
+        lights: string;
+        properties: string;
+        sound: string;
+        scenery: string;
+    }
+}
 
 interface addCommentArgs {
     postId: string;
@@ -52,6 +76,12 @@ const resolvers = {
         },
         user: async (_parent: any, { username }: UserArgs) => {
             return await User.findOne({ username }).populate('posts');
+        },
+        reports: async () => {
+            return await Report.find();
+        },
+        report: async (_parent: any, { date }: ReportArgs) => {
+            return await Report.findOne({ date })
         },
         posts: async () => {
             return await Post.find().populate('postAuthor').populate('comments.commentAuthor');
@@ -95,6 +125,13 @@ const resolvers = {
                 return post;
             }
             throw new AuthenticationError('You need to be logged in!');
+        },
+        addReport: async (_parent: any, { input }: addReportArgs, context: any) => {
+            if (context.user) {
+                const report = await Report.create({ ...input })
+                return report
+            }
+            throw new AuthenticationError('You need to be logged in!')
         },
         addComment: async (_parent: any, { postId, commentText }: addCommentArgs, context: any) => {
             if (context.user) {

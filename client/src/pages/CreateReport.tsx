@@ -1,11 +1,13 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { ChangeEvent, FormEvent, useState } from "react"
 import { QUERY_USERS } from "../utils/queries";
+import { ADD_REPORT } from "../utils/mutations";
 import UserProps from "../interfaces/UserProps";
 import Auth from '../utils/auth'
 
 export default function CreateReport() {
     const { loading, data } = useQuery(QUERY_USERS)
+    const [addReport, { error }] = useMutation(ADD_REPORT)
     const users = data?.users || [];
     const [formState, setFormState] = useState({
         date: "",
@@ -32,7 +34,7 @@ export default function CreateReport() {
         const startMinute = parseInt(start.split(':')[1]);
         const breaks = break1 && break2 ? parseInt(break1) + parseInt(break2) : break1 ? parseInt(break1) : 0;
         const totalMinutes = (endHour - startHour) * 60 + (endMinute - startMinute) - breaks;
-        const totalHours = Math.floor(totalMinutes/60);
+        const totalHours = Math.floor(totalMinutes / 60);
         const remainderMinutes = totalMinutes % 60;
         return `${totalHours}h ${remainderMinutes}m`
     }
@@ -50,9 +52,18 @@ export default function CreateReport() {
         setFormState({ ...formState, attendance: value == "on" ? [...attendance, name] : attendance.splice(attendance.indexOf(name as never), 1) })
     })
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        console.log(formState)
+        if (Auth.getProfile().data.username == "JoshH") {
+            try {
+                await addReport({
+                    variables: { input: formState }
+                });
+
+            } catch (error) {
+                console.error(error)
+            }
+        }
     }
 
     return (
@@ -123,7 +134,13 @@ export default function CreateReport() {
                         <label htmlFor="scenery">Scenery: </label>
                         <textarea className="form-control" name="scenery" onChange={handleChange}></textarea>
                     </fieldset>
-                    <button className="btn btn-primary align-self-center my-1" style={{ width: '100px' }} type="submit">Submit</button>
+                    {error ?
+                        (
+                            <div>An Error has occured</div>
+                        ) : (
+                            <button className="btn btn-primary align-self-center my-1" style={{ width: '100px' }} type="submit">Submit</button>
+                        )}
+
                 </form>
             ) : (
                 <p>Must be SM to view page.</p>

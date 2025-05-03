@@ -1,4 +1,4 @@
-import { Post, User } from '../models/index.js';
+import { Post, User, Report } from '../models/index.js';
 import process from 'process';
 
 const cleanDb = async (): Promise<void> => {
@@ -10,6 +10,9 @@ const cleanDb = async (): Promise<void> => {
     // Delete documents from User collection
     await User.deleteMany({});
     console.log('User collection cleaned.');
+
+    // Delete documents from Report collection
+    await Report.deleteMany({});
 
   } catch (err) {
     console.error('Error cleaning collections:', err);
