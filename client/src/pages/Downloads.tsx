@@ -7,15 +7,15 @@ export default function Downloads() {
     return (
         <main>
             {Auth.loggedIn() ? (
-                <>
-                    <h1>Downloads</h1>
-                    <section id="downloads">
-                        <div className="download-card">
+                <div className='container p-3'>
+                    <h2 className='text-light text-center'>Downloads</h2>
+                    <section className='d-flex justify-content-around'>
+                        <div className="card p-3 d-flex align-items-center" style={{ width: '18rem' }}>
                             <h3>Libretto</h3>
-                            <a href={shrekLibretto} download><img src={shrekCover} className='thumbnail' alt="Shrek Libretto Cover" /></a>
+                            <a href={shrekLibretto} download><img src={shrekCover} className='img-thumbnail img-fluid' style={{ maxWidth:'200px' }} alt="Shrek Libretto Cover" /></a>
                         </div>
                     </section>
-                </>
+                </div>
             ) : (
                 <LoginMessage />
             )}

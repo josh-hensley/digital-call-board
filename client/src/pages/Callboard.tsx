@@ -13,9 +13,9 @@ export default function Callboard() {
   return (
     <main>
       {Auth.loggedIn() ? (
-        <div>
+        <div className="container">
           <PostForm />
-          <section id="posts">
+          <div className="container">
             {loading ? (<div>Loading...</div>) : (posts.map((post: PostProps) => (
               <Post
                 key={post._id} 
@@ -26,7 +26,7 @@ export default function Callboard() {
                 comments={post.comments}
               />
             )))}
-          </section>
+          </div>
         </div>
       ) : (
         <LoginMessage />

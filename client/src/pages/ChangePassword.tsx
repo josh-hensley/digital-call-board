@@ -41,11 +41,13 @@ export default function ChangePassword() {
     return (
         <main>
             {Auth.loggedIn() ? (
-                <div>
-                    <form onSubmit={handlePasswordChange}>
-                        <input type="text" name='newPassword' onChange={handleChange} defaultValue='enter a new password' />
-                        <input type="text" name='verification' onChange={handleChange} defaultValue='retype new password' />
-                        <button type="submit">Change Password</button>
+                <div className="container w-50">
+                    <form className="py-3" onSubmit={handlePasswordChange}>
+                        <label className="text-light" htmlFor="new-password">New Password</label>
+                        <input className="form-control my-3" type="text" name='new-password' onChange={handleChange} />
+                        <label className="text-light" htmlFor="verification">Retype New Password</label>
+                        <input className="form-control my-3" type="text" name='verification' onChange={handleChange} />
+                        <button className="btn btn-primary" type="submit">Change Password</button>
                     </form>
                     <p>{data ? 'Success!' : error ? `${error.message}` : ''}</p>
                 </div>

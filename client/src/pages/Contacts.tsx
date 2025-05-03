@@ -13,7 +13,7 @@ export default function Contacts() {
         <main>
             {loading ? (<div>Loading...</div>) :
                 (Auth.loggedIn() ? (
-                    <>
+                    <div className="container text-light bg-dark bg-gradient d-flex flex-column align-items-center">
                         <h1>Contacts</h1>
                         <table>
                             <thead>
@@ -32,7 +32,7 @@ export default function Contacts() {
                                 />)}
                             </thead>
                         </table>
-                    </>
+                    </div>
                 ) : (
                     <LoginMessage />
                 )

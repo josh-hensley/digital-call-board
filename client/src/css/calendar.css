@@ -10,7 +10,6 @@ body {
 .month {
     padding: 70px 25px;
     min-width: 1385px;
-    background: #1abc9c;
     text-align: center;
 }
 
@@ -61,8 +60,9 @@ body {
 
 /* Days (1-31) */
 .days {
-    background: #eee;
+    background: #000000e0;
     padding: 1rem;
+    border: 2px solid #EEE;
     display: grid;
     grid: auto auto auto auto auto / auto auto auto auto auto auto auto;
 }
@@ -72,8 +72,8 @@ body {
     margin: 0;
     height: 200px;
     width: 200px;
-    font-size: 12px;
-    color: #777;
+    font-size: 18px;
+    color: #FFF;
 }
 
 .day-number {

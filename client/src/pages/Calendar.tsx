@@ -1,12 +1,16 @@
-import { MouseEvent, useState } from "react"
+import { useState } from "react"
 import "../css/calendar.css"
 import Auth from '../utils/auth.js'
 import LoginMessage from "../components/LoginMessage.js";
 
 export default function Calendar() {
+    const date = new Date();
+    const month = date.getMonth();
+    const today = date.getDate();
+
     const [calendarInfo, setCalendarInfo] = useState({
         months: ["May", "June"],
-        currentMonth: 0,
+        currentMonth: month - 4,
         daysInMonth: [31, 30],
         startingDay: [4, 0],
         events: [
@@ -78,19 +82,10 @@ export default function Calendar() {
         ]
     });
 
-    const date = new Date();
-    const month = date.getMonth();
-    const today = date.getDate();
+    
 
-    const handleClick = (e: MouseEvent<HTMLLIElement>) => {
-        console.log((e.target as HTMLLIElement).className);
-        const className = (e.target as HTMLLIElement).className;
-        if (className === "prev") {
-            setCalendarInfo({ ...calendarInfo, currentMonth: calendarInfo.currentMonth == 0 ? calendarInfo.currentMonth + 2 : calendarInfo.currentMonth - 1 })
-        }
-        else {
-            setCalendarInfo({ ...calendarInfo, currentMonth: calendarInfo.currentMonth == 2 ? calendarInfo.currentMonth - 2 : calendarInfo.currentMonth + 1 })
-        }
+    const handleClick = () => {
+        setCalendarInfo({ ...calendarInfo, currentMonth: calendarInfo.currentMonth == 0 ? calendarInfo.currentMonth + 1 : calendarInfo.currentMonth - 1 })
     }
 
     return (

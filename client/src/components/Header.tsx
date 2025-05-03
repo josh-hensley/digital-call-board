@@ -17,7 +17,7 @@ export default function Header() {
 
     return (
         <header>
-            <nav className="my-1 bg-primary bg-gradient p-2">
+            <nav className="bg-primary bg-gradient p-2">
                 <div className="d-flex justify-content-between align-items-center">
                     <h1 className="text-light">RSM Shrek The Musical</h1>
                     <div className="menu-icon" onClick={menuClickHandler}>
@@ -29,16 +29,16 @@ export default function Header() {
 
                 {Auth.loggedIn() ? (
                     <ul className={menuOpen ? "show" : "hide"}>
-                        <li><a href="/">Callboard</a></li>
-                        <li><a href="/contacts">Contacts</a></li>
-                        <li><a href="/reports">Reports</a></li>
-                        <li><a href="/downloads">Downloads</a></li>
-                        <li><a href="/calendar">Calendar</a></li>
-                        <li><a href="/change-password">Change Password</a></li>
+                        <li><a className="link-light" href="/">Callboard</a></li>
+                        <li><a className="link-light" href="/contacts">Contacts</a></li>
+                        <li><a className="link-light" href="/reports">Reports</a></li>
+                        <li><a className="link-light" href="/downloads">Downloads</a></li>
+                        <li><a className="link-light" href="/calendar">Calendar</a></li>
+                        <li><a className="link-light" href="/change-password">Change Password</a></li>
                         {Auth.getProfile().data.username == 'JoshH' && (
                             <>
-                                <li><a href="/create-report">Create Report</a></li>
-                                <li><a href="/edit-user">Edit User</a></li>
+                                <li><a className="link-light" href="/create-report">Create Report</a></li>
+                                <li><a className="link-light" href="/edit-user">Edit User</a></li>
                             </>
                         )}
                         <li><button className='btn btn-light' onClick={() => Auth.logout()}>Logout</button></li>

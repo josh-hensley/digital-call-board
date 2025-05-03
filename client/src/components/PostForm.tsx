@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 export default function PostForm() {
     const postAuthor = Auth.getProfile().data.username;
     const [addPost, {data, error}] = useMutation(ADD_POST);
-    const [formState, setFormState] = useState({ postAuthor, postText: 'Hello!' });
+    const [formState, setFormState] = useState({ postAuthor, postText: '' });
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -27,9 +27,9 @@ export default function PostForm() {
         }
     };
     return (
-        <form onSubmit={handleFormSubmit}>
-            <textarea name="postText" id="post-textarea" defaultValue="Post something to the callboard..." onChange={handleChange}></textarea>
-            <button type="submit">Post</button>
+        <form className="py-3" onSubmit={handleFormSubmit}>
+            <textarea className='form-control' name="postText" id="post-textarea" defaultValue="Post something to the callboard..." onChange={handleChange}></textarea>
+            <button className="btn btn-light m-1" type="submit">Post</button>
             {data && <p>Posted!</p>}
             {error && <div className="error">{error.message}</div>}
         </form>
