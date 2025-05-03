@@ -17,7 +17,7 @@ export default function Header() {
 
     return (
         <header>
-            <nav className="m-1 bg-primary bg-gradient rounded p-2">
+            <nav className="my-1 bg-primary bg-gradient p-2">
                 <div className="d-flex justify-content-between align-items-center">
                     <h1 className="text-light">RSM Shrek The Musical</h1>
                     <div className="menu-icon" onClick={menuClickHandler}>

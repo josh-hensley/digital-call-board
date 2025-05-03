@@ -9,8 +9,8 @@ import Calendar from './pages/Calendar.tsx';
 import CreateReport from './pages/CreateReport.tsx';
 import Login from './pages/Login.tsx';
 import ChangePassword from './pages/ChangePassword.tsx';
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/js/bootstrap.js'
+import './scss/custom.scss'
+
 
 const router = createBrowserRouter([
   {

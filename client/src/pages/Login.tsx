@@ -29,10 +29,12 @@ export default function Login() {
             {data ? (
                 <p>Success! You may now head <a href="/">back to the homepage</a>.</p>
             ) : (
-                <form onSubmit={handleFormSubmit}>
-                    <input placeholder="username" name="username" onChange={handleChange}/>
-                    <input placeholder="password" name="password" onChange={handleChange} />
-                    <button type="submit">Submit</button>
+                <form className='container text-light p-3' onSubmit={handleFormSubmit}>
+                    <label htmlFor="username">Username</label>
+                    <input className='form-control' placeholder="username" name="username" onChange={handleChange} />
+                    <label htmlFor="password">Password</label>
+                    <input className='form-control' placeholder="password" name="password" onChange={handleChange} />
+                    <button className='btn btn-primary my-1' type="submit">Submit</button>
                 </form>
             )}
             {error && ( <div className="error">{error.message}</div> )}
