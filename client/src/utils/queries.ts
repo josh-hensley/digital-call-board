@@ -4,13 +4,15 @@ export const QUERY_USERS = gql`
 query Users {
   users {
     _id
-    name
-    email
-    phone
     age
+    email
+    name
+    password
+    phone
     roles
   }
-}`;
+}
+`;
 
 export const QUERY_USER = gql`
 query User($search: String!) {
@@ -19,13 +21,11 @@ query User($search: String!) {
     age
     email
     name
-    password
     phone
     roles
-    username
   }
 }
-`
+`;
 
 export const QUERY_POSTS = gql`
 query Posts {

@@ -4,7 +4,7 @@ import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 export default function Login() {
-    const [formState, setFormState] = useState({ username: '', password: '' });
+    const [formState, setFormState] = useState({ email: '', password: '' });
     const [login, { error, data }] = useMutation(LOGIN_USER);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,8 +30,8 @@ export default function Login() {
                 <p>Success! You may now head <a href="/">back to the homepage</a>.</p>
             ) : (
                 <form className='container text-light p-3' onSubmit={handleFormSubmit}>
-                    <label htmlFor="username">Username</label>
-                    <input className='form-control' placeholder="username" name="username" onChange={handleChange} />
+                    <label htmlFor="email">Email</label>
+                    <input className='form-control' placeholder="email" name="email" onChange={handleChange} />
                     <label htmlFor="password">Password</label>
                     <input className='form-control' placeholder="password" name="password" onChange={handleChange} />
                     <button className='btn btn-primary my-1' type="submit">Submit</button>

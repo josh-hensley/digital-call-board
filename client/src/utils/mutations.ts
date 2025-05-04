@@ -5,11 +5,21 @@ mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
     token
   }
-}`;
+}
+`;
 
 export const UPDATE_USER = gql`
-
-`
+mutation UpdateUser($input: UserInput) {
+  updateUser(input: $input) {
+    _id
+    age
+    email
+    name
+    phone
+    roles
+  }
+}
+`;
 
 export const CHANGE_PASSWORD = gql`
 mutation UpdatePassword($newPassword: String!) {
@@ -17,7 +27,7 @@ mutation UpdatePassword($newPassword: String!) {
     token
   }
 }
-`
+`;
 // export const ADD_USER = gql``;
 export const ADD_POST = gql`
 mutation AddPost($input: PostInput!) {
@@ -27,8 +37,9 @@ mutation AddPost($input: PostInput!) {
     createdAt
     _id
   }
-}`;
-// export const ADD_COMMENT = gql``;
+}
+`;
+
 export const ADD_REPORT = gql`
 mutation AddReport($input: ReportInput!) {
   addReport(input: $input) {
@@ -49,4 +60,4 @@ mutation AddReport($input: ReportInput!) {
     sound
   }
 }
-`
+`;

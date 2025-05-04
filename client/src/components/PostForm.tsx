@@ -4,7 +4,7 @@ import { ADD_POST } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 export default function PostForm() {
-    const postAuthor = Auth.getProfile().data.username;
+    const postAuthor = Auth.getProfile().data.name;
     const [addPost, {data, error}] = useMutation(ADD_POST);
     const [formState, setFormState] = useState({ postAuthor, postText: '' });
 

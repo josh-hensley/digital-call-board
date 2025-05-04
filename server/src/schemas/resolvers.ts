@@ -3,12 +3,18 @@ import { signToken, AuthenticationError } from '../utils/auth.js';
 import bcrypt from 'bcrypt'
 
 interface UserArgs {
-    _id: string;
-    name: string;
-    email: string;
-    phone: string;
-    age: number;
-    roles: string[];
+    input: {
+        _id: string;
+        name: string;
+        email: string;
+        phone: string;
+        age: number;
+        roles: string[];
+    }
+}
+
+interface SearchArgs {
+    search: string;
 }
 
 interface PostArgs {
@@ -82,11 +88,15 @@ const resolvers = {
         users: async () => {
             return await User.find().sort({ name: 1 });
         },
-        user: async (_parent: any, search: string) => {
-            return await User.findOne({  $regex: new RegExp(search, 'i') });
+        user: async (_parent: any, { search }: SearchArgs) => {
+            return await User.findOne({
+                name: {
+                    $regex: new RegExp(search, 'i')
+                }
+            });
         },
         reports: async () => {
-            return await Report.find();
+            return await Report.find().sort({ date: 1 });
         },
         report: async (_parent: any, { date }: ReportArgs) => {
             return await Report.findOne({ date })
@@ -107,12 +117,11 @@ const resolvers = {
     Mutation: {
         addUser: async (_parent: any, { input, password }: addUserArgs) => {
             const user = await User.create({ ...input, password });
-            const token = signToken(user.email, user._id);
+            const token = signToken(user.email, user._id, user.name);
             return { token, user };
         },
-        updateUser: async (_parent: any, input: UserArgs) => {
-            const user = await User.findByIdAndUpdate(input._id, {...input})
-            console.log(user)
+        updateUser: async (_parent: any, { input }: UserArgs) => {
+            const user = await User.findByIdAndUpdate(input._id, { ...input }, { new: true })
             return user;
         },
         login: async (_parent: any, { email, password }: loginUserArgs) => {
@@ -124,7 +133,7 @@ const resolvers = {
             if (!isCorrectPassword) {
                 throw new AuthenticationError('Incorrect password');
             }
-            const token = signToken(user.email, user._id);
+            const token = signToken(user.email, user._id, user.name);
             return { token, user };
         },
         addPost: async (_parent: any, { input }: addPostArgs, context: any) => {
@@ -196,7 +205,7 @@ const resolvers = {
             if (user) {
                 const password = await bcrypt.hash(newPassword, 10)
                 await user.updateOne({ $set: { password } })
-                const token = signToken(user.email, user._id)
+                const token = signToken(user.email, user._id, user.name)
                 return { token };
             }
             throw new AuthenticationError('You need to be signed in!')

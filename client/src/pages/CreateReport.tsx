@@ -54,7 +54,7 @@ export default function CreateReport() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        if (Auth.getProfile().data.username == "JoshH") {
+        if (Auth.getProfile().data.name == "Josh Hensley") {
             try {
                 await addReport({
                     variables: { input: formState }
@@ -68,7 +68,7 @@ export default function CreateReport() {
 
     return (
         <main>
-            {Auth.loggedIn() && Auth.getProfile().data.username === 'JoshH' ? (
+            {Auth.loggedIn() && Auth.getProfile().data.name === 'Josh Hensley' ? (
                 <form className="text-light d-flex flex-column align-items-center" onSubmit={handleSubmit}>
                     <h3 className="text-center">Create Report</h3>
                     <div className="container">

@@ -12,8 +12,8 @@
   },
   "nodemonConfig": {
     "ext": "ts, tsx, css, html",
-    "watch": [ "src/**/*" ],
-    "exec": "npm run build && npm start"
+    "watch": [ "src/**/*", "../client/src/**/*" ],
+    "exec": "cd ../ && npm run build && cd server && npm start"
   },
   "keywords": [],
   "author": "",
