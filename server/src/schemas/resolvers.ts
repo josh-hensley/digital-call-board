@@ -3,8 +3,13 @@ import { signToken, AuthenticationError } from '../utils/auth.js';
 import bcrypt from 'bcrypt'
 
 interface UserArgs {
-    username: string;
-};
+    _id: string;
+    name: string;
+    email: string;
+    phone: string;
+    age: number;
+    roles: string[];
+}
 
 interface PostArgs {
     postId: string;
@@ -16,14 +21,17 @@ interface ReportArgs {
 
 interface addUserArgs {
     input: {
-        username: string;
+        name: string;
         email: string;
-        password: string;
+        phone: string;
+        age: number;
+        roles: string[];
     }
+    password: string;
 };
 
 interface loginUserArgs {
-    username: string;
+    email: string;
     password: string;
 };
 
@@ -72,10 +80,10 @@ interface updatePasswordArgs {
 const resolvers = {
     Query: {
         users: async () => {
-            return await User.find().populate('posts').sort({ name: 1 });
+            return await User.find().sort({ name: 1 });
         },
-        user: async (_parent: any, { username }: UserArgs) => {
-            return await User.findOne({ username }).populate('posts');
+        user: async (_parent: any, search: string) => {
+            return await User.findOne({  $regex: new RegExp(search, 'i') });
         },
         reports: async () => {
             return await Report.find();
@@ -91,27 +99,32 @@ const resolvers = {
         },
         me: async (_parent: any, _args: any, context: any) => {
             if (context.user) {
-                return await User.findById(context.user._id).populate('posts');
+                return await User.findById(context.user._id);
             }
             throw new Error('Not logged in');
         }
     },
     Mutation: {
-        addUser: async (_parent: any, { input }: addUserArgs) => {
-            const user = await User.create({ ...input });
-            const token = signToken(user.username, user.email, user._id);
+        addUser: async (_parent: any, { input, password }: addUserArgs) => {
+            const user = await User.create({ ...input, password });
+            const token = signToken(user.email, user._id);
             return { token, user };
         },
-        login: async (_parent: any, { username, password }: loginUserArgs) => {
-            const user = await User.findOne({ username });
+        updateUser: async (_parent: any, input: UserArgs) => {
+            const user = await User.findByIdAndUpdate(input._id, {...input})
+            console.log(user)
+            return user;
+        },
+        login: async (_parent: any, { email, password }: loginUserArgs) => {
+            const user = await User.findOne({ email });
             if (!user) {
-                throw new AuthenticationError('Incorrect username');
+                throw new AuthenticationError('user not found!');
             }
             const isCorrectPassword = await user.isCorrectPassword(password);
             if (!isCorrectPassword) {
                 throw new AuthenticationError('Incorrect password');
             }
-            const token = signToken(user.username, user.email, user._id);
+            const token = signToken(user.email, user._id);
             return { token, user };
         },
         addPost: async (_parent: any, { input }: addPostArgs, context: any) => {
@@ -183,7 +196,7 @@ const resolvers = {
             if (user) {
                 const password = await bcrypt.hash(newPassword, 10)
                 await user.updateOne({ $set: { password } })
-                const token = signToken(user.username, user.email, user._id)
+                const token = signToken(user.email, user._id)
                 return { token };
             }
             throw new AuthenticationError('You need to be signed in!')

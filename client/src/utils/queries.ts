@@ -5,13 +5,27 @@ query Users {
   users {
     _id
     name
-    username
     email
     phone
     age
     roles
   }
 }`;
+
+export const QUERY_USER = gql`
+query User($search: String!) {
+  user(search: $search) {
+    _id
+    age
+    email
+    name
+    password
+    phone
+    roles
+    username
+  }
+}
+`
 
 export const QUERY_POSTS = gql`
 query Posts {

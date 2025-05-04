@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 
 interface IUser extends Document {
     name: string;
-    username: string;
     email: string;
     password: string;
     phone: string;
@@ -17,12 +16,6 @@ const userSchema = new Schema<IUser>({
     name: {
         type: String,
         required: true,
-        trim: true
-    },
-    username: {
-        type: String,
-        required: true,
-        unique: true,
         trim: true
     },
     email: {
@@ -45,12 +38,6 @@ const userSchema = new Schema<IUser>({
     roles: [
         {
             type: String,
-        }
-    ],
-    posts: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Post'
         }
     ]
 },

@@ -10,6 +10,7 @@ import CreateReport from './pages/CreateReport.tsx';
 import Login from './pages/Login.tsx';
 import ChangePassword from './pages/ChangePassword.tsx';
 import './scss/custom.scss'
+import EditUser from './pages/EditUser.tsx';
 
 
 const router = createBrowserRouter([
@@ -45,10 +46,14 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />
-      }
-      ,{
+      },
+      {
         path: '/change-password',
         element: <ChangePassword />
+      },
+      {
+        path: '/edit-user',
+        element: <EditUser />
       }
     ]
   }

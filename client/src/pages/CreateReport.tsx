@@ -7,7 +7,7 @@ import Auth from '../utils/auth'
 
 export default function CreateReport() {
     const { loading, data } = useQuery(QUERY_USERS)
-    const [addReport, { error }] = useMutation(ADD_REPORT)
+    const [addReport, { error, data: mutationData }] = useMutation(ADD_REPORT)
     const users = data?.users || [];
     const [formState, setFormState] = useState({
         date: "",
@@ -69,7 +69,7 @@ export default function CreateReport() {
     return (
         <main>
             {Auth.loggedIn() && Auth.getProfile().data.username === 'JoshH' ? (
-                <form className="text-light d-flex flex-column" onSubmit={handleSubmit}>
+                <form className="text-light d-flex flex-column align-items-center" onSubmit={handleSubmit}>
                     <h3 className="text-center">Create Report</h3>
                     <div className="container">
                         <div className="row">
@@ -122,7 +122,7 @@ export default function CreateReport() {
                     <fieldset className="container bg-semi-transparent rounded p-1">
                         <legend>Notes</legend>
                         <label htmlFor="rehearsal-notes">Rehearsal Notes: </label>
-                        <textarea className="form-control" name="rehearsal-notes" onChange={handleChange}></textarea>
+                        <textarea className="form-control" name="rehearsalNotes" onChange={handleChange}></textarea>
                         <label htmlFor="costumes">Costumes: </label>
                         <textarea className="form-control" name="costumes" onChange={handleChange}></textarea>
                         <label htmlFor="lights">Lights: </label>
@@ -134,12 +134,12 @@ export default function CreateReport() {
                         <label htmlFor="scenery">Scenery: </label>
                         <textarea className="form-control" name="scenery" onChange={handleChange}></textarea>
                     </fieldset>
-                    {error ?
-                        (
-                            <div>An Error has occured</div>
-                        ) : (
-                            <button className="btn btn-primary align-self-center my-1" style={{ width: '100px' }} type="submit">Submit</button>
-                        )}
+                    {
+                        error ? (<div className="text-light">An Error has occured</div>) :
+                            mutationData ? (<div className="text-light">Success</div>) :
+                                (
+                                    <button className="btn btn-primary w-10 m-3" style={{width: '100px'}} type="submit">Submit</button>
+                                )}
 
                 </form>
             ) : (

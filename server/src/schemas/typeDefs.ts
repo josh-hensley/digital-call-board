@@ -2,13 +2,11 @@ const typeDefs = `
 type User {
     _id: ID
     name: String
-    username: String
     email: String
     password: String
     phone: String
     age: Int
     roles: [String]
-    posts: [Post]
 }
 
 type Report {
@@ -36,6 +34,15 @@ type Post {
     postAuthor: String
     createdAt: String
     comments: [Comment]
+}
+
+input UserInput {
+    _id: ID!
+    name: String,
+    email: String,
+    phone: String,
+    age: Int,
+    roles: [String] 
 }
 
 input PostInput {
@@ -73,7 +80,7 @@ type Auth {
 
 type Query {
     users: [User]
-    user(username: String!): User
+    user(search: String!): User
     reports: [Report]
     report(date: String!): Report
     posts: [Post]
@@ -82,8 +89,9 @@ type Query {
 }
 
 type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    login(username: String!, password: String!): Auth
+    addUser(input: UserInput!, password: String!): Auth
+    updateUser(input: UserInput): User
+    login(email: String!, password: String!): Auth
     addPost(input: PostInput!): Post
     addReport(input: ReportInput!): Report
     removePost(postId: ID!): Post
