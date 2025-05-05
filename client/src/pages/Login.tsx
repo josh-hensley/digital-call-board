@@ -33,7 +33,7 @@ export default function Login() {
                     <label htmlFor="email">Email</label>
                     <input className='form-control' placeholder="email" name="email" onChange={handleChange} />
                     <label htmlFor="password">Password</label>
-                    <input className='form-control' placeholder="password" name="password" onChange={handleChange} />
+                    <input className='form-control' type="password" placeholder="password" name="password" onChange={handleChange} />
                     <button className='btn btn-primary my-1' type="submit">Submit</button>
                 </form>
             )}

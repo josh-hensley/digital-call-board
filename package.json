@@ -12,6 +12,7 @@
     "build:client": "cd client && npm run build",
     "start": "cd server && npm start",
     "seed": "cd server && npm run build && npm run seed",
+    "clean": "cd server && npm run resetdb",
     "render-build": "npm i && npm run build"
   },
   "keywords": [],
