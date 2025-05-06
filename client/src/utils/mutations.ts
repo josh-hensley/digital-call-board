@@ -28,7 +28,18 @@ mutation UpdatePassword($newPassword: String!) {
   }
 }
 `;
-// export const ADD_USER = gql``;
+export const ADD_USER = gql`
+mutation AddUser($input: NewUser) {
+  addUser(input: $input) {
+    _id
+    age
+    email
+    name
+    phone
+    roles
+  }
+}
+`;
 export const ADD_POST = gql`
 mutation AddPost($input: PostInput!) {
   addPost(input: $input) {

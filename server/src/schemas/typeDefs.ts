@@ -45,6 +45,15 @@ input UserInput {
     roles: [String] 
 }
 
+input NewUser {
+    name: String,
+    email: String,
+    phone: String,
+    age: Int,
+    password: String,
+    roles: [String]
+}
+
 input PostInput {
     postText: String!
     postAuthor: String!
@@ -89,7 +98,7 @@ type Query {
 }
 
 type Mutation {
-    addUser(input: UserInput!, password: String!): Auth
+    addUser(input: NewUser): User
     updateUser(input: UserInput): User
     login(email: String!, password: String!): Auth
     addPost(input: PostInput!): Post
