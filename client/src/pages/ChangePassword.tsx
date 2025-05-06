@@ -22,10 +22,10 @@ export default function ChangePassword() {
         const { newPassword, verification } = input;
         if (newPassword == verification) {
             try {
-                const { data } = await changePassword({
+                const response = await changePassword({
                     variables: { newPassword }
                 });
-                Auth.login(data.token);
+                Auth.login(response.data.updatePassword.token);
                 location.replace('/');
 
             } catch (error) {
@@ -43,8 +43,8 @@ export default function ChangePassword() {
             {Auth.loggedIn() ? (
                 <div className="container w-50">
                     <form className="py-3" onSubmit={handlePasswordChange}>
-                        <label className="text-light" htmlFor="new-password">New Password</label>
-                        <input className="form-control my-3" type="password" name='new-password' onChange={handleChange} />
+                        <label className="text-light" htmlFor="newPpassword">New Password</label>
+                        <input className="form-control my-3" type="password" name='newPassword' onChange={handleChange} />
                         <label className="text-light" htmlFor="verification">Retype New Password</label>
                         <input className="form-control my-3" type="password" name='verification' onChange={handleChange} />
                         <button className="btn btn-primary" type="submit">Change Password</button>

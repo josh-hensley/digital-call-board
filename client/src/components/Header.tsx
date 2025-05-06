@@ -39,6 +39,7 @@ export default function Header() {
                             <>
                                 <li><a className="link-light" href="/create-report">Create Report</a></li>
                                 <li><a className="link-light" href="/edit-user">Edit User</a></li>
+                                <li><a className="link-light" href="/add-user">Add User</a></li>
                             </>
                         )}
                         <li><button className='btn btn-light' onClick={() => Auth.logout()}>Logout</button></li>

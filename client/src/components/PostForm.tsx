@@ -28,7 +28,7 @@ export default function PostForm() {
     };
     return (
         <form className="py-3" onSubmit={handleFormSubmit}>
-            <textarea className='form-control' name="postText" id="post-textarea" defaultValue="Post something to the callboard..." onChange={handleChange}></textarea>
+            <textarea className='form-control' name="postText" id="post-textarea" value={formState.postText} onChange={handleChange}></textarea>
             <button className="btn btn-light m-1" type="submit">Post</button>
             {data && <p>Posted!</p>}
             {error && <div className="error">{error.message}</div>}

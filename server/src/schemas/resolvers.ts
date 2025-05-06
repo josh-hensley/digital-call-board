@@ -154,11 +154,11 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!')
         },
-        addComment: async (_parent: any, { postId, commentText }: addCommentArgs, context: any) => {
+        addComment: async (_parent: any, { postId, commentText, commentAuthor }: addCommentArgs, context: any) => {
             if (context.user) {
                 return Post.findOneAndUpdate(
                     { _id: postId },
-                    { $addToSet: { comments: { commentText, commentAuthor: context.user.username } } },
+                    { $addToSet: { comments: { commentText, commentAuthor } } },
                     { new: true, runValidators: true }
                 );
             }

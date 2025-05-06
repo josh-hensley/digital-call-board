@@ -51,6 +51,22 @@ mutation AddPost($input: PostInput!) {
 }
 `;
 
+export const ADD_COMMENT = gql`
+mutation AddComment($postId: ID!, $commentText: String!, $commentAuthor: String!) {
+  addComment(postId: $postId, commentText: $commentText, commentAuthor: $commentAuthor) {
+    _id
+    comments {
+      commentAuthor
+      commentText
+      createdAt
+    }
+    createdAt
+    postAuthor
+    postText
+  }
+}
+`;
+
 export const ADD_REPORT = gql`
 mutation AddReport($input: ReportInput!) {
   addReport(input: $input) {

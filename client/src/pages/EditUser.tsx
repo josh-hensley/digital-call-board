@@ -8,13 +8,15 @@ import UserProps from "../interfaces/UserProps";
 
 export default function EditUser() {
     const [updateUser, { data: mutationData, error }] = useMutation(UPDATE_USER)
+    const [newRole, setNewRole] = useState('');
+    const [roles, setRoles] = useState<string[]>([])
     const [search, setSearch] = useState('');
     const [formState, setFormState] = useState<UserProps>({
         _id: '',
         name: '',
         email: '',
         phone: '',
-        roles: ['none'],
+        roles,
         age: 0
     })
     const { loading, data } = useQuery(QUERY_USER, {
@@ -24,9 +26,19 @@ export default function EditUser() {
     useEffect(() => {
         if (data?.user) {
             const { _id, name, email, phone, roles, age } = data.user;
+            setRoles(roles)
             setFormState({ _id, name, email, phone, roles, age });
         }
-    }, [data]) 
+    }, [data])
+
+    const addRole = () => {
+        setRoles([...roles, newRole])
+    }
+
+    const deleteRole = (index: number) => {
+        const updatedRoles = roles.filter((_item, i)=> i !== index);
+        setRoles(updatedRoles);
+    }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -35,6 +47,9 @@ export default function EditUser() {
         }
         else if(name == 'age') {
             setFormState({...formState, [name]:parseInt(value)})
+        }
+        else if (name == 'newRole'){
+            setNewRole(value)
         }
         else {
             setFormState({ ...formState, [name]: value })
@@ -84,12 +99,15 @@ export default function EditUser() {
                             <input className="form-control" type="number" name="age" onChange={handleChange} value={formState.age} />
                         </div>
                         <div className="col-sm">
-                            <label htmlFor="roles">Roles</label>
+                            <label htmlFor="newRole">Add Role:</label>
+                            <input className="form-control" name="newRole" value={newRole} onChange={handleChange} type="text" />
+                            <button className="btn btn-primary" type="button" onClick={addRole}>Add Role</button>
                             <ul>
-                                {formState.roles?.map((role, index) => {
+                                {roles?.map((role, index) => {
                                     return (
                                         <li key={index}>
                                             <p>{role}</p>
+                                            <button className="btn btn-danger" type="button" onClick={()=>{deleteRole(index)}} >Delete</button>
                                         </li>
                                     )
                                 })}
