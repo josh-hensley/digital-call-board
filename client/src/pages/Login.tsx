@@ -9,6 +9,9 @@ export default function Login() {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+        if (name == 'email'){
+            setFormState({...formState, [name]: value.toLowerCase()})
+        }
         setFormState({ ...formState, [name]: value });
     };
 
