@@ -5,7 +5,7 @@ import Auth from '../utils/auth';
 
 export default function PostForm() {
     const postAuthor = Auth.getProfile().data.name;
-    const [addPost, {data, error}] = useMutation(ADD_POST);
+    const [addPost, { data, error }] = useMutation(ADD_POST);
     const [formState, setFormState] = useState({ postAuthor, postText: '' });
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -27,11 +27,13 @@ export default function PostForm() {
         }
     };
     return (
-        <form className="py-3" onSubmit={handleFormSubmit}>
-            <textarea className='form-control' name="postText" id="post-textarea" value={formState.postText} onChange={handleChange}></textarea>
-            <button className="btn btn-light m-1" type="submit">Post</button>
-            {data && <p>Posted!</p>}
-            {error && <div className="error">{error.message}</div>}
-        </form>
+        <div className="container">
+            <form className="py-3 d-flex flex-column align-items-center" onSubmit={handleFormSubmit}>
+                <textarea className='form-control' name="postText" id="post-textarea" value={formState.postText} onChange={handleChange}></textarea>
+                <button className="btn btn-light m-1" type="submit">Post</button>
+                {data && <p>Posted!</p>}
+                {error && <div className="error">{error.message}</div>}
+            </form>
+        </div>
     )
 }
