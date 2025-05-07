@@ -102,7 +102,7 @@ const resolvers = {
             return await Report.findOne({ date })
         },
         posts: async () => {
-            return await Post.find().populate('postAuthor').populate('comments.commentAuthor');
+            return await Post.find().populate('postAuthor').populate('comments.commentAuthor').sort({createdAt: -1});
         },
         post: async (_parent: any, { postId }: PostArgs) => {
             return await Post.findById(postId).populate('postAuthor').populate('comments.commentAuthor');
