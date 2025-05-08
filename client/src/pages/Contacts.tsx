@@ -19,8 +19,8 @@ export default function Contacts() {
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Role</th>
-                                    <th>Email</th>
+                                    <th className="d-none d-md-table-cell">Role</th>
+                                    <th className="d-none d-sm-table-cell">Email</th>
                                     <th>Phone</th>
                                 </tr>
                                 {users.map((user: UserProps) => <Contact
