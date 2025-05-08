@@ -46,11 +46,11 @@ export default function CreateReport() {
         setFormState({ ...formState, rehearsalTime, [name]: value })
     }
 
-    const handleAttendance = ((e: ChangeEvent<HTMLInputElement>) => {
+    const handleAttendance = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         const attendance = formState.attendance
         setFormState({ ...formState, attendance: value == "on" ? [...attendance, name] : attendance.splice(attendance.indexOf(name as never), 1) })
-    })
+    }
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -76,21 +76,21 @@ export default function CreateReport() {
                             <fieldset className="col-2 bg-semi-transparent m-1 rounded">
                                 <legend>Time Card</legend>
                                 <label htmlFor="date">Date: </label>
-                                <input className='form-control' type="date" name="date" onChange={handleChange} />
+                                <input className='form-control' type="date" name="date" onChange={handleChange} value={formState.date}/>
                                 <label htmlFor="rehearsalStart">Rehearsal Start: </label>
-                                <input className="form-control" type="time" name="rehearsalStart" onChange={handleChange} />
+                                <input className="form-control" type="time" name="rehearsalStart" onChange={handleChange} value={formState.rehearsalStart}/>
                                 <label htmlFor="break1">Break: </label>
-                                <input className="form-control" type="time" name="break1" onChange={handleChange} />
+                                <input className="form-control" type="time" name="break1" onChange={handleChange} value={formState.break1} />
                                 <label htmlFor="breakLength1">Break Length: {formState.breakLength1}</label>
-                                <input className="form-control" type="range" min='0' max='20' name="breakLength1" onChange={handleChange} />
+                                <input className="form-control" type="range" min='0' max='20' name="breakLength1" onChange={handleChange} value={formState.breakLength1}/>
                                 <label htmlFor="break2">Break: </label>
-                                <input className="form-control" type="time" name="break2" onChange={handleChange} />
+                                <input className="form-control" type="time" name="break2" onChange={handleChange} value={formState.break2}/>
                                 <label htmlFor="breakLength2">Break Length: {formState.breakLength2}</label>
-                                <input className="form-control" type="range" min='0' max='20' name="breakLength2" onChange={handleChange} />
+                                <input className="form-control" type="range" min='0' max='20' name="breakLength2" onChange={handleChange} value={formState.breakLength2}/>
                                 <label htmlFor="rehearsalEnd">Rehearsal End: </label>
-                                <input className="form-control" type="time" name="rehearsalEnd" onChange={handleChange} />
+                                <input className="form-control" type="time" name="rehearsalEnd" onChange={handleChange} value={formState.rehearsalEnd}/>
                                 <p>Total Rehearsal Time:</p>
-                                <p>{formState.rehearsalTime}</p>
+                                <p>{calcRehearsalTime(formState.rehearsalStart, formState.breakLength1, formState.breakLength2, formState.rehearsalEnd)}</p>
                             </fieldset>
                             <fieldset className="col bg-semi-transparent m-1 rounded">
                                 <legend>Attendance</legend>
