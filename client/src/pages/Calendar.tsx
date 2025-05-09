@@ -23,7 +23,7 @@ export default function Calendar() {
                 ['7pm @ 305 S Fanin', 'First Rehearsal!', 'all called'],
                 ['7pm @ 305 S Fanin', 'Music', 'all called'],
                 ['7pm @ 305 S Fanin', 'Read/Sing Thru', 'all called'],
-                ['7pm @ 305 S Fanin'],
+                ['7:30pm @ 305 S Fanin', "Story of My Life", "Fairytale Creatures Called"],
                 [''],
                 ['1pm @ 305 S Fanin'],
                 ['7pm @ 305 S Fanin'],
