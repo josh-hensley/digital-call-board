@@ -33,7 +33,7 @@ export default function CreateReport() {
         const startHour = parseInt(start.split(':')[0]);
         const startMinute = parseInt(start.split(':')[1]);
         const breaks = break1 && break2 ? parseInt(break1) + parseInt(break2) : break1 ? parseInt(break1) : 0;
-        const totalMinutes = (endHour * 60) - (startHour * 60) + (endMinute - startMinute) - breaks;
+        const totalMinutes = ((endHour * 60) + endMinute) - ((startHour * 60) + startMinute) - breaks;
         const totalHours = Math.floor(totalMinutes / 60);
         const remainderMinutes = totalMinutes % 60;
         return `${totalHours}h ${remainderMinutes}m`
