@@ -33,6 +33,7 @@ export default function Header() {
                         <li><a className="link-light" href="/contacts">Contacts</a></li>
                         <li><a className="link-light" href="/reports">Reports</a></li>
                         <li><a className="link-light" href="/downloads">Downloads</a></li>
+                        <li><a className="link-light" href="/videos">Videos</a></li>
                         <li><a className="link-light" href="/calendar">Calendar</a></li>
                         <li><a className="link-light" href="/change-password">Change Password</a></li>
                         {Auth.getProfile().data.name == 'Josh Hensley' && (

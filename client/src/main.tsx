@@ -9,6 +9,7 @@ import Calendar from './pages/Calendar';
 import CreateReport from './pages/CreateReport';
 import Login from './pages/Login';
 import ChangePassword from './pages/ChangePassword';
+import Videos from './pages/Videos'
 import './scss/custom.scss'
 import EditUser from './pages/EditUser';
 import AddUser from './pages/AddUser';
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: '/add-user',
         element: <AddUser />
+      },
+      {
+        path: '/videos',
+        element: <Videos />
       }
     ]
   }
