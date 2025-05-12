@@ -28,7 +28,7 @@ export const signToken = (email: string, _id: unknown, name: unknown) => {
   const payload = { email, _id, name };
   const secretKey: any = process.env.JWT_SECRET_KEY; 
 
-  return jwt.sign({ data: payload }, secretKey, { expiresIn: '2h' });
+  return jwt.sign({ data: payload }, secretKey, { expiresIn: '5h' });
 };
 
 export class AuthenticationError extends GraphQLError {
