@@ -43,7 +43,7 @@ export default function Calendar() {
                 ['7pm @ 305 S Fanin'],
                 ['7pm @ 305 S Fanin'],
                 [''],
-                ['7pm @ 305 S Fanin'],
+                ['MEMORIAL DAY', 'NO REHEARSAL'],
                 ['7pm @ 305 S Fanin'],
                 [''],
             ],
