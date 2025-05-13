@@ -27,7 +27,7 @@ export default function Calendar() {
                 [''],
                 ['NO REHEARSAL', `HAPPY MOTHER'S DAY`],
                 ['7pm @ 305 S Fanin', 'ACT 1, Scene 1-4'],
-                ['7pm @ 305 S Fanin'],
+                ['7pm @ 305 S Fanin', 'ACT 1 pg. 21 - Scene 7'],
                 [''],
                 ['7pm @ 305 S Fanin'],
                 ['7pm @ 305 S Fanin'],
