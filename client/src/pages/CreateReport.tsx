@@ -151,7 +151,14 @@ export default function CreateReport() {
                                 (
                                     <div>
                                         <button className="btn btn-primary w-10 m-3" style={{ width: '100px' }} type="submit">Submit</button>
-                                        <button className="btn btn-primary w-10 m-3" style={{ width: '150px' }} onClick={() => { localStorage.removeItem('report') }}>Reset Form</button>
+                                        <button
+                                            className="btn btn-primary w-10 m-3"
+                                            style={{ width: '150px' }}
+                                            onClick={() => {
+                                                localStorage.removeItem('report');
+                                                window.location.reload()
+                                            }}
+                                        >Reset Form</button>
                                     </div>
                                 )}
 
