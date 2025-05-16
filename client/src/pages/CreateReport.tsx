@@ -153,6 +153,7 @@ export default function CreateReport() {
                                         <button className="btn btn-primary w-10 m-3" style={{ width: '100px' }} type="submit">Submit</button>
                                         <button
                                             className="btn btn-primary w-10 m-3"
+                                            type="button"
                                             style={{ width: '150px' }}
                                             onClick={() => {
                                                 localStorage.removeItem('report');
