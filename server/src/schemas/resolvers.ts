@@ -154,6 +154,13 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!')
         },
+        removeReport: async (_parent: any, { reportId }: { reportId: string }, context: any) =>{
+            if (context.user) {
+                const report = await Report.findByIdAndDelete(reportId)
+                return report
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
         addComment: async (_parent: any, { postId, commentText, commentAuthor }: addCommentArgs, context: any) => {
             if (context.user) {
                 return Post.findOneAndUpdate(

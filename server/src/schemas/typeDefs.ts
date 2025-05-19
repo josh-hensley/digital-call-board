@@ -103,6 +103,7 @@ type Mutation {
     login(email: String!, password: String!): Auth
     addPost(input: PostInput!): Post
     addReport(input: ReportInput!): Report
+    removeReport(reportId: ID!): Report
     removePost(postId: ID!): Post
     addComment(postId: ID!, commentText: String!, commentAuthor: String!): Post
     removeComment(postId: ID!, commentId: ID!): Post
