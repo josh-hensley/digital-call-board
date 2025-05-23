@@ -34,6 +34,19 @@ export default function Downloads() {
                             allowFullScreen>
                             </iframe>
                         </div>
+                        <div className="card p-3 d-flex align-items-center">
+                            <h3>Forever</h3>
+                            <iframe 
+                            width="560" 
+                            height="315" 
+                            src="https://www.youtube.com/embed/KYZZS2XeI6g?si=yiwaW0r1Zy_CFOsR" 
+                            title="YouTube video player" 
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerPolicy="strict-origin-when-cross-origin" 
+                            allowFullScreen>
+                            </iframe>
+                        </div>
                     </section>
                 </div>
             ) : (
