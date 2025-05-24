@@ -26,7 +26,7 @@ export default function Downloads() {
                             <iframe 
                             width="560" 
                             height="315" 
-                            src="https://www.youtube.com/embed/jievasmzAlU?si=QAV3ZqvAGnxb5qaX" 
+                            src="https://www.youtube.com/embed/x1WDnmBFDlk?si=GbD3OFUv8d0sNobY" 
                             title="YouTube video player" 
                             frameBorder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
