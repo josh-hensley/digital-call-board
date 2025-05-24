@@ -43,8 +43,8 @@ export default function Calendar() {
                 ['MEMORIAL DAY', 'NO REHEARSAL'],
                 ['7pm @ 305 S Fanin', 'Morning Person'],
                 [''],
-                ['7pm @ 305 S Fanin', 'Ballad of Farquaad', 'Make a Move'],
-                ['7pm @ 305 S Fanin', 'p. 89-97'],
+                ['7pm @ 305 S Fanin', 'Ballad of Farquaad and Make a Move'],
+                ['7pm @ 305 S Fanin', 'Act 2 Scene 5'],
                 [''],
             ],
             [
