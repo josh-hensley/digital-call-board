@@ -44,7 +44,7 @@ export default function Calendar() {
                 ['7pm @ 305 S Fanin', 'Morning Person'],
                 [''],
                 ['7pm @ 305 S Fanin', 'Ballad of Farquaad and Make a Move'],
-                ['7pm @ 305 S Fanin', 'Act 2 Scene 5'],
+                ['7pm @ 305 S Fanin', '7-8', 'Act 2 Scene 5', '8-10', 'Act 2 Scene 6'],
                 [''],
             ],
             [
