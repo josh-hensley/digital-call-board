@@ -36,6 +36,12 @@ interface addUserArgs {
     password: string;
 };
 
+interface deleteUserArgs {
+    input: {
+        _id: string;
+    }
+};
+
 interface loginUserArgs {
     email: string;
     password: string;
@@ -121,6 +127,10 @@ const resolvers = {
         },
         updateUser: async (_parent: any, { input }: UserArgs) => {
             const user = await User.findByIdAndUpdate(input._id, { ...input }, { new: true })
+            return user;
+        },
+        deleteUser: async (_parent: any, { input }: deleteUserArgs) => {
+            const user = await User.findByIdAndDelete(input._id);
             return user;
         },
         login: async (_parent: any, { email, password }: loginUserArgs) => {
