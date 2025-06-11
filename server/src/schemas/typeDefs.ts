@@ -54,6 +54,10 @@ input NewUser {
     roles: [String]
 }
 
+input DeleteUser {
+    _id: ID!
+}
+
 input PostInput {
     postText: String!
     postAuthor: String!
@@ -100,6 +104,7 @@ type Query {
 type Mutation {
     addUser(input: NewUser): User
     updateUser(input: UserInput): User
+    deleteUser(input: DeleteUser): User
     login(email: String!, password: String!): Auth
     addPost(input: PostInput!): Post
     addReport(input: ReportInput!): Report
