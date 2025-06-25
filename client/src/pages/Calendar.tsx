@@ -73,10 +73,10 @@ export default function Calendar() {
                 [''],
                 [''],
                 [''],
-                ['7pm @ Rockwall HS', 'Brush up'],
+                ['OFF', 'No Rehearsal'],
                 ['Show', 'Cast Called @ 6pm'],
                 ['Show', 'Cast Called @ 6pm'],
-                ['Show', 'Cast Called @ 1pm'],
+                ['Show', 'Cast Called @ 12:30pm'],
                 [''],
             ]
         ]
