@@ -1,54 +1,64 @@
-import { Router } from 'express';
-// import { Post } from '../../models';
+import { Router, Request, Response } from 'express';
+import { Post } from '../../models';
 
 const router = Router();
 
-// router.get('/posts', async (_req: Request, res: Response) => {
-//     const data = await Post.find({}, null, { sort: { createdAt: -1 } });
-//     res.json(data);
-// });
+router.post('post/new', async (req: Request, res: Response) => {
+    try {
+        const newPost = await Post.create(req.body);
+        console.log('New post created:', newPost.id);
+        res.status(201).json(newPost);
+    } catch (error) {
+        res.status(500).json({ message: 'Error creating post', error });
+    }
+});
 
-// router.get('/posts/:id', async (req: Request, res: Response): Promise<void> => {
-//     const { id } = req.params;
-//     const data = await Post.findById(id);
-//     if (!data) {
-//         res.status(404).json({ message: 'Post not found' });
-//         return;
-//     }
-//     res.json(data);
-//     return;
-// });
+router.get('/posts', async (_req: Request, res: Response) => {
+    try {
+        const posts = await Post.findAll();
+        res.json(posts);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching posts' });
+    }
+});
 
-// router.post('/posts', async (req: Request, res: Response): Promise<void> => {
-//     const { title, content } = req.body;
-//     if (!title || !content) {
-//         res.status(400).json({ message: 'Title and content are required' });
-//         return;
-//     }
-//     const newPost = new Post({ title, content });
-//     await newPost.save();
-//     res.status(201).json(newPost);
-// });
+router.get('/post/:id', async (req: Request, res: Response): Promise<void> => {
+    const { id } = req.params;
+    try {
+        const post = await Post.findByPk(id);
+        if (!post) {
+            res.status(404).json({ message: 'post not found' });
+        }
+        res.json(post);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching post' });
+    }
+});
 
-// router.put('/posts/:id', async (req: Request, res: Response): Promise<void> => {
-//     const { id } = req.params;
-//     const { title, content } = req.body;
-//     const updatedPost = await Post.findByIdAndUpdate(id, { title, content }, { new: true });
-//     if (!updatedPost) {
-//         res.status(404).json({ message: 'Post not found' });
-//         return;
-//     }
-//     res.json(updatedPost);
-// });
+router.put('/post/:id', async (req: Request, res: Response): Promise<void> => {
+    const { id } = req.params;
+    try {
+        const updatedPost = await Post.update({...req.body}, {where: { id }});
+        if (!updatedPost) {
+            res.status(404).json({ message: 'post not found' });
+        }
+        res.json(updatedPost);
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating post' });
+    }
+});
 
-// router.delete('/posts/:id', async (req: Request, res: Response): Promise<void> => {
-//     const { id } = req.params;
-//     const deletedPost = await Post.findByIdAndDelete(id);
-//     if (!deletedPost) {
-//         res.status(404).json({ message: 'Post not found' });
-//         return;
-//     }
-//     res.json({ message: 'Post deleted successfully' });
-// });
+router.delete('/posts/:id', async (req: Request, res: Response): Promise<void> => {
+    const { id } = req.params;
+    try {
+        const deletedpost = await Post.destroy({ where: { id } });
+        if (!deletedpost) {
+            res.status(404).json({ message: 'post not found' });
+        }
+        res.json({ message: `post: ${deletedpost} deleted successfully` });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting post' });
+    }
+});
 
 export default router;
