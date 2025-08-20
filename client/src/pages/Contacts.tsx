@@ -1,18 +1,22 @@
-import { useQuery } from "@apollo/client";
-import { QUERY_USERS } from "../utils/queries.js";
 import Contact from "../components/Contact.js";
 import UserProps from "../interfaces/UserProps.js";
 import Auth from '../utils/auth.js'
 import LoginMessage from "../components/LoginMessage";
 
 export default function Contacts() {
-    const { loading, data } = useQuery(QUERY_USERS);
-    const users = data?.users || [];
-
+    const users: UserProps[] = [
+        {
+            _id: '1',
+            name: 'John Doe',
+            email: 'lkj@lkj.com',
+            phone: '123-456-7890',
+            roles: ['Actor', 'Director'],
+            age: 30
+        }
+    ]
     return (
         <main>
-            {loading ? (<div>Loading...</div>) :
-                (Auth.loggedIn() ? (
+                ({Auth.loggedIn() ? (
                     <div className="container text-light bg-semi-transparent d-flex flex-column align-items-center">
                         <h1>Contacts</h1>
                         <table>
@@ -36,7 +40,7 @@ export default function Contacts() {
                 ) : (
                     <LoginMessage />
                 )
-                )}
+                })
         </main>
     )
 }

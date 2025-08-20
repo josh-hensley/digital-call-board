@@ -1,14 +1,9 @@
-import { useQuery, useMutation } from "@apollo/client";
 import { ChangeEvent, FormEvent, useState, useEffect } from "react"
-import { QUERY_USERS } from "../utils/queries";
-import { ADD_REPORT } from "../utils/mutations";
 import UserProps from "../interfaces/UserProps";
 import Auth from '../utils/auth'
 
 export default function CreateReport() {
-    const { loading, data } = useQuery(QUERY_USERS)
-    const [addReport, { error, data: mutationData }] = useMutation(ADD_REPORT)
-    const users = data?.users || [];
+    const users: UserProps[] = [];
     const [formState, setFormState] = useState({
         date: "",
         rehearsalStart: "",
@@ -67,9 +62,10 @@ export default function CreateReport() {
         e.preventDefault();
         if (Auth.getProfile().data.name == "Josh Hensley") {
             try {
-                await addReport({
-                    variables: { input: formState }
-                });
+                // Here you would typically send the formState to your backend or API
+                console.log("Report submitted:", formState);
+                localStorage.removeItem('report');
+                window.location.reload();
 
             } catch (error) {
                 console.error(error)
@@ -106,7 +102,7 @@ export default function CreateReport() {
                             <fieldset className="col bg-semi-transparent m-1 rounded">
                                 <legend>Attendance</legend>
                                 <ul className="d-flex flex-column flex-wrap" style={{ height: '500px' }}>
-                                    {loading ? (<div>Loading Cast...</div>) : (
+                                    {(
                                         users.length > 0 ?
                                             users.map((user: UserProps) => {
                                                 return (
@@ -146,22 +142,20 @@ export default function CreateReport() {
                         <textarea className="form-control" name="scenery" onChange={handleChange} value={formState.scenery}></textarea>
                     </fieldset>
                     {
-                        error ? (<div className="text-light">An Error has occured</div>) :
-                            mutationData ? (<div className="text-light">Success</div>) :
-                                (
-                                    <div>
-                                        <button className="btn btn-primary w-10 m-3" style={{ width: '100px' }} type="submit">Submit</button>
-                                        <button
-                                            className="btn btn-primary w-10 m-3"
-                                            type="button"
-                                            style={{ width: '150px' }}
-                                            onClick={() => {
-                                                localStorage.removeItem('report');
-                                                window.location.reload()
-                                            }}
-                                        >Reset Form</button>
-                                    </div>
-                                )}
+                        (
+                            <div>
+                                <button className="btn btn-primary w-10 m-3" style={{ width: '100px' }} type="submit">Submit</button>
+                                <button
+                                    className="btn btn-primary w-10 m-3"
+                                    type="button"
+                                    style={{ width: '150px' }}
+                                    onClick={() => {
+                                        localStorage.removeItem('report');
+                                        window.location.reload()
+                                    }}
+                                >Reset Form</button>
+                            </div>
+                        )}
 
                 </form>
             ) : (

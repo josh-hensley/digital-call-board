@@ -1,11 +1,8 @@
 import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_POST } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 export default function PostForm() {
     const postAuthor = Auth.getProfile().data.name;
-    const [addPost, { data, error }] = useMutation(ADD_POST);
     const [formState, setFormState] = useState({ postAuthor, postText: '' });
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -17,10 +14,10 @@ export default function PostForm() {
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const { data } = await addPost({
-                variables: { input: formState }
-            });
-            console.log(data);
+            // const { data } = await addPost({
+            //     variables: { input: formState }
+            // });
+            // console.log(data);
             window.location.reload();
         } catch (error) {
             console.error(error);
@@ -31,8 +28,6 @@ export default function PostForm() {
             <form className="py-3 d-flex flex-column align-items-center" onSubmit={handleFormSubmit}>
                 <textarea className='form-control' name="postText" id="post-textarea" value={formState.postText} onChange={handleChange}></textarea>
                 <button className="btn btn-light m-1" type="submit">Post</button>
-                {data && <p>Posted!</p>}
-                {error && <div className="error">{error.message}</div>}
             </form>
         </div>
     )
