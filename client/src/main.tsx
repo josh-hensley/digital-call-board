@@ -21,50 +21,16 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <div>Oops, Something went wrong!</div>,
     children: [
-      {
-        index: true,
-        element: <Callboard />
-      }, 
-      {
-        path: '/contacts', 
-        element: <Contacts />
-      }, 
-      {
-        path: '/reports',
-        element: <Reports />
-      }, 
-      {
-        path: '/downloads',
-        element: <Downloads />
-      }, 
-      {
-        path: '/calendar',
-        element: <Calendar />
-      },
-      {
-        path: '/create-report',
-        element: <CreateReport />
-      },
-      {
-        path: '/login',
-        element: <Login />
-      },
-      {
-        path: '/change-password',
-        element: <ChangePassword />
-      },
-      {
-        path: '/edit-user',
-        element: <EditUser />
-      },
-      {
-        path: '/add-user',
-        element: <AddUser />
-      },
-      {
-        path: '/videos',
-        element: <Videos />
-      }
+      { index: true, element: <Callboard /> }, 
+      { path: '/contacts', element: <Contacts /> }, 
+      { path: '/reports', element: <Reports /> }, 
+      { path: '/downloads', element: <Downloads /> }, 
+      { path: '/calendar', element: <Calendar /> },
+      { path: '/create-report', element: <CreateReport /> },
+      { path: '/login', element: <Login /> },
+      { path: '/change-password', element: <ChangePassword /> },
+      { path: '/user-edit', element: <EditUser /> },
+      { path: '/videos', element: <Videos /> }
     ]
   }
 ]);

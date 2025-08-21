@@ -1,6 +1,5 @@
 import { ChangeEvent, FormEvent, useState, useEffect } from "react"
 import UserProps from "../interfaces/UserProps";
-import Auth from '../utils/auth'
 
 export default function CreateReport() {
     const users: UserProps[] = [];
@@ -60,108 +59,101 @@ export default function CreateReport() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        if (Auth.getProfile().data.name == "Josh Hensley") {
-            try {
-                // Here you would typically send the formState to your backend or API
-                console.log("Report submitted:", formState);
-                localStorage.removeItem('report');
-                window.location.reload();
+        try {
+            // Here you would typically send the formState to your backend or API
+            console.log("Report submitted:", formState);
+            localStorage.removeItem('report');
+            window.location.reload();
 
-            } catch (error) {
-                console.error(error)
-            }
+        } catch (error) {
+            console.error(error)
         }
     }
 
     return (
         <main>
-            {Auth.loggedIn() && Auth.getProfile().data.name === 'Josh Hensley' ? (
-                <form className="text-light d-flex flex-column align-items-center" onSubmit={handleSubmit}>
-                    <h3 className="text-center">Create Report</h3>
-                    <div className="container">
-                        <div className="row">
-                            <fieldset className="col-2 bg-semi-transparent m-1 rounded">
-                                <legend>Time Card</legend>
-                                <label htmlFor="date">Date: </label>
-                                <input className='form-control' type="date" name="date" onChange={handleChange} value={formState.date} />
-                                <label htmlFor="rehearsalStart">Rehearsal Start: </label>
-                                <input className="form-control" type="time" name="rehearsalStart" onChange={handleChange} value={formState.rehearsalStart} />
-                                <label htmlFor="break1">Break: </label>
-                                <input className="form-control" type="time" name="break1" onChange={handleChange} value={formState.break1} />
-                                <label htmlFor="breakLength1">Break Length: {formState.breakLength1}</label>
-                                <input className="form-control" type="range" min='0' max='20' name="breakLength1" onChange={handleChange} value={formState.breakLength1} />
-                                <label htmlFor="break2">Break: </label>
-                                <input className="form-control" type="time" name="break2" onChange={handleChange} value={formState.break2} />
-                                <label htmlFor="breakLength2">Break Length: {formState.breakLength2}</label>
-                                <input className="form-control" type="range" min='0' max='20' name="breakLength2" onChange={handleChange} value={formState.breakLength2} />
-                                <label htmlFor="rehearsalEnd">Rehearsal End: </label>
-                                <input className="form-control" type="time" name="rehearsalEnd" onChange={handleChange} value={formState.rehearsalEnd} />
-                                <p>Total Rehearsal Time:</p>
-                                <p>{calcRehearsalTime(formState.rehearsalStart, formState.breakLength1, formState.breakLength2, formState.rehearsalEnd)}</p>
-                            </fieldset>
-                            <fieldset className="col bg-semi-transparent m-1 rounded">
-                                <legend>Attendance</legend>
-                                <ul className="d-flex flex-column flex-wrap" style={{ height: '500px' }}>
-                                    {(
-                                        users.length > 0 ?
-                                            users.map((user: UserProps) => {
-                                                return (
-                                                    <li key={user._id}>
-                                                        <input className="form-check-input" type="checkbox" name={user.name} onChange={handleAttendance} checked={formState.attendance.includes(user.name)} />
-                                                        <label className='form-check-label px-2' htmlFor={user.name}>{user.name}</label>
-                                                    </li>
-                                                )
-                                            }
-                                            ) : (
-                                                Array.from({ length: 40 }).map((_, i) => (
-                                                    <li key={i}>
-                                                        <input type="checkbox" name={`test-${i}`} onChange={handleAttendance} />
-                                                        <label className='label-reset' htmlFor={`test-${i}`}>Test Name {i + 1}</label>
-                                                    </li>
-                                                ))
-
+            <form className="text-light d-flex flex-column align-items-center" onSubmit={handleSubmit}>
+                <h3 className="text-center">Create Report</h3>
+                <div className="container">
+                    <div className="row">
+                        <fieldset className="col-2 bg-semi-transparent m-1 rounded">
+                            <legend>Time Card</legend>
+                            <label htmlFor="date">Date: </label>
+                            <input className='form-control' type="date" name="date" onChange={handleChange} value={formState.date} />
+                            <label htmlFor="rehearsalStart">Rehearsal Start: </label>
+                            <input className="form-control" type="time" name="rehearsalStart" onChange={handleChange} value={formState.rehearsalStart} />
+                            <label htmlFor="break1">Break: </label>
+                            <input className="form-control" type="time" name="break1" onChange={handleChange} value={formState.break1} />
+                            <label htmlFor="breakLength1">Break Length: {formState.breakLength1}</label>
+                            <input className="form-control" type="range" min='0' max='20' name="breakLength1" onChange={handleChange} value={formState.breakLength1} />
+                            <label htmlFor="break2">Break: </label>
+                            <input className="form-control" type="time" name="break2" onChange={handleChange} value={formState.break2} />
+                            <label htmlFor="breakLength2">Break Length: {formState.breakLength2}</label>
+                            <input className="form-control" type="range" min='0' max='20' name="breakLength2" onChange={handleChange} value={formState.breakLength2} />
+                            <label htmlFor="rehearsalEnd">Rehearsal End: </label>
+                            <input className="form-control" type="time" name="rehearsalEnd" onChange={handleChange} value={formState.rehearsalEnd} />
+                            <p>Total Rehearsal Time:</p>
+                            <p>{calcRehearsalTime(formState.rehearsalStart, formState.breakLength1, formState.breakLength2, formState.rehearsalEnd)}</p>
+                        </fieldset>
+                        <fieldset className="col bg-semi-transparent m-1 rounded">
+                            <legend>Attendance</legend>
+                            <ul className="d-flex flex-column flex-wrap" style={{ height: '500px' }}>
+                                {(
+                                    users.length > 0 ?
+                                        users.map((user: UserProps) => {
+                                            return (
+                                                <li key={user._id}>
+                                                    <input className="form-check-input" type="checkbox" name={user.name} onChange={handleAttendance} checked={formState.attendance.includes(user.name)} />
+                                                    <label className='form-check-label px-2' htmlFor={user.name}>{user.name}</label>
+                                                </li>
                                             )
-                                    )}
-                                </ul>
-                            </fieldset>
-                        </div>
+                                        }
+                                        ) : (
+                                            Array.from({ length: 40 }).map((_, i) => (
+                                                <li key={i}>
+                                                    <input type="checkbox" name={`test-${i}`} onChange={handleAttendance} />
+                                                    <label className='label-reset' htmlFor={`test-${i}`}>Test Name {i + 1}</label>
+                                                </li>
+                                            ))
+
+                                        )
+                                )}
+                            </ul>
+                        </fieldset>
                     </div>
-                    <fieldset className="container bg-semi-transparent rounded p-1">
-                        <legend>Notes</legend>
-                        <label htmlFor="rehearsal-notes">Rehearsal Notes: </label>
-                        <textarea className="form-control" name="rehearsalNotes" onChange={handleChange} value={formState.rehearsalNotes}></textarea>
-                        <label htmlFor="costumes">Costumes: </label>
-                        <textarea className="form-control" name="costumes" onChange={handleChange} value={formState.costumes}></textarea>
-                        <label htmlFor="lights">Lights: </label>
-                        <textarea className="form-control" name="lights" onChange={handleChange} value={formState.lights}></textarea>
-                        <label htmlFor="properties">Properties: </label>
-                        <textarea className="form-control" name="properties" onChange={handleChange} value={formState.properties}></textarea>
-                        <label htmlFor="sound">Sound: </label>
-                        <textarea className="form-control" name="sound" onChange={handleChange} value={formState.sound}></textarea>
-                        <label htmlFor="scenery">Scenery: </label>
-                        <textarea className="form-control" name="scenery" onChange={handleChange} value={formState.scenery}></textarea>
-                    </fieldset>
-                    {
-                        (
-                            <div>
-                                <button className="btn btn-primary w-10 m-3" style={{ width: '100px' }} type="submit">Submit</button>
-                                <button
-                                    className="btn btn-primary w-10 m-3"
-                                    type="button"
-                                    style={{ width: '150px' }}
-                                    onClick={() => {
-                                        localStorage.removeItem('report');
-                                        window.location.reload()
-                                    }}
-                                >Reset Form</button>
-                            </div>
-                        )}
+                </div>
+                <fieldset className="container bg-semi-transparent rounded p-1">
+                    <legend>Notes</legend>
+                    <label htmlFor="rehearsal-notes">Rehearsal Notes: </label>
+                    <textarea className="form-control" name="rehearsalNotes" onChange={handleChange} value={formState.rehearsalNotes}></textarea>
+                    <label htmlFor="costumes">Costumes: </label>
+                    <textarea className="form-control" name="costumes" onChange={handleChange} value={formState.costumes}></textarea>
+                    <label htmlFor="lights">Lights: </label>
+                    <textarea className="form-control" name="lights" onChange={handleChange} value={formState.lights}></textarea>
+                    <label htmlFor="properties">Properties: </label>
+                    <textarea className="form-control" name="properties" onChange={handleChange} value={formState.properties}></textarea>
+                    <label htmlFor="sound">Sound: </label>
+                    <textarea className="form-control" name="sound" onChange={handleChange} value={formState.sound}></textarea>
+                    <label htmlFor="scenery">Scenery: </label>
+                    <textarea className="form-control" name="scenery" onChange={handleChange} value={formState.scenery}></textarea>
+                </fieldset>
+                {
+                    (
+                        <div>
+                            <button className="btn btn-primary w-10 m-3" style={{ width: '100px' }} type="submit">Submit</button>
+                            <button
+                                className="btn btn-primary w-10 m-3"
+                                type="button"
+                                style={{ width: '150px' }}
+                                onClick={() => {
+                                    localStorage.removeItem('report');
+                                    window.location.reload()
+                                }}
+                            >Reset Form</button>
+                        </div>
+                    )}
 
-                </form>
-            ) : (
-                <p>Must be SM to view page.</p>
-            )}
-
+            </form>
         </main>
     )
 }

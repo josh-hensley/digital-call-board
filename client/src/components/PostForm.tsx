@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import Auth from '../utils/auth';
 
 export default function PostForm() {
-    const postAuthor = Auth.getProfile().data.name;
-    const [formState, setFormState] = useState({ postAuthor, postText: '' });
+    const [formState, setFormState] = useState({ postAuthor: '', postText: '' });
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -14,10 +12,6 @@ export default function PostForm() {
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            // const { data } = await addPost({
-            //     variables: { input: formState }
-            // });
-            // console.log(data);
             window.location.reload();
         } catch (error) {
             console.error(error);

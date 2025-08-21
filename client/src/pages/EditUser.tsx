@@ -1,5 +1,3 @@
-import Auth from '../utils/auth'
-
 import { ChangeEvent, useState, FormEvent } from "react"
 import UserProps from "../interfaces/UserProps";
 
@@ -44,16 +42,14 @@ export default function EditUser() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        if (Auth.getProfile().data.name == "Josh Hensley") {
-            try {
-                // Here you would typically send the formState to your backend or API
-                console.log("User updated:", formState);
-                localStorage.removeItem('user');
-                window.location.reload();
+        try {
+            // Here you would typically send the formState to your backend or API
+            console.log("User updated:", formState);
+            localStorage.removeItem('user');
+            window.location.reload();
 
-            } catch (error) {
-                console.error(error)
-            }
+        } catch (error) {
+            console.error(error)
         }
     }
 
