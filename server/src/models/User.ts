@@ -1,4 +1,5 @@
 import { DataTypes, Model } from "sequelize";
+import bcrypt from "bcrypt";
 import db from "../config/connection.js"
 
 class User extends Model {
@@ -37,13 +38,32 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [8, 30]
+                len: [6, 100] // Password must be between 6 and 100 characters
             }
         }
     },
     {
         sequelize: db,
-        modelName: 'User'
+        modelName: 'User',
+        hooks: {
+            beforeBulkCreate: async (users) => {
+                for (const user of users) {
+                    if (user.password) {
+                        user.password = await bcrypt.hash(user.password, 10);
+                    }
+                }
+            },
+            beforeCreate: async (user) => {
+                if (user.password) {
+                    user.password = await bcrypt.hash(user.password, 10);
+                }
+            },
+            beforeUpdate: async (user) => {
+                if (user.changed('password')) {
+                    user.password = await bcrypt.hash(user.password, 10);
+                }
+            }
+        }
     });
 
 export default User;

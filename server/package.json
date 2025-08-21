@@ -8,16 +8,15 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "nodemon",
-    "seed": "node dist/seeds/seed.js",
-    "resetdb": "node dist/seeds/cleanDb.js"
+    "seed": "node dist/seed/seed.js",
+    "resetdb": "node dist/seed/cleanDb.js"
   },
   "nodemonConfig": {
-    "ext": "ts, tsx, css, html",
+    "ext": "ts, json",
     "watch": [
-      "src/**/*",
-      "../client/src/**/*"
+      "src/**/*"
     ],
-    "exec": "cd ../ && npm run build && cd server && npm start"
+    "exec": "npm run build && npm start"
   },
   "keywords": [],
   "author": "",

@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
-import { User } from '../../models';
+import { User, Post, Comment } from '../../models/index.js';
 
 const router = Router();
 
-router.post('user/new', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
     try {
         const newUser = await User.create(req.body);
         console.log('New user created:', newUser.id);
@@ -13,19 +13,50 @@ router.post('user/new', async (req: Request, res: Response) => {
     }
 });
 
-router.get('/users', async (_req: Request, res: Response) => {
+router.get('/', async (_req: Request, res: Response) => {
     try {
-        const users = await User.findAll();
+        const users = await User.findAll(
+            {
+                include: [
+                    {
+                        model: Post,
+                        attributes: ['content', 'createdAt']
+                    },
+                    {
+                        model: Comment,
+                        attributes: ['id', 'content', 'createdAt'],
+                        include: [{
+                            model: Post,
+                            attributes: ['id', 'content'],
+                            include: [{ model: User, attributes: ['id', 'firstName', 'lastName'] }]
+                        }]
+                    }]
+            });
         res.json(users);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching users' });
     }
 });
 
-router.get('/user/:id', async (req: Request, res: Response): Promise<void> => {
+router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     try {
-        const user = await User.findByPk(id);
+        const user = await User.findByPk(id, {
+            include: [
+                    {
+                        model: Post,
+                        attributes: ['content', 'createdAt']
+                    },
+                    {
+                        model: Comment,
+                        attributes: ['id', 'content', 'createdAt'],
+                        include: [{
+                            model: Post,
+                            attributes: ['id', 'content'],
+                            include: [{ model: User, attributes: ['id', 'firstName', 'lastName'] }]
+                        }]
+                    }]
+        });
         if (!user) {
             res.status(404).json({ message: 'User not found' });
         }
@@ -35,10 +66,11 @@ router.get('/user/:id', async (req: Request, res: Response): Promise<void> => {
     }
 });
 
-router.put('/user/:id', async (req: Request, res: Response): Promise<void> => {
+router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     try {
-        const updatedUser = await User.update({...req.body}, {where: { id }});
+        await User.update({ ...req.body }, { where: { id } });
+        const updatedUser = await User.findByPk(id);
         if (!updatedUser) {
             res.status(404).json({ message: 'User not found' });
         }
@@ -48,15 +80,15 @@ router.put('/user/:id', async (req: Request, res: Response): Promise<void> => {
     }
 });
 
-router.delete('/users/:id', async (req: Request, res: Response): Promise<void> => {
+router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     try {
-        const user = await User.findByPk(id);
-        const deletedUser = await User.destroy({ where: { id } });
+        const deletedUser = await User.findByPk(id);
+        await User.destroy({ where: { id } });
         if (!deletedUser) {
             res.status(404).json({ message: 'User not found' });
         }
-        res.json({ message: `${deletedUser}, User: ${user?.getFullName()} deleted successfully` });
+        res.json({ message: `User: ${deletedUser?.getFullName()} deleted successfully` });
     } catch (error) {
         res.status(500).json({ message: 'Error deleting user' });
     }

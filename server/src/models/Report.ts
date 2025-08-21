@@ -17,22 +17,6 @@ Report.init(
         description: {
             type: DataTypes.TEXT,
             allowNull: true
-        },
-        postId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'Post',
-                key: 'id'
-            }
-        },
-        userId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'User',
-                key: 'id'
-            }
         }
     },
     {
