@@ -6,38 +6,38 @@ const Contacts: FC = () => {
     const contacts: ContactProps[] = [
         {
             id: '1',
-            fullName: 'John Doe',
-            email: 'lkj@lkj.com',
+            fullName: 'John Krasinsky',
+            email: 'john@email.com',
             phone: '123-456-7890',
             roles: ['Jim'],
-            group: 'cast',
+            groups: ['cast', 'production'],
             age: 30
         },
         {
             id: '2',
-            fullName: 'John Doe',
-            email: 'lkj@lkj.com',
+            fullName: 'Jenna Fischer',
+            email: 'jenna@email.com',
             phone: '123-456-7890',
             roles: ['Pam'],
-            group: 'cast',
+            groups: ['cast'],
             age: 30
         },
         {
             id: '3',
-            fullName: 'John Doe',
-            email: 'lkj@lkj.com',
+            fullName: 'Rainn Wilson',
+            email: 'rainn@email.com',
             phone: '123-456-7890',
             roles: ['Dwight'],
-            group: 'cast',
+            groups: ['crew'],
             age: 30
         },
         {
             id: '4',
-            fullName: 'John Doe',
-            email: 'lkj@lkj.com',
+            fullName: 'Steve Carell',
+            email: 'steve@email.com',
             phone: '123-456-7890',
             roles: ['Michael'],
-            group: 'cast',
+            groups: ['production', 'crew'],
             age: 30
         },
     ]
@@ -65,6 +65,12 @@ const Contacts: FC = () => {
                         )}
                     </thead>
                 </table>
+            </div>
+            <div className="container">
+                <a className="btn btn-primary m-2" href={`mailto:${contacts.map(c=>c.email).join(', ')}`}>Email All</a>
+                <a className="btn btn-primary m-2" href={`mailto:${contacts.filter(c=>c.groups?.includes('cast')).map(c=>c.email).join(', ')}`}>Email Cast</a>
+                <a className="btn btn-primary m-2" href={`mailto:${contacts.filter(c=>c.groups?.includes('crew')).map(c=>c.email).join(', ')}`}>Email Crew</a>
+                <a className="btn btn-primary m-2" href={`mailto:${contacts.filter(c=>c.groups?.includes('production')).map(c=>c.email).join(', ')}`}>Email Production Team</a>
             </div>
 
         </main>
