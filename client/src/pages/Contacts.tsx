@@ -1,16 +1,45 @@
+import { FC } from "react";
 import Contact from "../components/Contact.js";
-import UserProps from "../interfaces/UserProps.js";
+import ContactProps from "../interfaces/ContactProps.js";
 
-export default function Contacts() {
-    const users: UserProps[] = [
+const Contacts: FC = () => {
+    const contacts: ContactProps[] = [
         {
-            _id: '1',
-            name: 'John Doe',
+            id: '1',
+            fullName: 'John Doe',
             email: 'lkj@lkj.com',
             phone: '123-456-7890',
-            roles: ['Actor', 'Director'],
+            roles: ['Jim'],
+            group: 'cast',
             age: 30
-        }
+        },
+        {
+            id: '2',
+            fullName: 'John Doe',
+            email: 'lkj@lkj.com',
+            phone: '123-456-7890',
+            roles: ['Pam'],
+            group: 'cast',
+            age: 30
+        },
+        {
+            id: '3',
+            fullName: 'John Doe',
+            email: 'lkj@lkj.com',
+            phone: '123-456-7890',
+            roles: ['Dwight'],
+            group: 'cast',
+            age: 30
+        },
+        {
+            id: '4',
+            fullName: 'John Doe',
+            email: 'lkj@lkj.com',
+            phone: '123-456-7890',
+            roles: ['Michael'],
+            group: 'cast',
+            age: 30
+        },
     ]
     return (
         <main>
@@ -25,13 +54,15 @@ export default function Contacts() {
                             <th className="d-none d-sm-table-cell">Email</th>
                             <th>Phone</th>
                         </tr>
-                        {users.map((user: UserProps) => <Contact
-                            key={user._id}
-                            fullName={user.name}
-                            email={user.email}
-                            phone={user.phone}
-                            roles={user.roles}
-                        />)}
+                        {contacts.map((contact: ContactProps) =>
+                            <Contact
+                                key={contact.id}
+                                fullName={contact.fullName}
+                                email={contact.email}
+                                phone={contact.phone}
+                                roles={contact.roles}
+                            />
+                        )}
                     </thead>
                 </table>
             </div>
@@ -39,3 +70,5 @@ export default function Contacts() {
         </main>
     )
 }
+
+export default Contacts;

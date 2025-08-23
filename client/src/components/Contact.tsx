@@ -1,6 +1,7 @@
-import ContactProps from "../interfaces/ContactProps"
+import { FC } from "react";
+import ContactProps from "../interfaces/ContactProps";
 
-export default function Contact({ fullName, email, phone, roles }: ContactProps) {
+const Contact: FC<ContactProps> = ({ fullName, email, phone, roles }: ContactProps) => {
     return (
         <tr className="text-white">
             <td>{fullName}</td>
@@ -10,3 +11,5 @@ export default function Contact({ fullName, email, phone, roles }: ContactProps)
         </tr>
     )
 }
+
+export default Contact;
