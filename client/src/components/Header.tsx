@@ -9,6 +9,14 @@ const Header: FC = () => {
         }
     };
 
+    const toggleDropdown = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const dropdownMenu = e.currentTarget.nextElementSibling;
+        if (dropdownMenu) {
+            dropdownMenu.classList.toggle('show');
+        }
+    };
+
     return (
         <header>
             <nav className="bg-primary bg-gradient p-2 navbar navbar-expand-xl">
@@ -24,10 +32,17 @@ const Header: FC = () => {
                         <li className="nav-item"><a className="nav-link link-light" href="/downloads">Downloads</a></li>
                         <li className="nav-item"><a className="nav-link link-light" href="/videos">Videos</a></li>
                         <li className="nav-item"><a className="nav-link link-light" href="/calendar">Calendar</a></li>
-                        <li className="nav-item"><a className="nav-link link-light" href="/change-password">Change Password</a></li>
-                        <li className="nav-item"><a className="nav-link link-light" href="/create-report">Create Report</a></li>
-                        <li className="nav-item"><a className="nav-link link-light" href="/user-edit">Edit/Add User</a></li>
+                        <li className="nav-item dropdown">
+                            <a href="#" className="nav-link link-light dropdown-toggle" onClick={toggleDropdown}>SM Tools</a>
+                            <ul className="dropdown-menu">
+                                <li className="dropdown-item"><a className="nav-link" href="/change-password">Change Password</a></li>
+                                <li className="dropdown-item"><a className="nav-link" href="/create-report">Create Report</a></li>
+                                <li className="dropdown-item"><a className="nav-link" href="/user-edit">Edit/Add User</a></li>
+                                
+                            </ul>
+                        </li>
                         <li className="nav-item"><a className='nav-link link-light' onClick={() => { console.log('clicked!') }}>Logout</a></li>
+
                     </ul>
                 </div>
 
