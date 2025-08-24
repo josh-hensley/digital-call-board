@@ -2,8 +2,7 @@ import { FC } from "react";
 import Contact from "../components/Contact.js";
 import ContactProps from "../interfaces/ContactProps.js";
 
-const Contacts: FC = () => {
-    const contacts: ContactProps[] = [
+const contacts: ContactProps[] = [
         {
             id: '1',
             fullName: 'John Krasinsky',
@@ -41,6 +40,9 @@ const Contacts: FC = () => {
             age: 30
         },
     ]
+
+const Contacts: FC = () => {
+    
     return (
         <main>
 
