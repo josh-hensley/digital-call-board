@@ -110,7 +110,7 @@ export default function CreateReport() {
         const { name, value } = e.target;
         setFormState({ ...formState, [name]: value })
     }
-
+    
     const handleBreaks = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         const index = parseInt(e.target.getAttribute("data-index") as string);

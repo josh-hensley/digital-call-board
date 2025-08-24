@@ -1,6 +1,6 @@
 import ReportProps, { rehearsalBreak } from "../interfaces/ReportProps";
 
-export default function Report(props: ReportProps) {
+const Report = (props: ReportProps) => {
     const {
         date,
         rehearsalStart,
@@ -73,3 +73,5 @@ return (
     </div>
 )
 }
+
+export default Report;

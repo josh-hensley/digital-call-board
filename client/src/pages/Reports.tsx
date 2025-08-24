@@ -20,7 +20,7 @@ const reports: ReportProps[] = [
         scenery: 'scenery notes',
     },
     {
-        date: '2024-06-01',
+        date: '2024-06-02',
         rehearsalStart: '18:00',
         breaks: [
             { time: '19:00', length: '5' }, 
@@ -37,7 +37,7 @@ const reports: ReportProps[] = [
         scenery: 'scenery notes',
     },
     {
-        date: '2024-06-01',
+        date: '2024-06-03',
         rehearsalStart: '18:00',
         breaks: [
             { time: '19:00', length: '5' }, 
@@ -54,7 +54,7 @@ const reports: ReportProps[] = [
         scenery: 'scenery notes',
     },
     {
-        date: '2024-06-01',
+        date: '2024-06-04',
         rehearsalStart: '18:00',
         breaks: [
             { time: '19:00', length: '5' }, 
