@@ -4,10 +4,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "concurrently \"cd server && npm i\" \"cd client && npm i\"",
-    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "dev": "nodemon",
     "server:dev": "cd server && npm run dev",
     "client:dev": "cd client && npm run dev",
-    "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
+    "build": "concurrently \"npm run server:build\" \"npm run client:build\"",
     "server:build": "cd server && npm run build",
     "client:build": "cd client && npm run build",
     "start": "cd server && npm start",
@@ -15,11 +15,20 @@
     "clean": "cd server && npm run resetdb",
     "render-build": "npm i && npm run build"
   },
+  "nodemonConfig": {
+    "ext": "ts, tsx, json",
+    "watch": [
+      "server/src/**/*",
+      "client/src/**/*"
+    ],
+    "exec": "npm run build && npm start"
+  },
   "keywords": [],
   "author": "Josh Hensley",
   "license": "ISC",
   "description": "A template to be used in theatrical productions as a call board and stage management tool.",
   "dependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.10"
   }
 }
