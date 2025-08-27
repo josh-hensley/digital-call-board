@@ -1,12 +1,12 @@
 import { ChangeEvent, MouseEvent, FormEvent, useState, useEffect } from "react"
 import ReportProps, { rehearsalBreak } from "../interfaces/ReportProps";
-import ContactProps from "../interfaces/ContactProps";
+import UserProps from "../interfaces/UserProps";
 
-
-const contacts: ContactProps[] = [
+const contacts: UserProps[] = [
     {
         id: '1',
-        fullName: 'John Krasinsky',
+        firstName: '',
+        lastName: '', 
         email: 'john@email.com',
         phone: '123-456-7890',
         roles: ['Jim'],
@@ -15,7 +15,8 @@ const contacts: ContactProps[] = [
     },
     {
         id: '2',
-        fullName: 'Jenna Fischer',
+        firstName: '',
+        lastName: '', 
         email: 'jenna@email.com',
         phone: '123-456-7890',
         roles: ['Pam'],
@@ -24,7 +25,8 @@ const contacts: ContactProps[] = [
     },
     {
         id: '3',
-        fullName: 'Rainn Wilson',
+        firstName: '',
+        lastName: '', 
         email: 'rainn@email.com',
         phone: '123-456-7890',
         roles: ['Dwight'],
@@ -33,7 +35,8 @@ const contacts: ContactProps[] = [
     },
     {
         id: '4',
-        fullName: 'Steve Carell',
+        firstName: '',
+        lastName: '', 
         email: 'steve@email.com',
         phone: '123-456-7890',
         roles: ['Michael'],
@@ -177,12 +180,13 @@ export default function CreateReport() {
                             <h4>Called</h4>
                             <ul className="d-flex flex-column flex-wrap" style={{ height: '500px' }}>
                                 {contacts.map(c => {
-                                    if (!formState.present.includes(c.fullName) && !formState.absent?.includes(c.fullName)) {
+                                    const fullName = `${c.firstName} ${c.lastName}`
+                                    if (!formState.present.includes(fullName) && !formState.absent?.includes(fullName)) {
                                         return (
                                         <div className="container" key={c.id}>
-                                            <p>{c.fullName}</p>
-                                            <button className="btn btn-primary m-1" type="button" data-fullname={c.fullName} onClick={handleAttendance}>Present</button>
-                                            <button className="btn btn-primary m-1" type="button" data-fullname={c.fullName} onClick={handleAttendance}>Absent</button>
+                                            <p>{fullName}</p>
+                                            <button className="btn btn-primary m-1" type="button" data-fullname={fullName} onClick={handleAttendance}>Present</button>
+                                            <button className="btn btn-primary m-1" type="button" data-fullname={fullName} onClick={handleAttendance}>Absent</button>
                                         </div>
                                     )}
                                 })}

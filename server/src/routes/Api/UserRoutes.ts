@@ -32,6 +32,7 @@ router.get('/', async (_req: Request, res: Response) => {
                         }]
                     }]
             });
+
         res.json(users);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching users' });
@@ -43,19 +44,19 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     try {
         const user = await User.findByPk(id, {
             include: [
-                    {
+                {
+                    model: Post,
+                    attributes: ['content', 'createdAt']
+                },
+                {
+                    model: Comment,
+                    attributes: ['id', 'content', 'createdAt'],
+                    include: [{
                         model: Post,
-                        attributes: ['content', 'createdAt']
-                    },
-                    {
-                        model: Comment,
-                        attributes: ['id', 'content', 'createdAt'],
-                        include: [{
-                            model: Post,
-                            attributes: ['id', 'content'],
-                            include: [{ model: User, attributes: ['id', 'firstName', 'lastName'] }]
-                        }]
+                        attributes: ['id', 'content'],
+                        include: [{ model: User, attributes: ['id', 'firstName', 'lastName'] }]
                     }]
+                }]
         });
         if (!user) {
             res.status(404).json({ message: 'User not found' });

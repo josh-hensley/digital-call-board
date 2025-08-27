@@ -6,8 +6,9 @@ export default function EditUser() {
     const [roles, setRoles] = useState<string[]>([])
     const [search, setSearch] = useState('');
     const [formState, setFormState] = useState<UserProps>({
-        _id: '',
-        name: '',
+        id: '',
+        firstName: '',
+        lastName: '',
         email: '',
         phone: '',
         roles,
@@ -64,7 +65,7 @@ export default function EditUser() {
                 <div className="row">
                     <div className="col-sm col-12">
                         <label htmlFor="name">Name:</label>
-                        <input className="form-control" type="text" name="name" onChange={handleChange} value={formState.name} />
+                        <input className="form-control" type="text" name="name" onChange={handleChange} value={`${formState.firstName} ${formState.lastName}`} />
                     </div>
                     <div className="col-sm col-12">
                         <label htmlFor="email">Email:</label>

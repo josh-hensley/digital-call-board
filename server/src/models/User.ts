@@ -2,6 +2,8 @@ import { DataTypes, Model } from "sequelize";
 import bcrypt from "bcrypt";
 import db from "../config/connection.js"
 
+type group = 'cast' | 'crew' | 'production'
+
 class User extends Model {
     id!: string;
     createdAt!: Date;
@@ -10,6 +12,10 @@ class User extends Model {
     lastName!: string;
     email!: string;
     password!: string;
+    phone?: string;
+    roles?: string[];
+    age?: number;
+    groups?: group[];
 
     getFullName() {
         return `${this.firstName} ${this.lastName}`;

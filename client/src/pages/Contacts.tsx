@@ -1,47 +1,57 @@
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import Contact from "../components/Contact.js";
-import ContactProps from "../interfaces/ContactProps.js";
+import UserProps from "../interfaces/UserProps.js";
 
-const contacts: ContactProps[] = [
-        {
-            id: '1',
-            fullName: 'John Krasinsky',
-            email: 'john@email.com',
-            phone: '123-456-7890',
-            roles: ['Jim'],
-            groups: ['cast', 'production'],
-            age: 30
-        },
-        {
-            id: '2',
-            fullName: 'Jenna Fischer',
-            email: 'jenna@email.com',
-            phone: '123-456-7890',
-            roles: ['Pam'],
-            groups: ['cast'],
-            age: 30
-        },
-        {
-            id: '3',
-            fullName: 'Rainn Wilson',
-            email: 'rainn@email.com',
-            phone: '123-456-7890',
-            roles: ['Dwight'],
-            groups: ['crew'],
-            age: 30
-        },
-        {
-            id: '4',
-            fullName: 'Steve Carell',
-            email: 'steve@email.com',
-            phone: '123-456-7890',
-            roles: ['Michael'],
-            groups: ['production', 'crew'],
-            age: 30
-        },
-    ]
+// const testContacts: ContactProps[] = [
+//         {
+//             id: '1',
+//             fullName: 'John Krasinsky',
+//             email: 'john@email.com',
+//             phone: '123-456-7890',
+//             roles: ['Jim'],
+//             groups: ['cast', 'production'],
+//             age: 30
+//         },
+//         {
+//             id: '2',
+//             fullName: 'Jenna Fischer',
+//             email: 'jenna@email.com',
+//             phone: '123-456-7890',
+//             roles: ['Pam'],
+//             groups: ['cast'],
+//             age: 30
+//         },
+//         {
+//             id: '3',
+//             fullName: 'Rainn Wilson',
+//             email: 'rainn@email.com',
+//             phone: '123-456-7890',
+//             roles: ['Dwight'],
+//             groups: ['crew'],
+//             age: 30
+//         },
+//         {
+//             id: '4',
+//             fullName: 'Steve Carell',
+//             email: 'steve@email.com',
+//             phone: '123-456-7890',
+//             roles: ['Michael'],
+//             groups: ['production', 'crew'],
+//             age: 30
+//         },
+//     ]
 
 const Contacts: FC = () => {
+    const [contacts, setContacts] = useState<UserProps[]>([])
+
+    useEffect(()=>{
+        const fetchContacts = async ()=>{
+            const response = await fetch('/api/users');
+            const data = await response.json();
+            setContacts(data)
+        }
+        fetchContacts();
+    }, [])
     
     return (
         <main>
@@ -56,10 +66,12 @@ const Contacts: FC = () => {
                             <th className="d-none d-sm-table-cell">Email</th>
                             <th>Phone</th>
                         </tr>
-                        {contacts.map((contact: ContactProps) =>
+                        {contacts.map((contact: UserProps) =>
                             <Contact
                                 key={contact.id}
-                                fullName={contact.fullName}
+                                id={contact.id}
+                                firstName={contact.firstName}
+                                lastName={contact.lastName}
                                 email={contact.email}
                                 phone={contact.phone}
                                 roles={contact.roles}
