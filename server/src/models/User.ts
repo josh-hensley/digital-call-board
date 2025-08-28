@@ -46,6 +46,22 @@ User.init(
             validate: {
                 len: [6, 100] // Password must be between 6 and 100 characters
             }
+        },
+        phone: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        roles: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: true
+        },
+        age: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        groups: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false
         }
     },
     {

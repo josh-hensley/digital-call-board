@@ -3,7 +3,7 @@ export type rehearsalBreak = { time: string; length: string };
 export default interface ReportProps {
     date: string;
     rehearsalStart: string;
-    breaks?: rehearsalBreak[];
+    RehearsalBreaks?: rehearsalBreak[];
     rehearsalEnd: string
     present: string[];
     absent?: string[];

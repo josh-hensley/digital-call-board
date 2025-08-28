@@ -2,54 +2,11 @@ import { ChangeEvent, MouseEvent, FormEvent, useState, useEffect } from "react"
 import ReportProps, { rehearsalBreak } from "../interfaces/ReportProps";
 import UserProps from "../interfaces/UserProps";
 
-const contacts: UserProps[] = [
-    {
-        id: '1',
-        firstName: '',
-        lastName: '', 
-        email: 'john@email.com',
-        phone: '123-456-7890',
-        roles: ['Jim'],
-        groups: ['cast', 'production'],
-        age: 30
-    },
-    {
-        id: '2',
-        firstName: '',
-        lastName: '', 
-        email: 'jenna@email.com',
-        phone: '123-456-7890',
-        roles: ['Pam'],
-        groups: ['cast'],
-        age: 30
-    },
-    {
-        id: '3',
-        firstName: '',
-        lastName: '', 
-        email: 'rainn@email.com',
-        phone: '123-456-7890',
-        roles: ['Dwight'],
-        groups: ['crew'],
-        age: 30
-    },
-    {
-        id: '4',
-        firstName: '',
-        lastName: '', 
-        email: 'steve@email.com',
-        phone: '123-456-7890',
-        roles: ['Michael'],
-        groups: ['production', 'crew'],
-        age: 30
-    },
-]
-
 export default function CreateReport() {
     const [formState, setFormState] = useState<ReportProps>({
         date: new Date().toISOString().split('T')[0],
         rehearsalStart: "",
-        breaks: [],
+        RehearsalBreaks: [],
         rehearsalEnd: "",
         present: [],
         absent: [],
@@ -61,11 +18,24 @@ export default function CreateReport() {
         scenery: ""
     })
 
+    const [contacts, setContacts] = useState<UserProps[]>([])
+
     useEffect(() => {
         if (localStorage.getItem('report')) {
             const report = JSON.parse(localStorage.getItem('report') || '{}')
             setFormState(report)
         }
+        const getActors = async ()=>{
+            try {
+                const response = await fetch('/api/users')
+                const data = await response.json()
+                const actors = data.filter((user: UserProps)=>user.groups?.includes('cast'))
+                setContacts(actors)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getActors();
     }, [])
 
     useEffect(() => {
@@ -74,9 +44,9 @@ export default function CreateReport() {
 
     const addBreak = (e: MouseEvent) => {
         e.preventDefault();
-        const { breaks } = formState;
-        breaks?.push({ time: '', length: '5' })
-        setFormState({ ...formState, breaks })
+        const { RehearsalBreaks } = formState;
+        RehearsalBreaks?.push({ time: '', length: '5' })
+        setFormState({ ...formState, RehearsalBreaks })
     }
 
     const calcRehearsalTime = (start: string, breaks: rehearsalBreak[], end: string) => {
@@ -117,28 +87,35 @@ export default function CreateReport() {
     const handleBreaks = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         const index = parseInt(e.target.getAttribute("data-index") as string);
-        const breaks = formState.breaks ? formState.breaks : []
+        const breaks = formState.RehearsalBreaks ? formState.RehearsalBreaks : []
         const currentBreak = { ...breaks[index], [name]: value }
         breaks[index] = currentBreak;
-        setFormState({ ...formState, breaks })
+        setFormState({ ...formState, RehearsalBreaks: breaks })
     }
 
     const deleteBreak = (e: MouseEvent<HTMLElement>) => {
         const target = e.target as HTMLInputElement
         const index = parseInt(target.getAttribute("data-index") as string);
-        const currentBreaks = formState.breaks ? formState.breaks : []
+        const currentBreaks = formState.RehearsalBreaks ? formState.RehearsalBreaks : []
         const breaks = currentBreaks.filter((_b, i) => { return i != index })
-        setFormState({ ...formState, breaks })
+        setFormState({ ...formState, RehearsalBreaks: breaks })
     }
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
-            // Here you would typically send the formState to your backend or API
-            console.log("Report submitted:", formState);
-            localStorage.removeItem('report');
-            window.location.reload();
-
+            const response = await fetch('/api/reports', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formState)
+            })
+            const data = await response.json()
+            console.log(data)
+            if (response.ok) {
+                console.log('report submitted')
+            }
         } catch (error) {
             console.error(error)
         }
@@ -159,7 +136,7 @@ export default function CreateReport() {
                             <label>Breaks: </label>
                             <button className="btn btn-primary m-2" onClick={addBreak}>Add Break</button>
                             <div className="container" id="breaksDiv">
-                                {formState.breaks && (formState.breaks.map((b, i) => {
+                                {formState.RehearsalBreaks && (formState.RehearsalBreaks.map((b, i) => {
                                     return (
                                         <div key={i} className="form-group">
                                             <p>Break {i + 1}</p>
@@ -173,7 +150,7 @@ export default function CreateReport() {
                             <label htmlFor="rehearsalEnd">Rehearsal End: </label>
                             <input className="form-control" type="time" name="rehearsalEnd" onChange={handleChange} value={formState.rehearsalEnd} />
                             <p>Total Rehearsal Time:</p>
-                            <p>{calcRehearsalTime(formState.rehearsalStart, formState.breaks || [{ time: '00:00', length: '0' }], formState.rehearsalEnd)}</p>
+                            <p>{calcRehearsalTime(formState.rehearsalStart, formState.RehearsalBreaks || [{ time: '00:00', length: '0' }], formState.rehearsalEnd)}</p>
                         </fieldset>
                         <fieldset className="col bg-semi-transparent m-1 rounded">
                             <legend>Attendance</legend>

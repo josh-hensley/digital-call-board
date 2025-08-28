@@ -4,7 +4,7 @@ const Report = (props: ReportProps) => {
     const {
         date,
         rehearsalStart,
-        breaks,
+        RehearsalBreaks,
         rehearsalEnd,
         present,
         absent,
@@ -35,13 +35,13 @@ return (
             <div className="col-2 border">
                 <p>Date: {date}</p>
                 <p>Start Time: {rehearsalStart}</p>
-                <p>Breaks: {breaks?.map(b => { return `${b.length} mins at ${b.time}` }).join(', ')}</p>
+                <p>Breaks: {RehearsalBreaks?.map(b => { return `${b.length} mins at ${b.time}` }).join(', ')}</p>
                 <p>End Time: {rehearsalEnd}</p>
-                <p>Rehearsal Time: {calcRehearsalTime(rehearsalStart, breaks ? breaks : [{time:"00:00", length: "0"}] , rehearsalEnd)}</p>
+                <p>Rehearsal Time: {calcRehearsalTime(rehearsalStart, RehearsalBreaks ? RehearsalBreaks : [{time:"00:00", length: "0"}] , rehearsalEnd)}</p>
             </div>
             <div className="col border">
-                <p>Present: {present.join(', ')}</p>
-                <p>Absent: {absent?.join(', ') || 'None'}</p>
+                <p>Present: {present}</p>
+                <p>Absent: {absent}</p>
             </div>
         </div>
         <div className="row">

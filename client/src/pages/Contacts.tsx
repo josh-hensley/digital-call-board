@@ -2,45 +2,6 @@ import { FC, useState, useEffect } from "react";
 import Contact from "../components/Contact.js";
 import UserProps from "../interfaces/UserProps.js";
 
-// const testContacts: ContactProps[] = [
-//         {
-//             id: '1',
-//             fullName: 'John Krasinsky',
-//             email: 'john@email.com',
-//             phone: '123-456-7890',
-//             roles: ['Jim'],
-//             groups: ['cast', 'production'],
-//             age: 30
-//         },
-//         {
-//             id: '2',
-//             fullName: 'Jenna Fischer',
-//             email: 'jenna@email.com',
-//             phone: '123-456-7890',
-//             roles: ['Pam'],
-//             groups: ['cast'],
-//             age: 30
-//         },
-//         {
-//             id: '3',
-//             fullName: 'Rainn Wilson',
-//             email: 'rainn@email.com',
-//             phone: '123-456-7890',
-//             roles: ['Dwight'],
-//             groups: ['crew'],
-//             age: 30
-//         },
-//         {
-//             id: '4',
-//             fullName: 'Steve Carell',
-//             email: 'steve@email.com',
-//             phone: '123-456-7890',
-//             roles: ['Michael'],
-//             groups: ['production', 'crew'],
-//             age: 30
-//         },
-//     ]
-
 const Contacts: FC = () => {
     const [contacts, setContacts] = useState<UserProps[]>([])
 

@@ -1,32 +1,46 @@
 [
     {
-        "firstName" : "John",
-        "lastName" : "Doe",
-        "email" : "john@email.com",
-        "password" : "password123" 
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Krasinsky", 
+        "email": "john@email.com",
+        "password": "password123",
+        "phone": "123-456-7890",
+        "roles": ["Jim"],
+        "groups": ["cast", "production"],
+        "age": 30
     },
     {
-        "firstName" : "Jane",
-        "lastName" : "Smith",
-        "email" : "jane@email.com",
-        "password" : "password456"
+        "id": 2,
+        "firstName": "Jenna",
+        "lastName": "Fischer", 
+        "email": "jenna@email.com",
+        "password": "password456",
+        "phone": "123-456-7890",
+        "roles": ["Pam"],
+        "groups": ["cast"],
+        "age": 30
     },
     {
-        "firstName" : "Alice",
-        "lastName" : "Johnson",
-        "email" : "alice@email.com",
-        "password" : "password789"
+        "id": 3,
+        "firstName": "Rainn",
+        "lastName": "Wilson", 
+        "email": "rainn@email.com",
+        "password": "password789",
+        "phone": "123-456-7890",
+        "roles": ["Dwight"],
+        "groups": ["crew"],
+        "age": 30
     },
     {
-        "firstName" : "Bob",
-        "lastName" : "Brown",
-        "email" : "bob@email.com",
-        "password" : "password101"
-    },
-    {
-        "firstName" : "Charlie",
-        "lastName" : "Davis",
-        "email" : "charlie@email.com",
-        "password" : "password202"
+        "id": 4,
+        "firstName": "Steve",
+        "lastName": "Carell", 
+        "email": "steve@email.com",
+        "password": "password012",
+        "phone": "123-456-7890",
+        "roles": ["Michael"],
+        "groups": ["production", "crew"],
+        "age": 30
     }
 ]
