@@ -36,7 +36,7 @@ const Header: FC = () => {
                             <a href="#" className="nav-link link-light dropdown-toggle" onClick={toggleDropdown}>SM Tools</a>
                             <ul className="dropdown-menu">
                                 <li className="dropdown-item"><a className="nav-link" href="/create-report">Create Report</a></li>
-                                <li className="dropdown-item"><a className="nav-link" href="/user-edit">Edit/Add User</a></li>
+                                <li className="dropdown-item"><a className="nav-link" href="/user-edit">Add User</a></li>
                                 
                             </ul>
                         </li>

@@ -9,7 +9,7 @@ router.get('/', async (_req, res) => {
             include: [
                 {
                     model: RehearsalBreak,
-                    attributes: [ 'time', 'length' ]
+                    attributes: ['time', 'length']
                 }
             ]
         });
@@ -26,7 +26,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
             include: [
                 {
                     model: RehearsalBreak,
-                    attributes: [ 'time', 'length' ]
+                    attributes: ['time', 'length']
                 }
             ]
         });
@@ -41,22 +41,18 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 
 router.post('/', async (req: Request, res: Response): Promise<void> => {
     try {
-        const breaks = req.body.ReheasrsalBreaks;
-        if (Array.isArray(breaks)) {
-            for (const rehearsalBreak of breaks) {
-                await RehearsalBreak.create({
-                    time: rehearsalBreak.time,
-                    length: rehearsalBreak.length,
-                    ReportId: req.body.id
-                    // add other required fields here if needed
-                });
-            }
-        }
-        const newReport = await Report.create(req.body);
+        const newReport = await Report.create(req.body, {
+            include: [
+                {
+                    model: RehearsalBreak
+                }
+            ]
+        });
         console.log('New report created:', newReport.id);
         res.status(201).json(newReport);
     } catch (error) {
-        res.status(500).json({ message: 'Error creating report', error });
+        console.error('Error creating report:', error);
+        res.status(500).json({ message: 'Error creating report' });
     }
 });
 

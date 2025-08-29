@@ -18,13 +18,27 @@ export default function Reports() {
         getReports()
     }, [])
 
+    const printReports = () => {
+        const printArea = document.getElementById('printArea')?.innerHTML;
+        const page = document.body.innerHTML;
+        if (printArea) {
+            document.body.innerHTML = printArea;
+        }
+        window.print()
+        document.body.innerHTML = page
+    }
+
     return (
         <main>
-            <div className="container text-light">
+            <div className="container text-light" id='printArea'>
                 {reports.map((report: ReportProps) => {
                     return <Report {...report} />
                 })}
             </div>
+            <div className="container text-light">
+                <button className='btn btn-primary m-1' type="button" onClick={printReports}>Print Reports</button>
+            </div>
+            
         </main>
     )
 }

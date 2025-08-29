@@ -44,9 +44,10 @@ export default function CreateReport() {
 
     const addBreak = (e: MouseEvent) => {
         e.preventDefault();
-        const { RehearsalBreaks } = formState;
-        RehearsalBreaks?.push({ time: '', length: '5' })
-        setFormState({ ...formState, RehearsalBreaks })
+        const breaks = formState.RehearsalBreaks || [];
+        breaks.push({ time: '', length: '5' })
+        console.log(breaks)
+        setFormState({ ...formState, RehearsalBreaks: breaks })
     }
 
     const calcRehearsalTime = (start: string, breaks: rehearsalBreak[], end: string) => {
@@ -90,6 +91,7 @@ export default function CreateReport() {
         const breaks = formState.RehearsalBreaks ? formState.RehearsalBreaks : []
         const currentBreak = { ...breaks[index], [name]: value }
         breaks[index] = currentBreak;
+        console.log(breaks)
         setFormState({ ...formState, RehearsalBreaks: breaks })
     }
 

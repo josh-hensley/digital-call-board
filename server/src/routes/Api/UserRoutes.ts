@@ -5,6 +5,7 @@ const router = Router();
 
 router.post('/', async (req: Request, res: Response) => {
     try {
+        console.log(req.body)
         const newUser = await User.create(req.body);
         console.log('New user created:', newUser.id);
         res.status(201).json(newUser);

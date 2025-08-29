@@ -2,8 +2,10 @@ import { DataTypes, Model } from "sequelize";
 import db from "../config/connection.js"
 
 class RehearsalBreak extends Model {
+    id!: string;
     time!: string;
     length!: number;
+    ReportId!: string
 }
 
 RehearsalBreak.init(

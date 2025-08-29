@@ -13,7 +13,7 @@ interface NewUserProps {
     groups: group[]
 }
 
-const EditUser = () => {
+const AddUser = () => {
     const [formState, setFormState] = useState<NewUserProps>({
         firstName: '',
         lastName: '',
@@ -164,4 +164,4 @@ const EditUser = () => {
     )
 }
 
-export default EditUser
+export default AddUser

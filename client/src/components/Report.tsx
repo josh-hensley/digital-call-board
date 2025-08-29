@@ -40,8 +40,8 @@ return (
                 <p>Rehearsal Time: {calcRehearsalTime(rehearsalStart, RehearsalBreaks ? RehearsalBreaks : [{time:"00:00", length: "0"}] , rehearsalEnd)}</p>
             </div>
             <div className="col border">
-                <p>Present: {present}</p>
-                <p>Absent: {absent}</p>
+                <p>Present: {present.join(', ')}</p>
+                <p>Absent: {absent?.join(', ')}</p>
             </div>
         </div>
         <div className="row">
