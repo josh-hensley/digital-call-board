@@ -1,42 +1,6 @@
-import { useState, useEffect, FC } from "react"
+import { useState, useEffect, FC, FormEvent } from "react"
 import ReactCalendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
-
-const testData = [
-    {
-        date: "2025-10-01",
-        events: [
-            { time: "7pm", description: "Description for Event 1" },
-            { time: "8pm", description: "Description for Event 2" },
-            { time: "9pm", description: "Description for Event 3" }
-        ]
-    }
-    ,
-    {
-        date: "2025-10-02",
-        events: [
-            { time: "6pm", description: "Description for Event A" },
-            { time: "7pm", description: "Description for Event B" }
-        ]
-    },
-    {
-        date: "2025-09-15",
-        events: [
-            { time: "1pm", description: "Description for Event M" },
-            { time: "3pm", description: "Description for Event N" },
-            { time: "4pm", description: "Description for Event O" }
-        ]
-    },
-    {
-        date: "2025-08-23",
-        events: [
-            { time: "10am", description: "Description for Event I" },
-            { time: "11am", description: "Description for Event J" },
-            { time: "12pm", description: "Description for Event K" },
-            { time: "1pm", description: "Description for Event L" }
-        ]
-    }
-]
 
 const Calendar: FC = () => {
     const [date, setDate] = useState(new Date());
@@ -45,56 +9,76 @@ const Calendar: FC = () => {
         { time: "8pm", description: "Description for Event 2" },
         { time: "9pm", description: "Description for Event 3" }
     ]);
+    const [newEvent, setNewEvent] = useState({
+        date: date.toISOString().split('T')[0],
+        time: "",
+        description: ""
+    })
 
     useEffect(() => {
         const dateString = date.toISOString().split('T')[0];
-        const dayData = testData.find(d => d.date === dateString);
-        if (dayData) {
-            setEvents(dayData.events);
-        } else {
-            setEvents([]);
+        const getEvents = async (date: string) => {
+            try {
+                const response = await fetch(`/api/events?date=${date}`);
+                const data = await response.json()
+                setEvents(data)
+            } catch (error) {
+                console.log(error)
+            }
         }
+        getEvents(dateString)
     }, [date])
 
-    const handleChange = (value: unknown) => {
+    const handleChange = (e: FormEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        const { name, value } = e.target as HTMLInputElement;
+        setNewEvent({ ...newEvent, [name]: value })
+    }
+
+    const handleDateChange = (value: unknown) => {
         if (value instanceof Date) {
-            setDate(value);
-            setEvents([...events])
-            console.log(value);
+            setDate(value)
         }
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const form = e.currentTarget;
-        const formData = new FormData(form);
-        const newEvent = {
-            time: formData.get("time") as string,
-            description: formData.get("description") as string
+        try {
+            const body = JSON.stringify(newEvent)
+            const response = await fetch('/api/events', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body
+            })
+            const data = await response.json();
+            console.log('New Event Created: ', data.id)
+            setEvents([...events, data])
+            setNewEvent({ date: date.toISOString().split('T')[0], time: "", description: "" })
+        } catch (error) {
+            console.log(error)
         }
-        setEvents([...events, newEvent]);
-        form.reset();
-        console.log(newEvent);
     }
 
     return (
         <main>
             <div className="container d-flex flex-column align-items-center py-4">
-                <ReactCalendar calendarType="gregory" showNeighboringMonth={false} onChange={handleChange} />
+                <ReactCalendar calendarType="gregory" showNeighboringMonth={false} onChange={handleDateChange} />
             </div>
             <form onSubmit={handleSubmit} className="form-control container">
                 <label htmlFor="date" className="form-label">Date:</label>
                 <input className="form-control" onClick={e => e.preventDefault()} type="date" value={date.toISOString().split('T')[0]} name="date" />
                 <label htmlFor="time" className="form-label">Time:</label>
-                <input className="form-control" type="time" value={`19:00`} name="time" />
+                <input className="form-control" type="time" value={newEvent.time} onChange={handleChange} name="time" />
                 <label htmlFor="description" className="form-label">Description:</label>
-                <input className="form-control" type="text" name="description" />
+                <input className="form-control" type="text" name="description" value={newEvent.description} onChange={handleChange} />
                 <button className="btn btn-primary mt-2" type="submit">Add</button>
             </form>
             <div className="container bg-transparent">
                 <h2 className="text-light my-2">{date.toDateString()}</h2>
                 <div className="container py-2">
-                    {events.map((event, index) => {
+                    {events?.map((event, index) => {
                         return (
                             <div key={index} className="card my-2">
                                 <div className="card-body">
