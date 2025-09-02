@@ -1,0 +1,42 @@
+[
+    {
+        "firstName": "John",
+        "lastName": "Krasinsky", 
+        "email": "john@email.com",
+        "password": "password123",
+        "phone": "123-456-7890",
+        "roles": ["Jim"],
+        "groups": ["cast", "production"],
+        "age": 30
+    },
+    {
+        "firstName": "Jenna",
+        "lastName": "Fischer", 
+        "email": "jenna@email.com",
+        "password": "password456",
+        "phone": "123-456-7890",
+        "roles": ["Pam"],
+        "groups": ["cast"],
+        "age": 30
+    },
+    {
+        "firstName": "Rainn",
+        "lastName": "Wilson", 
+        "email": "rainn@email.com",
+        "password": "password789",
+        "phone": "123-456-7890",
+        "roles": ["Dwight"],
+        "groups": ["crew"],
+        "age": 30
+    },
+    {
+        "firstName": "Steve",
+        "lastName": "Carell", 
+        "email": "steve@email.com",
+        "password": "password012",
+        "phone": "123-456-7890",
+        "roles": ["Michael"],
+        "groups": ["production", "crew"],
+        "age": 30
+    }
+]

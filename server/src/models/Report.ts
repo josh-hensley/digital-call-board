@@ -1,83 +1,77 @@
-import { Schema, model, Document } from 'mongoose';
+import { DataTypes, Model } from "sequelize";
+import db from "../config/connection.js"
 
-interface IReport extends Document {
-    date: string;
-    rehearsalStart: string;
-    break1: string;
-    breakLength1: string;
-    break2: string;
-    breakLength2: string;
-    rehearsalEnd: string
-    rehearsalTime: string;
-    attendance: string[];
-    rehearsalNotes: string;
-    costumes: string;
-    lights: string;
-    properties: string;
-    sound: string;
-    scenery: string;
+type rehearsalBreak = { time: string, length: number }
+
+class Report extends Model {
+    id!: string;
+    createdAt!: Date;
+    updatedAt!: Date;
+    date!: string;
+    rehearsalStart!: string;
+    breaks?: rehearsalBreak[];
+    rehearsalEnd!: string
+    present!: string[];
+    absent?: string[];
+    rehearsalNotes?: string;
+    costumes?: string;
+    lights?: string;
+    properties?: string;
+    sound?: string;
+    scenery?: string;
+
 }
 
-const reportSchema = new Schema<IReport>({
-    date: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    rehearsalStart: {
-        type: String,
-        required: true
-    },
-    break1: {
-        type: String
-    },
-    breakLength1: {
-        type: String
-    },
-    break2: {
-        type: String
-    },
-    breakLength2: {
-        type: String
-    },
-    rehearsalEnd: {
-        type: String,
-        required: true
-    },
-    rehearsalTime: {
-        type: String,
-        required: true
-    },
-    attendance: {
-        type: [String],
-        required: true
-    },
-    rehearsalNotes: {
-        type: String
-    },
-    costumes: {
-        type: String
-    },
-    lights: {
-        type: String
-    },
-    properties: {
-        type: String
-    },
-    sound: {
-        type: String
-    },
-    scenery: {
-        type: String
-    }
-},
+Report.init(
     {
-        timestamps: true,
-        toJSON: { getters: true },
-        toObject: { getters: true }
-    }
-);
+        date: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        rehearsalStart: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        rehearsalEnd: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        present: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false
+        },
+        absent: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: true
+        },
+        rehearsalNotes: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        costumes: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        lights: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        properties: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        sound: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        scenery: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        }
+    },
+    {
+        sequelize: db,
+        modelName: 'Report'
+    });
 
-const User = model<IReport>('Report', reportSchema);
-
-export default User;
+export default Report;

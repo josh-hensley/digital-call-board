@@ -1,38 +1,37 @@
 import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_POST } from '../utils/mutations';
-import Auth from '../utils/auth';
 
 export default function PostForm() {
-    const postAuthor = Auth.getProfile().data.name;
-    const [addPost, { data, error }] = useMutation(ADD_POST);
-    const [formState, setFormState] = useState({ postAuthor, postText: '' });
+    const [formState, setFormState] = useState({ UserId: 1, content: '' });
 
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormState({ ...formState, [name]: value });
-        console.log(formState);
     };
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const { data } = await addPost({
-                variables: { input: formState }
-            });
-            console.log(data);
-            window.location.reload();
+            await fetch('/api/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formState)
+            })
+            window.location.reload()
         } catch (error) {
-            console.error(error);
+            if (error instanceof Error) {
+                console.error(error.message);
+            } else {
+                console.error(error);
+            }
         }
     };
     return (
         <div className="container">
             <form className="py-3 d-flex flex-column align-items-center" onSubmit={handleFormSubmit}>
-                <textarea className='form-control' name="postText" id="post-textarea" value={formState.postText} onChange={handleChange}></textarea>
+                <input className='form-control' name="content" value={formState.content} onChange={handleChange} />
                 <button className="btn btn-light m-1" type="submit">Post</button>
-                {data && <p>Posted!</p>}
-                {error && <div className="error">{error.message}</div>}
             </form>
         </div>
     )

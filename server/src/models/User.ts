@@ -1,64 +1,96 @@
-import { Schema, model, Document } from 'mongoose';
-import bcrypt from 'bcrypt';
+import { DataTypes, Model } from "sequelize";
+import bcrypt from "bcrypt";
+import db from "../config/connection.js"
 
-interface IUser extends Document {
-    name: string;
-    email: string;
-    password: string;
-    phone: string;
-    age: number;
-    roles: string[];
-    posts: string[];
-    isCorrectPassword: (password: string) => Promise<boolean>;
+type group = 'cast' | 'crew' | 'production'
+
+class User extends Model {
+    id!: string;
+    createdAt!: Date;
+    updatedAt!: Date;
+    firstName!: string;
+    lastName!: string;
+    email!: string;
+    password!: string;
+    phone?: string;
+    roles?: string[];
+    age?: number;
+    groups?: group[];
+
+    getFullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
 }
 
-const userSchema = new Schema<IUser>({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        match: [/.+@.+\..+/, 'Must match an email address!']
-    },
-    password: {
-        type: String,
-        required: true,
-        minLength: 5
-    },
-    phone: {
-        type: String,
-        length: 10
-    },
-    age: {
-        type: Number,
-        min: 1
-    },
-    roles: [
-        {
-            type: String,
-        }
-    ]
-},
+User.init(
     {
-        timestamps: true,
-        toJSON: { getters: true },
-        toObject: { getters: true }
-    }
-);
-
-userSchema.pre<IUser>('save', async function (next) {
-    if (this.isNew) {
-        const saltRounds = 10;
-        this.password = await bcrypt.hash(this.password, saltRounds);
-    }
-    next();
-});
-
-userSchema.methods.isCorrectPassword = async function (password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password);
-};
-
-const User = model<IUser>('User', userSchema);
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+            validate: {
+                isEmail: true
+            }
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [6, 100] // Password must be between 6 and 100 characters
+            }
+        },
+        phone: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        roles: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: true
+        },
+        age: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        groups: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false
+        }
+    },
+    {
+        sequelize: db,
+        modelName: 'User',
+        hooks: {
+            beforeBulkCreate: async (users) => {
+                for (const user of users) {
+                    if (user.password) {
+                        user.password = await bcrypt.hash(user.password, 10);
+                    }
+                }
+            },
+            beforeCreate: async (user) => {
+                if (user.password) {
+                    user.password = await bcrypt.hash(user.password, 10);
+                }
+            },
+            beforeUpdate: async (user) => {
+                if (user.changed('password')) {
+                    user.password = await bcrypt.hash(user.password, 10);
+                }
+            }
+        }
+    });
 
 export default User;

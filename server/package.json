@@ -8,13 +8,15 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "nodemon",
-    "seed": "node dist/seeds/seed.js",
-    "resetdb": "node dist/seeds/cleanDb.js"
+    "seed": "node dist/seed/seed.js",
+    "resetdb": "node dist/seed/cleanDb.js"
   },
   "nodemonConfig": {
-    "ext": "ts, tsx, css, html",
-    "watch": [ "src/**/*", "../client/src/**/*" ],
-    "exec": "cd ../ && npm run build && cd server && npm start"
+    "ext": "ts, json",
+    "watch": [
+      "src/**/*"
+    ],
+    "exec": "npm run build && npm start"
   },
   "keywords": [],
   "author": "",
@@ -32,8 +34,9 @@
     "bcrypt": "^5.1.1",
     "dotenv": "^16.5.0",
     "express": "^4.21.2",
-    "graphql": "^16.10.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.13.2"
+    "pg": "^8.16.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.7"
   }
 }

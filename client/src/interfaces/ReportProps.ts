@@ -1,13 +1,12 @@
+export type rehearsalBreak = { time: string; length: string };
+
 export default interface ReportProps {
     date: string;
     rehearsalStart: string;
-    break1?: string;
-    breakLength1?: string;
-    break2?: string;
-    breakLength2?: string;
+    RehearsalBreaks?: rehearsalBreak[];
     rehearsalEnd: string
-    rehearsalTime: string;
-    attendance: string[];
+    present: string[];
+    absent?: string[];
     rehearsalNotes?: string;
     costumes?: string;
     lights?: string;

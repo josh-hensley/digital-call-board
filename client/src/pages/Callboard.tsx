@@ -1,39 +1,40 @@
 import PostForm from "../components/PostForm";
-import Post from "../components/Post";
+import Post from "../components/Post"
 import PostProps from "../interfaces/PostProps";
-import { useQuery } from "@apollo/client";
-import { QUERY_POSTS } from "../utils/queries.js";
-import Auth from "../utils/auth.js";
-import LoginMessage from "../components/LoginMessage.js";
-import shrekTShirt from '../assets/Shrek_cast_and_crew_t_shirt.png'
+import { useState, useEffect } from "react";
+// import Auth from "../utils/auth.js";
+// import LoginMessage from "../components/LoginMessage.js";
 
-export default function Callboard() {
-  const { loading, data } = useQuery(QUERY_POSTS);
-  const posts = data?.posts || [];
+const Callboard = () => {
+  const [posts, setPosts] = useState<PostProps[]>([])
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch('/api/posts');
+      const data = await response.json()
+      const sortedData = data.sort((a: PostProps, b: PostProps) => {
+        const aTime = new Date(a.createdAt).getTime();
+        const bTime = new Date(b.createdAt).getTime();
+        return bTime - aTime;
+      })
+      setPosts(sortedData);
+    };
+    fetchPosts();
+  }, [])
+  
   return (
     <main>
-      {Auth.loggedIn() ? (
         <div className="container d-flex flex-column align-items-center">
-          <img className="img img-fluid m-3" style={{maxWidth: "500px"}} src={shrekTShirt} alt="shrek t-shirt info" />
           <PostForm />
-          <div className="container">
-            {loading ? (<div>Loading...</div>) : (posts.map((post: PostProps) => (
-              <Post
-                key={post._id} 
-                _id={post._id}
-                postAuthor={post.postAuthor}
-                postText={post.postText}
-                createdAt={post.createdAt}
-                comments={post.comments}
-              />
-            )))}
-          </div>
+          {posts.map(post=>{
+            const { id, content, createdAt, User, Comments } = post
+            return (
+              <Post key={id} id={id} createdAt={createdAt} content={content} User={User} Comments={Comments} />
+            )
+          })}
         </div>
-      ) : (
-        <LoginMessage />
-      )}
-
     </main>
   )
 }
+
+export default Callboard;
