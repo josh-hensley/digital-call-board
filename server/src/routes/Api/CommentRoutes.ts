@@ -1,35 +1,29 @@
 import { Router, Request, Response } from 'express';
-import { Post, Comment, User } from '../../models/index.js';
+import { Comment, Post, User } from '../../models/index.js';
 
 const router = Router();
 
 router.post('/', async (req: Request, res: Response) => {
     try {
-        const newPost = await Post.create(req.body);
-        console.log('New post created:', newPost.id);
-        res.status(201).json(newPost);
+        const newComment = await Comment.create(req.body);
+        console.log('New comment created:', newComment.id);
+        res.status(201).json(newComment);
     } catch (error) {
-        res.status(500).json({ message: 'Error creating post', error });
+        res.status(500).json({ message: 'Error creating comment', error });
     }
 });
 
 router.get('/', async (_req: Request, res: Response) => {
     try {
-        const posts = await Post.findAll(
+        const comments = await Comment.findAll(
             {
-                include: [
-                    {
-                        model: User,
-                        attributes: ['id', 'firstName', 'lastName']
-                    }, 
-                    {
-                        model: Comment,
-                        attributes: ['id', 'content', 'createdAt'],
-                        include: [{ model: User, attributes: ['id', 'firstName', 'lastName'] }]
-                    }],
-                    attributes: ['id', 'content', 'createdAt']
+                include: {
+                    model: User,
+                    attributes: ['id', 'firstName', 'lastName']
+                },
+                attributes: ['id', 'content', 'createdAt']
             });
-        res.json(posts);
+        res.json(comments);
     } catch (error) {
         console.error('Error fetching posts:', error);
         res.status(500).json({ message: 'Error fetching posts' });
@@ -41,7 +35,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     try {
         const post = await Post.findByPk(id, {
             include: [
-                { model: User, attributes: ['id', 'firstName', 'lastName'] },
+                { model: User, as: 'Author' },
                 {
                     model: Post, as: 'Comments', include: [
                         { model: User, as: 'Author' }

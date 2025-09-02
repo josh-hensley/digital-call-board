@@ -1,57 +1,54 @@
-import { useState } from "react";
-import Auth from "../utils/auth";
-import '../css/header.css'
+import { FC } from 'react';
 
-export default function Header() {
-    const [menuOpen, setMenuOpen] = useState(false);
+const Header: FC = () => {
 
-    const menuClickHandler = () => {
-        ;
-        if (!menuOpen) {
-            setMenuOpen(true);
+    const toggleNavbar = () => {
+        const navbar = document.querySelector('.navbar-collapse');
+        if (navbar) {
+            navbar.classList.toggle('show');
         }
-        else {
-            setMenuOpen(false);
+    };
+
+    const toggleDropdown = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const dropdownMenu = e.currentTarget.nextElementSibling;
+        if (dropdownMenu) {
+            dropdownMenu.classList.toggle('show');
         }
-    }
+    };
 
     return (
         <header>
-            <nav className="bg-primary bg-gradient p-2">
-                <div className="d-flex justify-content-between align-items-center">
-                    <h1 className="text-light">RSM Shrek The Musical</h1>
-                    <div className="menu-icon" onClick={menuClickHandler}>
-                        <div className={menuOpen ? "bar1-x bar1" : "bar1"}></div>
-                        <div className={menuOpen ? "bar2-x bar2" : "bar2"}></div>
-                        <div className={menuOpen ? "bar3-x bar3" : "bar3"}></div>
-                    </div>
+            <nav className="bg-primary bg-gradient p-2 navbar navbar-expand-xl">
+                <div className="container-fluid d-flex justify-content-between">
+                    <h2 className="text-light">Digital Callboard</h2>
+                    <button className="navbar-toggler" type="button" onClick={toggleNavbar}><span className="navbar-toggler-icon"></span></button>
+                </div>
+                <div className="collapse navbar-collapse">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
+                        <li className="nav-item"><a className="nav-link link-light" href="/">Callboard</a></li>
+                        <li className="nav-item"><a className="nav-link link-light" href="/contacts">Contacts</a></li>
+                        <li className="nav-item"><a className="nav-link link-light" href="/reports">Reports</a></li>
+                        <li className="nav-item"><a className="nav-link link-light" href="/downloads">Downloads</a></li>
+                        <li className="nav-item"><a className="nav-link link-light" href="/videos">Videos</a></li>
+                        <li className="nav-item"><a className="nav-link link-light" href="/calendar">Calendar</a></li>
+                        <li className="nav-item dropdown">
+                            <a href="#" className="nav-link link-light dropdown-toggle" onClick={toggleDropdown}>SM Tools</a>
+                            <ul className="dropdown-menu">
+                                <li className="dropdown-item"><a className="nav-link" href="/create-report">Create Report</a></li>
+                                <li className="dropdown-item"><a className="nav-link" href="/user-edit">Add User</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li className="nav-item"><a className='nav-link link-light' onClick={() => { console.log('clicked!') }}>Logout</a></li>
+
+                    </ul>
                 </div>
 
-                {Auth.loggedIn() ? (
-                    <ul className={menuOpen ? "show" : "hide"}>
-                        <li><a className="link-light" href="/">Callboard</a></li>
-                        <li><a className="link-light" href="/contacts">Contacts</a></li>
-                        <li><a className="link-light" href="/reports">Reports</a></li>
-                        <li><a className="link-light" href="/downloads">Downloads</a></li>
-                        <li><a className="link-light" href="/videos">Videos</a></li>
-                        <li><a className="link-light" href="/calendar">Calendar</a></li>
-                        <li><a className="link-light" href="/change-password">Change Password</a></li>
-                        {Auth.getProfile().data.name == 'Josh Hensley' && (
-                            <>
-                                <li><a className="link-light" href="/create-report">Create Report</a></li>
-                                <li><a className="link-light" href="/edit-user">Edit User</a></li>
-                                <li><a className="link-light" href="/add-user">Add User</a></li>
-                            </>
-                        )}
-                        <li><button className='btn btn-light' onClick={() => Auth.logout()}>Logout</button></li>
-                    </ul>
-                ) : (
-                    <ul className={menuOpen ? "show" : "hide"}>
-                        <li><a href="/login"><button className="btn btn-light">Login</button></a></li>
-                    </ul>
-                )}
+
             </nav>
         </header>
     )
 };
 
+export default Header;

@@ -1,6 +1,4 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import Auth from "../utils/auth";
-import LoginMessage from "../components/LoginMessage";
 
 export default function ChangePassword() {
 
@@ -33,21 +31,16 @@ export default function ChangePassword() {
 
     return (
         <main>
-            {Auth.loggedIn() ? (
-                <div className="container w-50">
-                    <form className="py-3" onSubmit={handlePasswordChange}>
-                        <label className="text-light" htmlFor="newPpassword">New Password</label>
-                        <input className="form-control my-3" type="password" name='newPassword' onChange={handleChange} />
-                        <label className="text-light" htmlFor="verification">Retype New Password</label>
-                        <input className="form-control my-3" type="password" name='verification' onChange={handleChange} />
-                        <button className="btn btn-primary" type="submit">Change Password</button>
-                    </form>
-                    <p></p>
-                </div>
-            ) : (
-                <LoginMessage />
-            )}
-
+            <div className="container w-50">
+                <form className="py-3" onSubmit={handlePasswordChange}>
+                    <label className="text-light" htmlFor="newPpassword">New Password</label>
+                    <input className="form-control my-3" type="password" name='newPassword' onChange={handleChange} />
+                    <label className="text-light" htmlFor="verification">Retype New Password</label>
+                    <input className="form-control my-3" type="password" name='verification' onChange={handleChange} />
+                    <button className="btn btn-primary" type="submit">Change Password</button>
+                </form>
+                <p></p>
+            </div>
         </main>
     )
 }

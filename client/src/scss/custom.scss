@@ -1,4 +1,4 @@
-$primary: #147002;
+$primary: #3e0270;
 $semi-transparent: #000000d3;
 
 header {
@@ -6,13 +6,18 @@ header {
 }
 
 main {
-    background-image: url('https://wallpapercave.com/wp/wp6333552.jpg');
+    background-color: $semi-transparent;
+    background-image: url('../assets/images/background.jpg');
     background-size: fill;
     min-height: 80vh;
 }
 
 footer {
     height: 10%;
+}
+
+.nav-item {
+    font-size: larger;
 }
 
 .bg-semi-transparent {

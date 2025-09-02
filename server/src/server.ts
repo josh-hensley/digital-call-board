@@ -1,6 +1,6 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import routes from './routes/index.js';
+import { apiRoutes, authRoutes } from './routes/index.js';
 import db from './config/connection.js'
 
 import { fileURLToPath } from 'url';
@@ -24,10 +24,11 @@ testConnection();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(join(__dirname, '../client/build')));
-app.use('/', routes);
+app.use(express.static(join(__dirname, '../../client/dist')));
+app.use('/api', apiRoutes);
+app.use('/auth', authRoutes);
 app.use(/(.*)/, (_req: Request, res: Response) => {
-  res.sendFile(join(__dirname, '../client/build/index.html'));
+  res.sendFile(join(__dirname, '../../client/dist/index.html'));
 });
 
 const PORT = process.env.PORT || 3001;

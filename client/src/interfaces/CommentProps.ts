@@ -1,6 +1,12 @@
+interface commentUser {
+    id: number,
+    firstName: string,
+    lastName: string
+}
+
 export default interface CommentProps {
-    _id: number;
-    commentAuthor: string;
-    commentText: string;
+    id: number;
+    content: string;
+    User: commentUser;
     createdAt: string;
 }
