@@ -1,9 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../utils/mutations";
 
 export default function AddUser() {
-    const [addUser, { data, error }] = useMutation(ADD_USER)
     const [newRole, setNewRole] = useState('')
     const [roles, setRoles] = useState<string[]>([])
     const [formState, setFormState] = useState({
@@ -45,9 +42,6 @@ export default function AddUser() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        await addUser({
-            variables: { input: { ...formState } }
-        })
     }
 
     return (
@@ -74,15 +68,6 @@ export default function AddUser() {
                         )
                     })}
                 </ul>
-                {
-                    data ? (
-                        <p>Success!</p>
-                    ) : (
-                        error ? (
-                            <p className="text-danger">{error.message}</p>
-                        ) : (
-                            <button className="btn btn-primary m-2" type="submit" >Submit</button>
-                        ))}
 
             </form>
         </div>
