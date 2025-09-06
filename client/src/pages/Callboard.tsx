@@ -2,8 +2,8 @@ import PostForm from "../components/PostForm";
 import Post from "../components/Post"
 import PostProps from "../interfaces/PostProps";
 import { useState, useEffect } from "react";
-// import Auth from "../utils/auth.js";
-// import LoginMessage from "../components/LoginMessage.js";
+import Auth from "../utils/auth.js";
+import LoginMessage from "../components/LoginMessage.js";
 
 const Callboard = () => {
   const [posts, setPosts] = useState<PostProps[]>([])
@@ -21,18 +21,23 @@ const Callboard = () => {
     };
     fetchPosts();
   }, [])
-  
+
   return (
     <main>
+      {Auth.loggedIn() ? (
         <div className="container d-flex flex-column align-items-center">
           <PostForm />
-          {posts.map(post=>{
+          {posts.map(post => {
             const { id, content, createdAt, User, Comments } = post
             return (
               <Post key={id} id={id} createdAt={createdAt} content={content} User={User} Comments={Comments} />
             )
           })}
         </div>
+      ) : (
+        <LoginMessage />
+      )}
+
     </main>
   )
 }

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import Auth from '../utils/auth.js'
 
 const Header: FC = () => {
 
@@ -25,24 +26,28 @@ const Header: FC = () => {
                     <button className="navbar-toggler" type="button" onClick={toggleNavbar}><span className="navbar-toggler-icon"></span></button>
                 </div>
                 <div className="collapse navbar-collapse">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
-                        <li className="nav-item"><a className="nav-link link-light" href="/">Callboard</a></li>
-                        <li className="nav-item"><a className="nav-link link-light" href="/contacts">Contacts</a></li>
-                        <li className="nav-item"><a className="nav-link link-light" href="/reports">Reports</a></li>
-                        <li className="nav-item"><a className="nav-link link-light" href="/downloads">Downloads</a></li>
-                        <li className="nav-item"><a className="nav-link link-light" href="/videos">Videos</a></li>
-                        <li className="nav-item"><a className="nav-link link-light" href="/calendar">Calendar</a></li>
-                        <li className="nav-item dropdown">
-                            <a href="#" className="nav-link link-light dropdown-toggle" onClick={toggleDropdown}>SM Tools</a>
-                            <ul className="dropdown-menu">
-                                <li className="dropdown-item"><a className="nav-link" href="/create-report">Create Report</a></li>
-                                <li className="dropdown-item"><a className="nav-link" href="/user-edit">Add User</a></li>
-                                
-                            </ul>
-                        </li>
-                        <li className="nav-item"><a className='nav-link link-light' onClick={() => { console.log('clicked!') }}>Logout</a></li>
+                    {Auth.loggedIn() ? (
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
+                            <li className="nav-item"><a className="nav-link link-light" href="/">Callboard</a></li>
+                            <li className="nav-item"><a className="nav-link link-light" href="/contacts">Contacts</a></li>
+                            <li className="nav-item"><a className="nav-link link-light" href="/reports">Reports</a></li>
+                            <li className="nav-item"><a className="nav-link link-light" href="/downloads">Downloads</a></li>
+                            <li className="nav-item"><a className="nav-link link-light" href="/videos">Videos</a></li>
+                            <li className="nav-item"><a className="nav-link link-light" href="/calendar">Calendar</a></li>
+                            <li className="nav-item dropdown">
+                                <a href="#" className="nav-link link-light dropdown-toggle" onClick={toggleDropdown}>SM Tools</a>
+                                <ul className="dropdown-menu">
+                                    <li className="dropdown-item"><a className="nav-link" href="/create-report">Create Report</a></li>
+                                    <li className="dropdown-item"><a className="nav-link" href="/user-edit">Add User</a></li>
 
-                    </ul>
+                                </ul>
+                            </li>
+                            <li className="nav-item"><a className='nav-link link-light' onClick={() => { console.log('clicked!') }}>Logout</a></li>
+
+                        </ul>
+                    ) : (
+                        <a href="/login"><button className="btn btn-primary m-3">Login</button></a>
+                    )}
                 </div>
 
 
