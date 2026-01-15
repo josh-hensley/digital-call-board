@@ -41,7 +41,7 @@ router.get('/', async (_req: Request, res: Response) => {
 });
 
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     try {
         const user = await User.findByPk(id, {
             include: [
@@ -69,7 +69,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 });
 
 router.put('/:id', async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     try {
         await User.update({ ...req.body }, { where: { id } });
         const updatedUser = await User.findByPk(id);
@@ -83,7 +83,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
 });
 
 router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     try {
         const deletedUser = await User.findByPk(id);
         await User.destroy({ where: { id } });

@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     try {
         const event = await Event.findByPk(id);
         if (!event) {
@@ -40,7 +40,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
 });
 
 router.put('/:id', async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     try {
         await Event.update(req.body, { where: { id } });
         const updatedEvent = await Event.findByPk(id);
