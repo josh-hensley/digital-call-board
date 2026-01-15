@@ -20,7 +20,7 @@ router.get('/', async (_req, res) => {
 });
 
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     try {
         const report = await Report.findByPk(id, {
             include: [
@@ -57,7 +57,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
 });
 
 router.put('/:id', async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     try {
         await Report.update(req.body, { where: { id } });
         const updatedReport = await Report.findByPk(id);
