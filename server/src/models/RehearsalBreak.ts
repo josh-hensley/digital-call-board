@@ -1,30 +1,17 @@
-import { DataTypes, Model } from "sequelize";
-import db from "../config/connection.js"
+import mongoose, { Schema, model } from "mongoose";
 
-class RehearsalBreak extends Model {
-    id!: string;
-    time!: string;
-    length!: number;
-    ReportId!: string
+interface IRehearsalBreak {
+    time: string;
+    length: number;
+    reportId: mongoose.Types.ObjectId;
 }
 
-RehearsalBreak.init(
-    {
-        time: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        length: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        }
-    },
-    {
-        sequelize: db,
-        modelName: 'RehearsalBreak',
-        createdAt: false,
-        updatedAt: false
-    }
-)
+const rehearsalBreakSchema = new Schema<IRehearsalBreak>({
+    time: String,
+    length: Number,
+    reportId: mongoose.Types.ObjectId
+})
+
+const RehearsalBreak = model<IRehearsalBreak>("RehearsalBreak", rehearsalBreakSchema)
 
 export default RehearsalBreak;

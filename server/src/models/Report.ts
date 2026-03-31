@@ -1,17 +1,13 @@
-import { DataTypes, Model } from "sequelize";
-import db from "../config/connection.js"
+import { Schema, model } from "mongoose";
+import RehearsalBreak from "./RehearsalBreak";
 
-type rehearsalBreak = { time: string, length: number }
-
-class Report extends Model {
-    id!: string;
-    createdAt!: Date;
-    updatedAt!: Date;
-    date!: string;
-    rehearsalStart!: string;
-    breaks?: rehearsalBreak[];
-    rehearsalEnd!: string
-    present!: string[];
+interface IReport {
+    createdAt: Date;
+    date: Date;
+    rehearsalStart: string;
+    breaks?: typeof RehearsalBreak[];
+    rehearsalEnd: string
+    present: string[];
     absent?: string[];
     rehearsalNotes?: string;
     costumes?: string;
@@ -22,56 +18,25 @@ class Report extends Model {
 
 }
 
-Report.init(
-    {
-        date: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        rehearsalStart: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        rehearsalEnd: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        present: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: false
-        },
-        absent: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: true
-        },
-        rehearsalNotes: {
-            type: DataTypes.TEXT,
-            allowNull: true
-        },
-        costumes: {
-            type: DataTypes.TEXT,
-            allowNull: true
-        },
-        lights: {
-            type: DataTypes.TEXT,
-            allowNull: true
-        },
-        properties: {
-            type: DataTypes.TEXT,
-            allowNull: true
-        },
-        sound: {
-            type: DataTypes.TEXT,
-            allowNull: true
-        },
-        scenery: {
-            type: DataTypes.TEXT,
-            allowNull: true
-        }
+const reportSchema = new Schema<IReport>({
+    createdAt: {
+        type: Date,
+        default: Date.now
     },
-    {
-        sequelize: db,
-        modelName: 'Report'
-    });
+    date: Date,
+    rehearsalStart: String,
+    breaks: [ RehearsalBreak ],
+    rehearsalEnd: String,
+    present: [ String ],
+    absent: [ String ],
+    rehearsalNotes: String,
+    costumes: String,
+    lights: String,
+    properties: String,
+    sound: String,
+    scenery: String
+})
+
+const Report = model<IReport>("Report", reportSchema)
 
 export default Report;
