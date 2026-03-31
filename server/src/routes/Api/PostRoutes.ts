@@ -15,20 +15,7 @@ router.post('/', async (req: Request, res: Response) => {
 
 router.get('/', async (_req: Request, res: Response) => {
     try {
-        const posts = await Post.findAll(
-            {
-                include: [
-                    {
-                        model: User,
-                        attributes: ['id', 'firstName', 'lastName']
-                    }, 
-                    {
-                        model: Comment,
-                        attributes: ['id', 'content', 'createdAt'],
-                        include: [{ model: User, attributes: ['id', 'firstName', 'lastName'] }]
-                    }],
-                    attributes: ['id', 'content', 'createdAt']
-            });
+        const posts = await Post.find()
         res.json(posts);
     } catch (error) {
         console.error('Error fetching posts:', error);
@@ -39,16 +26,7 @@ router.get('/', async (_req: Request, res: Response) => {
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params as { id: string };
     try {
-        const post = await Post.findByPk(id, {
-            include: [
-                { model: User, attributes: ['id', 'firstName', 'lastName'] },
-                {
-                    model: Post, as: 'Comments', include: [
-                        { model: User, as: 'Author' }
-                    ]
-                }
-            ]
-        });
+        const post = await Post.findById(id)
         if (!post) {
             res.status(404).json({ message: 'post not found' });
         }
@@ -61,8 +39,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params as { id: string };
     try {
-        await Post.update(req.body, { where: { id } });
-        const updatedPost = await Post.findByPk(id);
+        const updatedPost = await Post.findByIdAndUpdate(id, req.body);
         if (!updatedPost) {
             res.status(404).json({ message: 'post not found' });
         }
@@ -75,7 +52,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
 router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     try {
-        const deletedpost = await Post.destroy({ where: { id } });
+        const deletedpost = await Post.findByIdAndDelete(id);
         if (!deletedpost) {
             res.status(404).json({ message: 'post not found' });
         }

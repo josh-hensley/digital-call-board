@@ -15,7 +15,7 @@ router.post('/', async (req: Request, res: Response) => {
 
 router.get('/', async (_req: Request, res: Response) => {
     try {
-        const comments = await Comment.findAll(
+        const comments = await Comment.find(
             {
                 include: {
                     model: User,
@@ -33,7 +33,7 @@ router.get('/', async (_req: Request, res: Response) => {
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params as { id: string };
     try {
-        const post = await Post.findByPk(id, {
+        const post = await Post.findById(id, {
             include: [
                 { model: User, as: 'Author' },
                 {
@@ -55,8 +55,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params as { id: string };
     try {
-        await Post.update(req.body, { where: { id } });
-        const updatedPost = await Post.findByPk(id);
+        const updatedPost = await Post.findByIdAndUpdate(id, req.body);
         if (!updatedPost) {
             res.status(404).json({ message: 'post not found' });
         }
@@ -69,7 +68,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
 router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     try {
-        const deletedpost = await Post.destroy({ where: { id } });
+        const deletedpost = await Post.findByIdAndDelete(id);
         if (!deletedpost) {
             res.status(404).json({ message: 'post not found' });
         }
