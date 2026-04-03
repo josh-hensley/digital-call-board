@@ -1,6 +1,6 @@
 import mongoose, { Schema, model } from "mongoose";
 
-interface IRehearsalBreak {
+export interface IRehearsalBreak {
     time: string;
     length: number;
     reportId: mongoose.Types.ObjectId;
@@ -14,4 +14,4 @@ const rehearsalBreakSchema = new Schema<IRehearsalBreak>({
 
 const RehearsalBreak = model<IRehearsalBreak>("RehearsalBreak", rehearsalBreakSchema)
 
-export default RehearsalBreak;
+export default RehearsalBreak

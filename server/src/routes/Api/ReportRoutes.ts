@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { Report, RehearsalBreak } from '../../models/index.js';
+import { Report } from '../../models/index.js';
 
 const router = Router();
 

@@ -4,7 +4,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "concurrently \"cd server && npm i\" \"cd client && npm i\"",
-    "dev": "nodemon",
+    "dev": "concurrently \"nodemon\" \"cd client && npm run dev\"",
     "server:dev": "cd server && npm run dev",
     "client:dev": "cd client && npm run dev",
     "build": "concurrently \"npm run server:build\" \"npm run client:build\"",
@@ -18,8 +18,7 @@
   "nodemonConfig": {
     "ext": "ts, tsx, json",
     "watch": [
-      "server/src/**/*",
-      "client/src/**/*"
+      "server/src/**/*"
     ],
     "exec": "npm run build && npm start"
   },

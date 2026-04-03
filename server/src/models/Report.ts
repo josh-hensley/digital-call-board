@@ -1,11 +1,11 @@
 import { Schema, model } from "mongoose";
-import RehearsalBreak from "./RehearsalBreak";
+import { IRehearsalBreak } from "./RehearsalBreak.js";
 
 interface IReport {
     createdAt: Date;
     date: Date;
     rehearsalStart: string;
-    breaks?: typeof RehearsalBreak[];
+    breaks?: IRehearsalBreak[];
     rehearsalEnd: string
     present: string[];
     absent?: string[];
@@ -25,7 +25,7 @@ const reportSchema = new Schema<IReport>({
     },
     date: Date,
     rehearsalStart: String,
-    breaks: [ RehearsalBreak ],
+    breaks: [ Schema.Types.ObjectId ],
     rehearsalEnd: String,
     present: [ String ],
     absent: [ String ],
