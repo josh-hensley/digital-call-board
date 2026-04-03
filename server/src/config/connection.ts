@@ -1,10 +1,14 @@
-import dotenv from 'dotenv';
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 dotenv.config();
 
-import { Sequelize } from 'sequelize';
-
-const { DB_URI } = process.env;
-
-const db = new Sequelize(DB_URI || '');
+const URI = process.env.URI || "";
+const db = async () => {
+  try {
+    mongoose.connect(URI);
+  } catch (error) {
+    console.error((error as Error).message);
+  }
+};
 
 export default db;

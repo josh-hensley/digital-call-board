@@ -1,18 +1,11 @@
 import { Router, Request, Response } from 'express';
-import { Report, RehearsalBreak } from '../../models/index.js';
+import { Report } from '../../models/index.js';
 
 const router = Router();
 
 router.get('/', async (_req, res) => {
     try {
-        const reports = await Report.findAll({
-            include: [
-                {
-                    model: RehearsalBreak,
-                    attributes: ['time', 'length']
-                }
-            ]
-        });
+        const reports = await Report.find();
         res.json(reports);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching reports' });
@@ -22,14 +15,7 @@ router.get('/', async (_req, res) => {
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params as { id: string };
     try {
-        const report = await Report.findByPk(id, {
-            include: [
-                {
-                    model: RehearsalBreak,
-                    attributes: ['time', 'length']
-                }
-            ]
-        });
+        const report = await Report.findById(id);
         if (!report) {
             res.status(404).json({ message: 'Report not found' });
         }
@@ -41,13 +27,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 
 router.post('/', async (req: Request, res: Response): Promise<void> => {
     try {
-        const newReport = await Report.create(req.body, {
-            include: [
-                {
-                    model: RehearsalBreak
-                }
-            ]
-        });
+        const newReport = await Report.create(req.body);
         console.log('New report created:', newReport.id);
         res.status(201).json(newReport);
     } catch (error) {
@@ -59,8 +39,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
 router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params as { id: string };
     try {
-        await Report.update(req.body, { where: { id } });
-        const updatedReport = await Report.findByPk(id);
+        const updatedReport = await Report.findByIdAndUpdate(id, req.body);
         if (!updatedReport) {
             res.status(404).json({ message: 'post not found' });
         }
@@ -73,7 +52,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
 router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     try {
-        const deletedReport = await Report.destroy({ where: { id } });
+        const deletedReport = await Report.findByIdAndDelete(id);
         if (!deletedReport) {
             res.status(404).json({ message: 'report not found' });
         }

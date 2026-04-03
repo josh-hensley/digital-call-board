@@ -1,23 +1,20 @@
-import { DataTypes, Model } from "sequelize";
-import db from "../config/connection.js"
+import { Schema, model } from "mongoose";
 
-class Comment extends Model {
-    id!: string;
-    createdAt!: Date;
-    updatedAt!: Date;
-    content!: string;
+interface IComment {
+    author: string;
+    content: string;
+    createdAt: Date;
 }
 
-Comment.init(
-    {
-        content: {
-            type: DataTypes.TEXT,
-            allowNull: false
-        }
-    },
-    {
-        sequelize: db,
-        modelName: 'Comment'
-    });
+const commentSchema = new Schema<IComment>({
+    author: String,
+    content: String,
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+})
+
+const Comment = model<IComment>('Comment', commentSchema)
 
 export default Comment;

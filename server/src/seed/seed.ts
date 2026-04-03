@@ -1,15 +1,12 @@
 import db from "../config/connection.js";
 import { User } from '../models/index.js';
-import users from './users.json' assert { type: 'json' };
-
+import users from './users.json' with { type: "json" };
 const seedDatabase = async () => {
     try {
-        await db.sync({ force: true });
+        await db();
         console.log('Database synced successfully');
 
-        await User.bulkCreate(users, {
-            validate: true
-        });
+        await User.insertMany(users);
 
         console.log('Database seeded successfully');
 

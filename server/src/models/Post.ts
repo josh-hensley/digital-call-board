@@ -1,23 +1,15 @@
-import { DataTypes, Model } from "sequelize";
-import db from "../config/connection.js"
+import { Schema, model } from "mongoose";
 
-class Post extends Model {
-    id!: string;
-    createdAt!: Date;
-    updatedAt!: Date;
-    content!: string;
+interface IPost {
+    createdAt: Date;
+    content: string;
 }
 
-Post.init(
-    {
-        content: {
-            type: DataTypes.TEXT,
-            allowNull: false
-        }
-    },
-    {
-        sequelize: db,
-        modelName: 'Post'
-    });
+const postSchema = new Schema<IPost>({
+    content: String,
+    createdAt: Date
+})
+
+const Post = model("Post", postSchema)
 
 export default Post;
